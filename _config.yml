@@ -3,12 +3,12 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
+title: ""
 subtitle: ''
 description: ''
 keywords:
-author: John Doe
-language: en
+author: nahyuni21(Park.S.H)
+language: ko
 timezone: ''
 
 # URL
@@ -94,7 +94,7 @@ ignore:
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 ##theme: hexo-theme-icarus
-theme: hueman
+theme: tranquilpeak
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
@@ -102,3 +102,8 @@ deploy:
   type: git
   repo: https://github.com/nahyuni/nahyuni.github.io.git
   branch: master
+
+feed:
+    type: atom
+    path: atom.xml
+    limit: 20
