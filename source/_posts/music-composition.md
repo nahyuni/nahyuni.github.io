@@ -6,5 +6,3 @@ categories: [music, composition]
 thumbnail: ""
 permalink: ""
 ---
-
-# 화성학
