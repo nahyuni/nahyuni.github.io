@@ -3,11 +3,11 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
+title: ""
 subtitle: ''
 description: ''
 keywords:
-author: John Doe
+author: nahyuni21(Park.S.H)
 language: en
 timezone: ''
 
@@ -41,7 +41,7 @@ external_link:
   exclude: ''
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
+post_asset_folder: true
 relative_link: false
 future: true
 highlight:
@@ -93,10 +93,17 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: hueman
+##theme: hexo-theme-icarus
+theme: tranquilpeak
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
   repo: https://github.com/nahyuni/nahyuni.github.io.git
+  branch: master
+
+feed:
+    type: atom
+    path: atom.xml
+    limit: 20
