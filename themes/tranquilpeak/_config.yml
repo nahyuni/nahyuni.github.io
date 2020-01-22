@@ -30,10 +30,10 @@ image_dir: assets/images
 #                               # Go to https://fontawesome.com/icons?d=gallery&m=free to find icons you want
 sidebar:
     menu:
-#        home:
-#            title: global.home
-#            url: /
-#            icon: fa fa-home
+        home:
+            title: global.home
+            url: /
+            icon: fa fa-home
         categories:
             title: global.categories
             url: /all-categories
@@ -58,10 +58,10 @@ sidebar:
             url: https://github.com/nahyuni
             icon: fab fa-github
 
-        about:
-            title: global.about
-            url: /#about
-            icon: fa fa-question
+#        about:
+#            title: global.about
+#            url: /#about
+#            icon: fa fa-question
 
 # --------------------
 # Header configuration
