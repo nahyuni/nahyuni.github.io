@@ -81,7 +81,7 @@ post:
 
 author:
     # Your biography (마크다운과 HTML이 지원됩니다.)
-    bio: "박 성 현 (nahyuni21@gmail.com)"
+    bio: ""
     # Your job
-    job: "감성 서버 개발자 (#게임, #블록체인, #백앤드, #작곡, #기타, #피아노)"
+    job: ""
 

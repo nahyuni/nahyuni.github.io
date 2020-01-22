@@ -32,7 +32,7 @@ sidebar:
     menu:
         home:
             title: global.home
-            url: /
+            url: //
             icon: fa fa-home
         categories:
             title: global.categories
@@ -46,16 +46,9 @@ sidebar:
             title: global.archives
             url: /all-archives
             icon: fa fa-archive
-#        search:
-#            title: global.search
-#            url: /#search
-#            icon: fa fa-search
-#            # `open-algolia-search` classes are used to open algolia search modal
-#            class: open-algolia-search
-
         github:
             title: global.github
-            url: https://github.com/nahyuni
+            url: https://github.com/
             icon: fab fa-github
 
 # --------------------
@@ -83,16 +76,15 @@ header:
 
 # Your biography and your job is editable in each languages files in `languages` folder
 author:
+		bio: "back-end server developer"
     email:
-        nahyuni21@gmail.com
     location:
-        대한민국/서울
     # Your profile picture located in folder `source/_images/` (development)
     # or in `source/assets/images/` (production)
     # or you can use an external url
     # Overwritten by your gravatar image if `gravatar_email` is filled
     picture:
-        KakaoTalk_20180814_153617582.jpg
+			KakaoTalk_20180814_153617582.jpg
     # Your Twitter username without the @. E.g : `tranquilpeak`
     twitter:
     # Your personal google plus profile id, not your blog or business page id.
@@ -119,7 +111,7 @@ author:
 # large sidebar is swiped on all lower screens
 # 5: Display header bar on all screens and large sidebar is swiped on large screen
 # 6: Display header bar on all screens and medium sidebar is swiped
-sidebar_behavior: 2
+sidebar_behavior: 1
 # Hide sidebar on all article page to let article take full width to improve reading, and
 # enjoy wide images and cover images. (true: enable, false: disable)
 clear_reading: true
@@ -141,8 +133,7 @@ auto_thumbnail_image: true
 # Otherwise put your image in folder `source/_images/` (development)
 # or in `source/assets/images/` if you can't or don't want to build the theme,
 # and use relative url : `your-image.png`
-cover_image: cover-v1.2.0.jpg
-#cover_image: KakaoTalk_20180814_153617582.jpg
+cover_image: cover.jpg
 # Your favicon located in folder `source/_images/` (development) or in `source/assets/images/` (production)
 favicon:
 # Display an image gallery at the end of a post which have photos variables (false: disabled, true: enabled)
