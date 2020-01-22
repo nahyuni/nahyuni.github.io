@@ -1,12 +1,10 @@
 ---
-title: [BridgeWar]
+title: [wallet]
 date: 2020-01-21 14:30:19
-tags: [game svr]
-categories:
+tags: [blockchain, wallet]
+categories: 
     - develope
-    - project
-    - game
+    - blockchain
 thumbnail: ""
 permalink: ""
 ---
-
