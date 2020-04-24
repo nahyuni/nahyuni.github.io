@@ -4,8 +4,8 @@
 
 # Site
 title: ""
-subtitle: ''
-description: ''
+subtitle: '나혀니의 블로그 입니다.'
+description: '정리하는 습관을 기르고자 올립니다.'
 keywords:
 author: nahyuni21(Park.S.H)
 language: en
@@ -94,7 +94,9 @@ ignore:
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 ##theme: hexo-theme-icarus
-theme: tranquilpeak
+##theme: tranquilpeak
+theme: landscape
+##theme: hueman
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
