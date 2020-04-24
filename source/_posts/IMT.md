@@ -6,7 +6,6 @@ categories:
  - 정보 관리 기술사
 permalink: ""
 ---
-<!-- more -->
 ## 전체 문제 
  -  https://drive.google.com/file/d/1EDwMIPl66b2EfhRbGi0Aj9F5TNljsgp7/view
 
@@ -15,13 +14,11 @@ permalink: ""
 - 레퍼런스 : https://www.joinc.co.kr/w/man/12/hmac
 - 키워드 : Hash,Shared Key,MAC Algorithm
 - 답안전략 : 정확한 메커니즘 설명 및 3 단락에서의 차별화 접근
-<br>
+<!-- more -->
 
 ### 개념
 - 송신자와 수신자만이 공유하고 있는 Key 와 Message 를 혼합하여 Hash 값을 만드는 방식
 - HMAC = Hash(Hash(message + key) + key)
-<br>
-<!-- more -->
 
 ### 특징
 - 메시지의 무결성, 기밀성 보장

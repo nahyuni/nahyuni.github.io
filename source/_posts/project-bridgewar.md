@@ -9,8 +9,8 @@ permalink: ""
 ---
 ## 1. 서버 구성도 
 ![](/images/404d06966e444c82bfd0082847a86424.png)
-![](/images/e809b4238e6543858afdec7ce557e30c.png)
 <!-- more -->
+![](/images/e809b4238e6543858afdec7ce557e30c.png)
 ## 2. 개발 환경
  -  AWS(ec2, Elastic Load balancer, DBS) + Centos 7.0 + apache + CI(php) + mysql + memcached + mcrypt
 
