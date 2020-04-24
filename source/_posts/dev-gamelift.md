@@ -3,7 +3,7 @@ title: [aws gamelift ]
 date: 2020-01-11 14:30:19
 tags: [aws, gamelift]
 categories:
-    - 그 외
+    - 개발
 thumbnail: ""
 permalink: ""
 ---

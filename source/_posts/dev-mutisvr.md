@@ -1,9 +1,9 @@
 ---
 title: [멀티 플레이어 서버 고찰]
 date: 2020-02-06 14:30:19
-tags: [server]
+tags: [game svr]
 categories: 
-    - 그 외
+    - 개발
 thumbnail: ""
 permalink: ""
 ---
