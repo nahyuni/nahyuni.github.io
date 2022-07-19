@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>aws gamelift | </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="install gamelift SDK for linux  1.  2.  3.  4  SDK 다운(https:&#x2F;&#x2F;ap-northeast-2.console.aws.amazon.com&#x2F;gamelift&#x2F;home?region&#x3D;ap-northeast-2#&#x2F;)  cmake 설치.(yum install cmake)  해당 폴더(&#x2F;home&#x2F;gamelift&#x2F;gamelift_">
+<meta property="og:type" content="article">
+<meta property="og:title" content="aws gamelift">
+<meta property="og:url" content="http://yoursite.com/2020/01/11/dev-gamelift/index.html">
+<meta property="og:site_name" content="">
+<meta property="og:description" content="install gamelift SDK for linux  1.  2.  3.  4  SDK 다운(https:&#x2F;&#x2F;ap-northeast-2.console.aws.amazon.com&#x2F;gamelift&#x2F;home?region&#x3D;ap-northeast-2#&#x2F;)  cmake 설치.(yum install cmake)  해당 폴더(&#x2F;home&#x2F;gamelift&#x2F;gamelift_">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-01-11T05:30:19.000Z">
+<meta property="article:modified_time" content="2021-09-02T14:37:32.985Z">
+<meta property="article:author" content="nahyuni21(Park.S.H)">
+<meta property="article:tag" content="aws">
+<meta property="article:tag" content="gamelift">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="" type="application/atom+xml">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo"></a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">나 혀니의 블로그 입니다.~~</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-dev-gamelift" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/11/dev-gamelift/" class="article-date">
+  <time datetime="2020-01-11T05:30:19.000Z" itemprop="datePublished">2020-01-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%EA%B0%9C%EB%B0%9C/">개발</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      aws gamelift
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="install-gamelift-SDK-for-linux"><a href="#install-gamelift-SDK-for-linux" class="headerlink" title="install gamelift SDK for linux"></a>install gamelift SDK for linux</h1><ol start="0">
+<li></li>
+<li><p>1.</p>
+</li>
+<li><p>2.</p>
+</li>
+<li><p>3.</p>
+</li>
+<li><p>4</p>
+</li>
+<li><p>SDK 다운(<a href="https://ap-northeast-2.console.aws.amazon.com/gamelift/home?region=ap-northeast-2#/" target="_blank" rel="noopener">https://ap-northeast-2.console.aws.amazon.com/gamelift/home?region=ap-northeast-2#/</a>)</p>
+</li>
+<li><p>cmake 설치.(yum install cmake)</p>
+</li>
+<li><p>해당 폴더(/home/gamelift/gamelift_sdk)에서 cmake CMakeLists.txt(makefile 생성)</p>
+</li>
+<li><p>make</p>
+<a id="more"></a></li>
+<li><p>cd thirdparty</p>
+</li>
+<li><p>cmake CMakeLists.txt</p>
+</li>
+<li><p>make(makefile 생성)</p>
+</li>
+<li><p>cd /home/gamelift/gamelift_sdk/prefix/lib<br>8.1 libprotobuf.so, libboost_date_time.so, libboost_system.so, libboost_random.so, libprotoc.so (해당 동적 라이브러리가 생성되었는지 확인)</p>
+</li>
+<li><p>library PATH 넣어주기.<br>9.1 vi /etc/profile<br>9.2 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/gamelift/gamelift_sdk/prefix/lib 넣어준다.<br>9.3 source /etc/profile(바로 적용)<br>9.4 echo $LD_LIBRARY_PATH(위에 라이브러리가 추가 되었는지 확인)</p>
+</li>
+</ol>
+<h1 id="gamelift-사용하는-방법-예제"><a href="#gamelift-사용하는-방법-예제" class="headerlink" title="gamelift 사용하는 방법(예제)"></a>gamelift 사용하는 방법(예제)</h1><ol start="0">
+<li>문서(GameLift_dist.pdf) </li>
+</ol>
+<p><a href="https://github.com/padhansell/GameLift/blob/master/GameLift_dist.pdf" target="_blank" rel="noopener">https://github.com/padhansell/GameLift/blob/master/GameLift_dist.pdf</a></p>
+<ol>
+<li>다운로드(<a href="https://github.com/zeliard/GameLift" target="_blank" rel="noopener">https://github.com/zeliard/GameLift</a>)</li>
+<li>GameLiftLinuxServer 폴더에서 cmake CMakeLists.txt(makefile 생성)</li>
+<li>make</li>
+</ol>
+<h1 id="자신의-서버-소스에-gamelift를-추가-하는-방법"><a href="#자신의-서버-소스에-gamelift를-추가-하는-방법" class="headerlink" title="자신의 서버 소스에 gamelift를 추가 하는 방법"></a>자신의 서버 소스에 gamelift를 추가 하는 방법</h1><ol>
+<li>소스 컴파일(make, make install)<br>1.1 vi makefile<br>1.2 -L/home/gamelift/gamelift_sdk/prefix/lib  -lsioclient -lboost_date_time -lboost_random -lboost_system -lprotobuf -lpthread (lib 추가)<br>   -I/home/gamelift/gamelift_sdk/prefix/include(include 추가)<br>   GameLiftManager.cpp Log.cpp 추가(gamelift 예제 소스에서 가지고 옴)<br>1.3 make</li>
+</ol>
+<h1 id="아마존-게임리프트-콘솔에-올리는-방법"><a href="#아마존-게임리프트-콘솔에-올리는-방법" class="headerlink" title="아마존 게임리프트 콘솔에 올리는 방법"></a>아마존 게임리프트 콘솔에 올리는 방법</h1><ol>
+<li><p>아마존 게임리프트 콘솔 도움말<br><a href="http://docs.aws.amazon.com/ko_kr/gamelift/latest/developerguide/fleets-creating.html" target="_blank" rel="noopener">http://docs.aws.amazon.com/ko_kr/gamelift/latest/developerguide/fleets-creating.html</a></p>
+</li>
+<li><p>gamelift console 설정(<a href="https://ap-northeast-2.console.aws.amazon.com/gamelift/home?region=ap-northeast-2#/r/fleets/create" target="_blank" rel="noopener">https://ap-northeast-2.console.aws.amazon.com/gamelift/home?region=ap-northeast-2#/r/fleets/create</a>) - 아마존 계정을 만들어야 한다.<br>2.1 aws 액세스 키 생성<br><a href="https://docs.aws.amazon.com/ko_kr/general/latest/gr/managing-aws-access-keys.html" target="_blank" rel="noopener">https://docs.aws.amazon.com/ko_kr/general/latest/gr/managing-aws-access-keys.html</a><br>2.2 게임서버에 session key, secret key 추가.<br>2.2.1 해당 게임서버에서 AWS cli 설치 및 키 추가(<a href="http://pyrasis.com/book/TheArtOfAmazonWebServices/Chapter30/02" target="_blank" rel="noopener">http://pyrasis.com/book/TheArtOfAmazonWebServices/Chapter30/02</a>)<br>2.2.2 해당 서버에 실행 폴더를 AWS cli 통해서 gamelift에 올림.<br>aws gamelift upload-build –name GameLiftLinuxServer5 –build-version 0.0.1 –build-root /home/gamelift/GameLift-master/GameLiftLinuxServer/build –operating-system AMAZON_LINUX –region ap-northeast-2<br>2.2.3 aws gamelift describe-build –build-id (올라 갔는지 확인)<br>2.3 gamelift cosole 접속(직접 들어가서 해야 한다.)</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/01/11/dev-gamelift/" data-id="cl5s8jl550002hkv27xnkdvyq" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/aws/" rel="tag">aws</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gamelift/" rel="tag">gamelift</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/01/21/project-monitoring/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          monitoring
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%EA%B0%9C%EB%B0%9C/">개발</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%EC%98%81%EC%96%B4/">영어</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%EC%A0%95%EB%B3%B4-%EA%B4%80%EB%A6%AC-%EA%B8%B0%EC%88%A0%EC%82%AC/">정보 관리 기술사</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/">프로젝트</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/300-%EB%AC%B8%EC%9E%A5/" rel="tag">300 문장</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/aws/" rel="tag">aws</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blockchain/" rel="tag">blockchain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cron/" rel="tag">cron</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/game-svr/" rel="tag">game svr</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gamelift/" rel="tag">gamelift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/infra/" rel="tag">infra</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/microservice/" rel="tag">microservice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mining/" rel="tag">mining</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pow/" rel="tag">pow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/" rel="tag">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/streaming/" rel="tag">streaming</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/" rel="tag">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%EC%A0%9C%EC%8B%9C%EC%B9%B4/" rel="tag">제시카</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/300-%EB%AC%B8%EC%9E%A5/" style="font-size: 10px;">300 문장</a> <a href="/tags/aws/" style="font-size: 10px;">aws</a> <a href="/tags/blockchain/" style="font-size: 10px;">blockchain</a> <a href="/tags/cron/" style="font-size: 10px;">cron</a> <a href="/tags/game-svr/" style="font-size: 15px;">game svr</a> <a href="/tags/gamelift/" style="font-size: 10px;">gamelift</a> <a href="/tags/infra/" style="font-size: 10px;">infra</a> <a href="/tags/microservice/" style="font-size: 20px;">microservice</a> <a href="/tags/mining/" style="font-size: 10px;">mining</a> <a href="/tags/pow/" style="font-size: 10px;">pow</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/streaming/" style="font-size: 10px;">streaming</a> <a href="/tags/svn/" style="font-size: 10px;">svn</a> <a href="/tags/%EC%A0%9C%EC%8B%9C%EC%B9%B4/" style="font-size: 10px;">제시카</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/09/24/dev-idc-infra/">고가용인프라</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/24/dev-streaminig/">streaming 기술 이해</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/27/dev-ms-docker/">docker</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/14/dev-ms-consul/">consul</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/06/dev-ms-gokit/">go-kit</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 nahyuni21(Park.S.H)<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

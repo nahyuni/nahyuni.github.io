@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>monitoring | </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1. 개요 여러개의 open source 가 있지만 간단한 내부 모니터 및 알람 툴이다. 클라이언트(view) : 웹, 아이폰, 안드로이드 앱(react-native 웹앱 구현), view monitoring 서버(admin) :  서버 환경 : centos6.9, mysql5.5, shell, php7.3 프로세스">
+<meta property="og:type" content="article">
+<meta property="og:title" content="monitoring">
+<meta property="og:url" content="http://yoursite.com/2020/01/21/project-monitoring/index.html">
+<meta property="og:site_name" content="">
+<meta property="og:description" content="1. 개요 여러개의 open source 가 있지만 간단한 내부 모니터 및 알람 툴이다. 클라이언트(view) : 웹, 아이폰, 안드로이드 앱(react-native 웹앱 구현), view monitoring 서버(admin) :  서버 환경 : centos6.9, mysql5.5, shell, php7.3 프로세스">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-01-21T05:30:19.000Z">
+<meta property="article:modified_time" content="2021-09-02T14:37:32.994Z">
+<meta property="article:author" content="nahyuni21(Park.S.H)">
+<meta property="article:tag" content="shell">
+<meta property="article:tag" content="cron">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="" type="application/atom+xml">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo"></a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">나 혀니의 블로그 입니다.~~</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-project-monitoring" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/21/project-monitoring/" class="article-date">
+  <time datetime="2020-01-21T05:30:19.000Z" itemprop="datePublished">2020-01-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/">프로젝트</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      monitoring
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-개요"><a href="#1-개요" class="headerlink" title="1. 개요"></a>1. 개요</h2><ol>
+<li>여러개의 open source 가 있지만 간단한 내부 모니터 및 알람 툴이다.</li>
+<li>클라이언트(view) : 웹, 아이폰, 안드로이드 앱(react-native 웹앱 구현), <a href="http://116.126.87.167:10000" target="_blank" rel="noopener">view monitoring</a></li>
+<li>서버(admin) : </li>
+<li>서버 환경 : centos6.9, mysql5.5, shell, php7.3</li>
+<li>프로세스<a id="more"></a>  
+5.1 어드민에서 프로젝트 등록 및 프로젝트 사용자 권한 설정을 한다.<br>5.2 알람 어드민 툴에서 알람 임계치를 설정하여 (관심, 주의, 경고, 위험, 바로조치) sms를 보낼수 있다.<br>5.3 모니터링 하고 싶은 서버에 설치 문서에 따라 설치 및 설정을 한다.<br>5.4 해당 시스템은 크론에 등록되어 매분 체크 된다.<br>5.5 뷰에서 시스템 정보 및 알람 정보를 확인할수 있다.<br>5.6 기본적인 모니터링 셀 구현.</li>
+</ol>
+<hr>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">root_path=<span class="string">"/home/www/common_cron/alarm_admin"</span>;</span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$#</span> -gt 0 ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">	<span class="built_in">echo</span> <span class="string">" Usage : ./monitor.sh"</span></span><br><span class="line">	<span class="built_in">exit</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="built_in">source</span> <span class="variable">$root_path</span>/alarm_info.ini</span><br><span class="line"></span><br><span class="line">active_ok=`<span class="variable">$mysql_path</span> -h<span class="variable">$alarm_host</span> -u<span class="variable">$alarm_user</span> -p<span class="variable">$alarm_pwd</span> <span class="variable">$alarm_db</span> -e <span class="string">"SELECT active_ok FROM svr_register WHERE pro_name = '<span class="variable">$pro_name</span>' AND svr_name = '<span class="variable">$svr_name</span>'"</span>`</span><br><span class="line">active_ok=`<span class="built_in">echo</span> <span class="string">"<span class="variable">$active_ok</span>"</span> | grep -E <span class="string">'yes|no'</span>`</span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$active_ok</span> = <span class="string">"no"</span> ] || [ <span class="variable">$active_ok</span> = <span class="string">''</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">	<span class="built_in">exit</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"pro_name : <span class="variable">$pro_name</span>, svr_name : <span class="variable">$svr_name</span>"</span>;</span><br><span class="line">load_avg=`uptime | awk <span class="string">'&#123;print $(NF-2)" "$(NF-1)" "$NF&#125;'</span>`</span><br><span class="line">cpu=`/usr/bin/mpstat | tail -1 | awk <span class="string">'&#123;print 100 - $12&#125;'</span>`</span><br><span class="line">memory=`free | grep -i mem: | awk <span class="string">'&#123;print $3/$2 * 100&#125;'</span>`</span><br><span class="line">io_wait=`iostat -c|awk <span class="string">'/^ /&#123;print $4&#125;'</span>`</span><br><span class="line">disk=`df -h`</span><br><span class="line">net_id=`netstat -i | awk <span class="string">'&#123;print $1&#125;'</span> | grep -iv lo | grep -iv Iface | grep -iv Kernel`</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="variable">$net_id</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">	network_rx_error=`netstat -i | grep <span class="variable">$i</span> | awk <span class="string">'&#123;print $5&#125;'</span>`</span><br><span class="line">	network_tx_error=`netstat -i | grep <span class="variable">$i</span> | awk <span class="string">'&#123;print $9&#125;'</span>`</span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line">START=$(date +%s)</span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$svr_name</span> == <span class="string">"db"</span>* ] || [ <span class="variable">$svr_name</span> == <span class="string">"all"</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line"><span class="comment">#	echo "mysql -u$local_user -p'$local_pwd' $local_db &lt; alarm_query.sql"</span></span><br><span class="line">	mysql -u<span class="variable">$local_user</span> -p<span class="variable">$local_pwd</span> <span class="variable">$local_db</span> &lt; alarm_query.sql</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line">END=$(date +%s)</span><br><span class="line">query_sec=$(( <span class="variable">$END</span> - <span class="variable">$START</span> ))</span><br><span class="line">http_cnt=`netstat -nap | grep :80 | grep ESTABLISHED | wc -l`</span><br><span class="line">ping_sec=`ping -c 1 localhost | grep icmp_seq | awk <span class="string">'&#123;print $8&#125;'</span>`</span><br><span class="line">ping_sec=<span class="variable">$&#123;ping_sec:5:10&#125;</span>;</span><br><span class="line"></span><br><span class="line">db_live_num=`ps -ef | grep mysql | egrep -v grep | wc -l`;</span><br><span class="line">http_live_num=`ps -ef | grep httpd | egrep -v grep | wc -l`;</span><br><span class="line"></span><br><span class="line">db_live_ok=<span class="string">'yes'</span>;</span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$db_live_num</span> -lt 1 ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">	<span class="keyword">if</span> [ <span class="variable">$svr_name</span> == <span class="string">"db"</span>* ] || [ <span class="variable">$svr_name</span> == <span class="string">"all"</span> ]</span><br><span class="line">	<span class="keyword">then</span></span><br><span class="line">		db_live_ok=<span class="string">'no'</span>;	</span><br><span class="line">	<span class="keyword">fi</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">http_live_ok=<span class="string">'yes'</span>;</span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$http_live_num</span> -lt 1 ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">	<span class="keyword">if</span> [ <span class="variable">$svr_name</span> == <span class="string">"web"</span>* ] || [ <span class="variable">$svr_name</span> == <span class="string">"all"</span> ]</span><br><span class="line">	<span class="keyword">then</span></span><br><span class="line">		http_live_ok=<span class="string">'no'</span>;</span><br><span class="line">	<span class="keyword">fi</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$mysql_path</span> -h<span class="variable">$alarm_host</span> -u<span class="variable">$alarm_user</span> -p<span class="variable">$alarm_pwd</span> <span class="variable">$alarm_db</span> -e <span class="string">"INSERT INTO system_log (pro_name, svr_name, load_avg, cpu, memory, io_wait, disk, network_rx_error, network_tx_error, query_sec, http_cnt, ping_sec, db_live_ok, http_live_ok, ip, joindate) VALUES </span></span><br><span class="line"><span class="string">('<span class="variable">$pro_name</span>', '<span class="variable">$svr_name</span>', '<span class="variable">$load_avg</span>', '<span class="variable">$cpu</span>', '<span class="variable">$memory</span>', '<span class="variable">$io_wait</span>', '<span class="variable">$disk</span>', '<span class="variable">$network_rx_error</span>', '<span class="variable">$network_tx_error</span>', '<span class="variable">$query_sec</span>', '<span class="variable">$http_cnt</span>', '<span class="variable">$ping_sec</span>', '<span class="variable">$db_live_ok</span>', '<span class="variable">$http_live_ok</span>', '127.0.0.1', now())"</span></span><br></pre></td></tr></table></figure>
+<h1 id="2-alarm-story-board"><a href="#2-alarm-story-board" class="headerlink" title="2. alarm story board"></a>2. alarm story board</h1><h1 id="3-alarm-admin-alarm-view-정보"><a href="#3-alarm-admin-alarm-view-정보" class="headerlink" title="3. alarm-admin, alarm-view 정보"></a>3. alarm-admin, alarm-view 정보</h1><h1 id="4-설치-및-설정"><a href="#4-설치-및-설정" class="headerlink" title="4. 설치 및 설정"></a>4. 설치 및 설정</h1><p> /home/www/alarm_admin/_cron 모니터링 시스템에 설치 및 설정.<br> alarm_info.ini 수정. - monitor.sh 레퍼</p>
+<ul>
+<li>크론 등록<br>####### alarm<br>##* * * * * /home/www/common_cron/alarm_admin/monitor.sh<br>##* * * * * /usr/bin/php /home/www/common_cron/alarm_admin/work_alarm.php</li>
+</ul>
+<ul>
+<li>sendPush.php - andriod<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">send_notification</span><span class="params">($tokens, $message, $re_num)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">        $url = <span class="keyword">$this</span>-&gt;url;</span><br><span class="line">        $fields = <span class="keyword">array</span>(</span><br><span class="line">                <span class="string">'registration_ids'</span> =&gt; $tokens,</span><br><span class="line">                <span class="string">'data'</span> =&gt; $message</span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        $key = <span class="keyword">$this</span>-&gt;serverKey;</span><br><span class="line">        $headers = <span class="keyword">array</span>(</span><br><span class="line">                <span class="string">'Authorization:key ='</span> . $key,</span><br><span class="line">                <span class="string">'Content-Type: application/json'</span></span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        $ch = curl_init();</span><br><span class="line">        curl_setopt($ch, CURLOPT_URL, $url);</span><br><span class="line">        curl_setopt($ch, CURLOPT_POST, <span class="keyword">true</span>);</span><br><span class="line">        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);</span><br><span class="line">        curl_setopt($ch, CURLOPT_RETURNTRANSFER, <span class="keyword">true</span>);</span><br><span class="line">        curl_setopt ($ch, CURLOPT_SSL_VERIFYHOST, <span class="number">0</span>);</span><br><span class="line">        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, <span class="keyword">false</span>);</span><br><span class="line">        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));</span><br><span class="line">        $result = curl_exec($ch);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> ($result === <span class="keyword">FALSE</span>) &#123;</span><br><span class="line">                <span class="keyword">die</span>(<span class="string">'Curl failed: '</span> . curl_error($ch));</span><br><span class="line">        &#125;</span><br><span class="line">        curl_close($ch);</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"Result : "</span>.$re_num.<span class="string">" "</span>.$result.<span class="string">"&lt;br&gt;&lt;br&gt;\n\n"</span>;</span><br><span class="line">        <span class="comment">//return $result;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/01/21/project-monitoring/" data-id="cl5s8jl650015hkv2cv8fchus" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cron/" rel="tag">cron</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shell/" rel="tag">shell</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/01/21/project-bridgewar/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          BridgeWar
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/01/11/dev-gamelift/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">aws gamelift</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%EA%B0%9C%EB%B0%9C/">개발</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%EC%98%81%EC%96%B4/">영어</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%EC%A0%95%EB%B3%B4-%EA%B4%80%EB%A6%AC-%EA%B8%B0%EC%88%A0%EC%82%AC/">정보 관리 기술사</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/">프로젝트</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/300-%EB%AC%B8%EC%9E%A5/" rel="tag">300 문장</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/aws/" rel="tag">aws</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blockchain/" rel="tag">blockchain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cron/" rel="tag">cron</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/game-svr/" rel="tag">game svr</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gamelift/" rel="tag">gamelift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/infra/" rel="tag">infra</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/microservice/" rel="tag">microservice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mining/" rel="tag">mining</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pow/" rel="tag">pow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/" rel="tag">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/streaming/" rel="tag">streaming</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/" rel="tag">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%EC%A0%9C%EC%8B%9C%EC%B9%B4/" rel="tag">제시카</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/300-%EB%AC%B8%EC%9E%A5/" style="font-size: 10px;">300 문장</a> <a href="/tags/aws/" style="font-size: 10px;">aws</a> <a href="/tags/blockchain/" style="font-size: 10px;">blockchain</a> <a href="/tags/cron/" style="font-size: 10px;">cron</a> <a href="/tags/game-svr/" style="font-size: 15px;">game svr</a> <a href="/tags/gamelift/" style="font-size: 10px;">gamelift</a> <a href="/tags/infra/" style="font-size: 10px;">infra</a> <a href="/tags/microservice/" style="font-size: 20px;">microservice</a> <a href="/tags/mining/" style="font-size: 10px;">mining</a> <a href="/tags/pow/" style="font-size: 10px;">pow</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/streaming/" style="font-size: 10px;">streaming</a> <a href="/tags/svn/" style="font-size: 10px;">svn</a> <a href="/tags/%EC%A0%9C%EC%8B%9C%EC%B9%B4/" style="font-size: 10px;">제시카</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/09/24/dev-idc-infra/">고가용인프라</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/24/dev-streaminig/">streaming 기술 이해</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/27/dev-ms-docker/">docker</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/14/dev-ms-consul/">consul</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/06/dev-ms-gokit/">go-kit</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 nahyuni21(Park.S.H)<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

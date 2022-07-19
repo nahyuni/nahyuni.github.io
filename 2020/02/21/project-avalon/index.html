@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>avalon nano miner | </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="github 소스  avalon-nano 크롬 소스를 분석한다.  크롬 소스에서 hid SDK(chrome.hid.getDevices)를 nodejs 인 require(“node-hid”) 로컨버팅 한다.(nodejs)  avalon-nano USB 디바이스와 접속 후 통신을 한다.(firmware 통신)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="avalon nano miner">
+<meta property="og:url" content="http://yoursite.com/2020/02/21/project-avalon/index.html">
+<meta property="og:site_name" content="">
+<meta property="og:description" content="github 소스  avalon-nano 크롬 소스를 분석한다.  크롬 소스에서 hid SDK(chrome.hid.getDevices)를 nodejs 인 require(“node-hid”) 로컨버팅 한다.(nodejs)  avalon-nano USB 디바이스와 접속 후 통신을 한다.(firmware 통신)">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-02-21T05:30:19.000Z">
+<meta property="article:modified_time" content="2021-09-02T14:37:32.993Z">
+<meta property="article:author" content="nahyuni21(Park.S.H)">
+<meta property="article:tag" content="mining">
+<meta property="article:tag" content="blockchain">
+<meta property="article:tag" content="pow">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="" type="application/atom+xml">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo"></a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">나 혀니의 블로그 입니다.~~</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-project-avalon" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/02/21/project-avalon/" class="article-date">
+  <time datetime="2020-02-21T05:30:19.000Z" itemprop="datePublished">2020-02-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/">프로젝트</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      avalon nano miner
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol start="0">
+<li><p>github 소스</p>
+</li>
+<li><p>avalon-nano 크롬 소스를 분석한다.</p>
+</li>
+<li><p>크롬 소스에서 hid SDK(chrome.hid.getDevices)를 nodejs 인 require(“node-hid”) 로<br>컨버팅 한다.(nodejs)</p>
+</li>
+<li><p>avalon-nano USB 디바이스와 접속 후 통신을 한다.(firmware 통신)</p>
+<a id="more"></a>
+<p>3.1 Avalon4_USB_HID_Protocol_Guide 문서 분석.</p>
+<ul>
+<li>Packet 총 길이는 40 Byte</li>
+<li>Head(2)   | Type(1) | Opt(1) | Idx(1) | Cnt(1) | Data(32) | Crc(2)<br>  0<del>3 version(4)<br>  4</del>35 prevhash(32)<br>  36<del>67 merkleRoot(32)<br>  68</del>71 ntime(4)<br>  72<del>75 nbits(4)<br>  76</del>79 nonce(4)</li>
+</ul>
+<p>3.2 P_WORK part 1 : midstat(32) =&gt; sha256(input-&gt;(0,64)) </p>
+<ul>
+<li>version(4) + prevhash(32) + merkleRoot(28) = 64</li>
+</ul>
+<p>3.3 P_WORK part 2: id(6) + data(12) </p>
+<ul>
+<li>32~37 - poolId(1), jqId(1), nonce2(4) -&gt; id(6)</li>
+<li>52~63 - merkleRoot(midstat에 나온 마지막 merkleRoot 4바이트), ntime(4), nbits(4) -&gt; 12<br></li>
+</ul>
+</li>
+<li><p>검증 작업(80 Byte)</p>
+<ol>
+<li>version + prevhash + merkleRoot(32) + ntime + nbits + nonce =&gt; 4바이트 리틀 엔디안으로 바꿔서 더블 해쉬로 만듦.(regen_hash)</li>
+</ol>
+</li>
+</ol>
+<ul>
+<li>node-hid 접속<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">r hid &#x3D; require(&quot;node-hid&quot;);</span><br><span class="line">var connect &#x3D; function() &#123;</span><br><span class="line">	dev_con &#x3D; new hid.HID(VENDOR_ID, ID);</span><br><span class="line">	detect();</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var listen &#x3D; function() &#123;</span><br><span class="line">	dev_con.on(&quot;data&quot;, myListener);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">function regen_hash(input_str) &#123;</span><br><span class="line">	var hex &#x3D; SHA256(hex2littlebinary(input_str), 80);</span><br><span class="line">	return SHA256(hex2bigbinary(hex), 32, 0, 1);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function hex2littlebinary(str)</span><br><span class="line">&#123;</span><br><span class="line">	var result &#x3D; new Array();</span><br><span class="line">	for(var i &#x3D; 0; i &lt; str.length; i +&#x3D; 8) &#123;</span><br><span class="line">		var number &#x3D; 0x00000000;</span><br><span class="line">		for(var j &#x3D; 0; j &lt; 4; ++j) &#123;</span><br><span class="line">			number &#x3D; safe_add(number, hex_to_byte(str.substring(i + j*2, i + j*2 + 2)) &lt;&lt; (j*8));</span><br><span class="line">		&#125;</span><br><span class="line">		result.push(number);</span><br><span class="line">	&#125;</span><br><span class="line">	return result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function hex2bigbinary(str)</span><br><span class="line">&#123;</span><br><span class="line">	var result &#x3D; new Array();</span><br><span class="line">	for(var i &#x3D; 0; i &lt; str.length; i +&#x3D; 8) &#123;</span><br><span class="line">		var number &#x3D; 0x00000000;</span><br><span class="line">		for(var j &#x3D; 0, k &#x3D; 3; j &lt; 4; ++j, --k) &#123;</span><br><span class="line">			number &#x3D; safe_add(number, hex_to_byte(str.substring(i + j*2, i + j*2 + 2)) &lt;&lt; (k*8));</span><br><span class="line">		&#125;</span><br><span class="line">		result.push(number);</span><br><span class="line">	&#125;</span><br><span class="line">	return result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function hex_to_byte(hex)</span><br><span class="line">&#123;</span><br><span class="line">	return( parseInt(hex, 16));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function safe_add (x, y) &#123;</span><br><span class="line">	var lsw &#x3D; (x &amp; 0xFFFF) + (y &amp; 0xFFFF);</span><br><span class="line">	var msw &#x3D; (x &gt;&gt; 16) + (y &gt;&gt; 16) + (lsw &gt;&gt; 16);</span><br><span class="line">	return (msw &lt;&lt; 16) | (lsw &amp; 0xFFFF);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/02/21/project-avalon/" data-id="cl5s8jl61000yhkv24bfn68ln" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blockchain/" rel="tag">blockchain</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mining/" rel="tag">mining</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pow/" rel="tag">pow</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/02/24/dev-microservice-struct/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          마이크로 서비스 구조
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/02/06/dev-mutisvr/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">멀티 플레이어 서버 고찰</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%EA%B0%9C%EB%B0%9C/">개발</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%EC%98%81%EC%96%B4/">영어</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%EC%A0%95%EB%B3%B4-%EA%B4%80%EB%A6%AC-%EA%B8%B0%EC%88%A0%EC%82%AC/">정보 관리 기술사</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/">프로젝트</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/300-%EB%AC%B8%EC%9E%A5/" rel="tag">300 문장</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/aws/" rel="tag">aws</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blockchain/" rel="tag">blockchain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cron/" rel="tag">cron</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/game-svr/" rel="tag">game svr</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gamelift/" rel="tag">gamelift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/infra/" rel="tag">infra</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/microservice/" rel="tag">microservice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mining/" rel="tag">mining</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pow/" rel="tag">pow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/" rel="tag">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/streaming/" rel="tag">streaming</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/" rel="tag">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%EC%A0%9C%EC%8B%9C%EC%B9%B4/" rel="tag">제시카</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/300-%EB%AC%B8%EC%9E%A5/" style="font-size: 10px;">300 문장</a> <a href="/tags/aws/" style="font-size: 10px;">aws</a> <a href="/tags/blockchain/" style="font-size: 10px;">blockchain</a> <a href="/tags/cron/" style="font-size: 10px;">cron</a> <a href="/tags/game-svr/" style="font-size: 15px;">game svr</a> <a href="/tags/gamelift/" style="font-size: 10px;">gamelift</a> <a href="/tags/infra/" style="font-size: 10px;">infra</a> <a href="/tags/microservice/" style="font-size: 20px;">microservice</a> <a href="/tags/mining/" style="font-size: 10px;">mining</a> <a href="/tags/pow/" style="font-size: 10px;">pow</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/streaming/" style="font-size: 10px;">streaming</a> <a href="/tags/svn/" style="font-size: 10px;">svn</a> <a href="/tags/%EC%A0%9C%EC%8B%9C%EC%B9%B4/" style="font-size: 10px;">제시카</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/09/24/dev-idc-infra/">고가용인프라</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/24/dev-streaminig/">streaming 기술 이해</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/27/dev-ms-docker/">docker</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/14/dev-ms-consul/">consul</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/06/dev-ms-gokit/">go-kit</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 nahyuni21(Park.S.H)<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

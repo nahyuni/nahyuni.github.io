@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>docker | </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="0. 도커 배경. 수많은 서버 관리(설치, 설정, 프로세스 실행)를 용이하게 합니다. DevOps의 등장으로 개발주기가 짧아지면서 배포는 더 자주 이루어지고 마이크로서비스 아키텍쳐가 유행하면서 프로그램은 더 잘게 쪼개어져 관리는 더 복잡해집니다. 새로운 툴은 계속해서 나오고 클라우드의 발전으로 설치해야 할 서버가 수백, 수천대에 이르는 상황에서 도커(Doc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="docker">
+<meta property="og:url" content="http://yoursite.com/2020/04/27/dev-ms-docker/index.html">
+<meta property="og:site_name" content="">
+<meta property="og:description" content="0. 도커 배경. 수많은 서버 관리(설치, 설정, 프로세스 실행)를 용이하게 합니다. DevOps의 등장으로 개발주기가 짧아지면서 배포는 더 자주 이루어지고 마이크로서비스 아키텍쳐가 유행하면서 프로그램은 더 잘게 쪼개어져 관리는 더 복잡해집니다. 새로운 툴은 계속해서 나오고 클라우드의 발전으로 설치해야 할 서버가 수백, 수천대에 이르는 상황에서 도커(Doc">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/images/vm-vs-docker.png">
+<meta property="og:image" content="http://yoursite.com/images/docker-image.png">
+<meta property="article:published_time" content="2020-04-27T05:30:19.000Z">
+<meta property="article:modified_time" content="2021-09-02T14:37:32.988Z">
+<meta property="article:author" content="nahyuni21(Park.S.H)">
+<meta property="article:tag" content="microservice">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/images/vm-vs-docker.png">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="" type="application/atom+xml">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo"></a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">나 혀니의 블로그 입니다.~~</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-dev-ms-docker" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/27/dev-ms-docker/" class="article-date">
+  <time datetime="2020-04-27T05:30:19.000Z" itemprop="datePublished">2020-04-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%EA%B0%9C%EB%B0%9C/">개발</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      docker
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="0-도커-배경"><a href="#0-도커-배경" class="headerlink" title="0. 도커 배경."></a>0. 도커 배경.</h2><ul>
+<li>수많은 서버 관리(설치, 설정, 프로세스 실행)를 용이하게 합니다.</li>
+<li>DevOps의 등장으로 개발주기가 짧아지면서 배포는 더 자주 이루어지고 마이크로서비스 아키텍쳐가 유행하면서 프로그램은 더 잘게 쪼개어져 관리는 더 복잡해집니다. 새로운 툴은 계속해서 나오고 클라우드의 발전으로 설치해야 할 서버가 수백, 수천대에 이르는 상황에서 도커(Docker) 가 등장하고 서버관리 방식이 완전히 바뀌게 됩니다.<a id="more"></a>  \
+
+</li>
+</ul>
+<h2 id="1-도커-개요"><a href="#1-도커-개요" class="headerlink" title="1. 도커 개요."></a>1. 도커 개요.</h2><ul>
+<li>도커는 컨테이너 기반의 오픈소스 가상화 플랫폼입니다.</li>
+<li>컨테이너는 다양한 프로그램, 실행환경을 컨테이너로 추상화하고 동일한 인터페이스를 제공하여 프로그램의 배포 및 관리를 단순하게 해줍니다. 백엔드 프로그램, 데이터베이스 서버, 메시지 큐등 어떤 프로그램도 컨테이너로 추상화할 수 있고 조립PC, AWS, Azure, Google cloud등 어디에서든 실행할 수 있습니다.</li>
+</ul>
+<h2 id="2-도커-구조"><a href="#2-도커-구조" class="headerlink" title="2. 도커 구조"></a>2. 도커 구조</h2><p><img src="/images/vm-vs-docker.png" alt=""></p>
+<ul>
+<li>프로세스를 격리시키기 때문에 가볍고 빠르게 동작합니다. CPU나 메모리는 딱 프로세스가 필요한 만큼만 추가로 사용하고 성능적으로도 거의 손실이 없습니다..</li>
+</ul>
+<p><img src="/images/docker-image.png" alt=""></p>
+<ul>
+<li>이미지는 컨테이너 실행에 필요한 파일과 설정값등을 포함하고 있는 것으로 상태값을 가지지 않고 변하지 않습니다(Immutable). 컨테이너는 이미지를 실행한 상태라고 볼 수 있고 추가되거나 변하는 값은 컨테이너에 저장됩니다.</li>
+<li>같은 이미지에서 여러개의 컨테이너를 생성할 수 있고 컨테이너의 상태가 바뀌거나 컨테이너가 삭제되더라도 이미지는 변하지 않고 그대로 남아있습니다.</li>
+<li>ubuntu이미지는 ubuntu를 실행하기 위한 모든 파일을 가지고 있고 MySQL이미지는 debian을 기반으로 MySQL을 실행하는데 필요한 파일과 실행 명령어, 포트 정보등을 가지고 있습니다.</li>
+</ul>
+<h2 id="3-도커-설치-및-설정"><a href="#3-도커-설치-및-설정" class="headerlink" title="3. 도커 설치 및 설정."></a>3. 도커 설치 및 설정.</h2><ul>
+<li><a href="https://luckygg.tistory.com/165" target="_blank" rel="noopener">https://luckygg.tistory.com/165</a></li>
+<li>도커 허브(<a href="https://cloud.docker.com" target="_blank" rel="noopener">https://cloud.docker.com</a>) 가입.</li>
+</ul>
+<h2 id="4-도커-명령어-간단-사용법-우분투-컨테이너로-도커-익히기"><a href="#4-도커-명령어-간단-사용법-우분투-컨테이너로-도커-익히기" class="headerlink" title="4. 도커 명령어 간단 사용법.(우분투 컨테이너로 도커 익히기.)"></a>4. 도커 명령어 간단 사용법.(우분투 컨테이너로 도커 익히기.)</h2><ul>
+<li><p>docker ps -a (등록된 컨테이너 리스트 보기)</p>
+</li>
+<li><p>docker search ubuntu (도커 허브에서 이미지 찾기)</p>
+</li>
+<li><p>docker pull ubuntu:latest (우분투 이미지 다운로드)</p>
+</li>
+<li><p>docker run -i -t -v D:\doc\docker\ubuntu:/home/ –name ubuntu_18.4.3 ubuntu /bin/bash<br>(도커 이미지 컨테이너 등록과 실행. /home 폴더에 D:\cube\doc\docker\ubuntu 해당 디렉토리와 연결함.<br>컨테이너의 Bash 셸로 옵션 -i는 표준 입력(stdin)을 활성화. -t는 TTY 모드(pseudo-TTY)를 사용. -v share volumes .vBash 환경을 쓰려면 -i와 -t 옵션은 기본)</p>
+</li>
+<li><p>docker start  ubuntu_18.4.3(컨테이너 시작)</p>
+</li>
+<li><p>docker attach  ubuntu_18.4.3(터미널 하나만 사용. 또 들어오면 attach(붙음)됨.)</p>
+</li>
+<li><p>docker exec -it  ubuntu_18.4.3 /bin/bash (컨테이너 접속하기)</p>
+</li>
+<li><p>docker inspect ubuntu_18.4.3(컨테이너 세부 정보)</p>
+</li>
+<li><p>docker rm ubuntu_18.4.3(컨테이너 삭제)</p>
+</li>
+<li><p>docker commit -m “메시지” 컨테이너명 이미지명:태그<br>docker를 사용하다 보면 docker container에 특정 프로그램을 설치 한 후 다시 image로 만들고 container를 실행해야 하는 경우가 생긴다.<br>docker container에 특정 프로그램을 설치하고 그대로 사용해도 문제는 없지만 혹여나 설치한 프로그램이 문제가 되어 docker container를 다시 생성해야 할 경우 이전 시점의 docker image가 없다면 복구하기가 어려워 보인다</p>
+</li>
+<li><p>ctrl + p , ctrl + q - 서버 죽이지 않고 나가기.</p>
+</li>
+</ul>
+<h2 id="5-도커파일-명령어"><a href="#5-도커파일-명령어" class="headerlink" title="5. 도커파일 명령어"></a>5. 도커파일 명령어</h2><ul>
+<li><p>FROM: 베이스 이미지를 지정하는 명령어입니다. FROM ubuntu:14.04와 같은 방식으로 사용하고, 버전으로는 latest를 넣을 수도 있습니다. 하지만 가능하면 14.04와 같은 정확한 버전명을 기입하는 것이 좋습니다.</p>
+</li>
+<li><p>RUN: 이미지 상의 리눅스 커맨드를 실행하도록 해주는 명령어입니다.(RUN 명령어는 Dockerfile로부터 이미지를 만들어 낼 때에 실행되는 것입니다.)<br>예를 들어 RUN apt-get -y fortune을 하면 리눅스에서 fortune 라이브러리를 다운로드 받게 됩니다. 이 때 RUN 명령어는 일반적으로 한 번 사용될 때마다 레이어가 하나씩 추가됩니다. 그래서 RUN 명령어를 어떻게 쓰냐에 따라서 이미지의 크기가 달라질 수 있습니다. 그러므로 여러 개의 명령어가 이어지는 경우 다음과 같이 &amp;&amp;를 이용해 하나의 라인에 명령어를 쓰는 것이 좋습니다.<br>RUN apt-get update &amp;&amp; apt-get install -y fortune</p>
+</li>
+<li><p>ADD: build 명령 중간에 호스트의 파일 시스템으로부터 파일을 가져오는 것이다. 말 그대로 이미지에 파일을 더한다(ADD).</p>
+</li>
+<li><p>CMD : 컨테이너 시작 시, 실행될 명령어를 정하는 커맨드이기에 build로 이미지가 만들어지고, 그 이미지로 컨테이너를 run할 때 효력을 갖는다. 컨테이너 시작 시 실행될 명령어이기에 한번만 사용 가능한걸로 알고 있다. </p>
+</li>
+</ul>
+<p>예시를 들어보자. 아래를 입력해 테스트 파일을 생성한다</p>
+<h2 id="6-참조"><a href="#6-참조" class="headerlink" title="6. 참조"></a>6. 참조</h2><p><a href="https://subicura.com/2017/01/19/docker-guide-for-beginners-1.html" target="_blank" rel="noopener">https://subicura.com/2017/01/19/docker-guide-for-beginners-1.html</a><br><a href="https://www.bsidesoft.com/?p=7851" target="_blank" rel="noopener">https://www.bsidesoft.com/?p=7851</a><br><a href="https://willi.am/blog/2016/07/30/docker-for-windows-sharing-host-volumes/" target="_blank" rel="noopener">https://willi.am/blog/2016/07/30/docker-for-windows-sharing-host-volumes/</a></p>
+<h1 id="docker-image"><a href="#docker-image" class="headerlink" title="docker image"></a>docker image</h1><p><a href="https://subicura.com/2017/02/10/docker-guide-for-beginners-create-image-and-deploy.html" target="_blank" rel="noopener">https://subicura.com/2017/02/10/docker-guide-for-beginners-create-image-and-deploy.html</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"># 1. ubuntu 설치 (패키지 업데이트 + 만든사람 표시)</span><br><span class="line">FROM       ubuntu:16.04</span><br><span class="line">MAINTAINER subicura@subicura.com</span><br><span class="line">RUN        apt-get -y update</span><br><span class="line"></span><br><span class="line"># 2. ruby 설치</span><br><span class="line">RUN apt-get -y install ruby</span><br><span class="line">RUN gem install bundler</span><br><span class="line"></span><br><span class="line"># 3. 소스 복사</span><br><span class="line">COPY . &#x2F;usr&#x2F;src&#x2F;app</span><br><span class="line"></span><br><span class="line"># 4. Gem 패키지 설치 (실행 디렉토리 설정)</span><br><span class="line">WORKDIR &#x2F;usr&#x2F;src&#x2F;app</span><br><span class="line">RUN     bundle install</span><br><span class="line"></span><br><span class="line"># 5. Sinatra 서버 실행 (Listen 포트 정의)</span><br><span class="line">EXPOSE 4567</span><br><span class="line">CMD    bundle exec ruby app.rb -o 0.0.0.0</span><br></pre></td></tr></table></figure>
+
+<p>docker build -t app .</p>
+<h2 id="docker-compose"><a href="#docker-compose" class="headerlink" title="docker compose"></a>docker compose</h2><p>일반적으로 DOCKER를 사용하여 컨테이너를 띄우면 포트 설정이나 볼륨 설정 등을 아래와 같이 할 수 있다.<br>docker run –name sang12-maria -e MYSQL_ROOT_PASSWORD=mypw -d mariadb:latest  -p 3306:3306<br>관리하는 컨테이너가 하나이거나 올려야 하는 서비스가 한 종류라면 위와 같이 사용해도 무방할 것이다. 하지만 올려야 하는 컨테이너가 다수이고 서비스도 많다면 일일이 위처럼 명령어를 이용해서 사용하기엔 매우 불편할 것이다. 그래서 Docker Compose가 나온 듯 하다.</p>
+<p>DOCKER-COMPOSE를 사용하면 아래와 같이 내가 사용하는 서비스를 docker-compose.yml에 저장하여 이용할 수 있다. docker-compose.yml을 작성하는 문법은 version에 따라 다르니, version에 맞는 문법을 사용해야 한다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">version: &#39;3&#39;</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line">  db:</span><br><span class="line">    image: postgres</span><br><span class="line">    volumes:</span><br><span class="line">      - .&#x2F;docker&#x2F;data:&#x2F;var&#x2F;lib&#x2F;postgresql&#x2F;data</span><br><span class="line">    environment:</span><br><span class="line">      - POSTGRES_DB&#x3D;sampledb</span><br><span class="line">      - POSTGRES_USER&#x3D;sampleuser</span><br><span class="line">      - POSTGRES_PASSWORD&#x3D;samplesecret</span><br><span class="line">      - POSTGRES_INITDB_ARGS&#x3D;--encoding&#x3D;UTF-8</span><br><span class="line"></span><br><span class="line">  django:</span><br><span class="line">    build:</span><br><span class="line">      context: .</span><br><span class="line">      dockerfile: .&#x2F;compose&#x2F;django&#x2F;Dockerfile-dev</span><br><span class="line">    environment:</span><br><span class="line">      - DJANGO_DEBUG&#x3D;True</span><br><span class="line">      - DJANGO_DB_HOST&#x3D;db</span><br><span class="line">      - DJANGO_DB_PORT&#x3D;5432</span><br><span class="line">      - DJANGO_DB_NAME&#x3D;sampledb</span><br><span class="line">      - DJANGO_DB_USERNAME&#x3D;sampleuser</span><br><span class="line">      - DJANGO_DB_PASSWORD&#x3D;samplesecret</span><br><span class="line">      - DJANGO_SECRET_KEY&#x3D;dev_secret_key</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;8000:8000&quot;</span><br><span class="line">    command: </span><br><span class="line">      - python manage.py runserver 0:8000</span><br><span class="line">    volumes:</span><br><span class="line">      - .&#x2F;:&#x2F;app&#x2F;</span><br></pre></td></tr></table></figure>
+
+<h2 id="도커-컴포즈의-주요-명령어"><a href="#도커-컴포즈의-주요-명령어" class="headerlink" title="도커 컴포즈의 주요 명령어"></a>도커 컴포즈의 주요 명령어</h2><ul>
+<li>docker-compose –version<br>버전 확인</li>
+<li>docker-compose up -d</li>
+</ul>
+<p>docker-compose.yml 파일의 내용에 따라 이미지를 빌드하고 서비스를 실행합니다. 자세한 진행 과정은 다음과 같습니다.</p>
+<ol>
+<li>서비스를 띄울 네트워크 설정</li>
+<li>필요한 볼륨 생성(혹은 이미 존재하는 볼륨과 연결)</li>
+<li>필요한 이미지 풀(pull)</li>
+<li>필요한 이미지 빌드(build)</li>
+<li>서비스 의존성에 따라 서비스 실행</li>
+</ol>
+<ul>
+<li>docker-compose ps<br>현재 환경에서 실행 중인 각 서비스의 상태를 보여줍니다.</li>
+</ul>
+<h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><p><a href="http://sang12.co.kr/127/CENTOS-%EB%A6%AC%EB%88%85%EC%8A%A4-DOCKER-COMPOSE-%EC%84%A4%EC%B9%98;jsessionid=260D2ACF81D01681912DA629760B5646" target="_blank" rel="noopener">http://sang12.co.kr/127/CENTOS-%EB%A6%AC%EB%88%85%EC%8A%A4-DOCKER-COMPOSE-%EC%84%A4%EC%B9%98;jsessionid=260D2ACF81D01681912DA629760B5646</a><br><a href="https://www.44bits.io/ko/post/almost-perfect-development-environment-with-docker-and-docker-compose" target="_blank" rel="noopener">https://www.44bits.io/ko/post/almost-perfect-development-environment-with-docker-and-docker-compose</a><br><a href="https://docs.docker.com/compose/compose-file/" target="_blank" rel="noopener">https://docs.docker.com/compose/compose-file/</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/04/27/dev-ms-docker/" data-id="cl5s8jl5l000ehkv24x1n3f7n" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/microservice/" rel="tag">microservice</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/06/24/dev-streaminig/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          streaming 기술 이해
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/04/14/dev-ms-consul/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">consul</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%EA%B0%9C%EB%B0%9C/">개발</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%EC%98%81%EC%96%B4/">영어</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%EC%A0%95%EB%B3%B4-%EA%B4%80%EB%A6%AC-%EA%B8%B0%EC%88%A0%EC%82%AC/">정보 관리 기술사</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/">프로젝트</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/300-%EB%AC%B8%EC%9E%A5/" rel="tag">300 문장</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/aws/" rel="tag">aws</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blockchain/" rel="tag">blockchain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cron/" rel="tag">cron</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/game-svr/" rel="tag">game svr</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gamelift/" rel="tag">gamelift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/infra/" rel="tag">infra</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/microservice/" rel="tag">microservice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mining/" rel="tag">mining</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pow/" rel="tag">pow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/" rel="tag">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/streaming/" rel="tag">streaming</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/" rel="tag">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%EC%A0%9C%EC%8B%9C%EC%B9%B4/" rel="tag">제시카</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/300-%EB%AC%B8%EC%9E%A5/" style="font-size: 10px;">300 문장</a> <a href="/tags/aws/" style="font-size: 10px;">aws</a> <a href="/tags/blockchain/" style="font-size: 10px;">blockchain</a> <a href="/tags/cron/" style="font-size: 10px;">cron</a> <a href="/tags/game-svr/" style="font-size: 15px;">game svr</a> <a href="/tags/gamelift/" style="font-size: 10px;">gamelift</a> <a href="/tags/infra/" style="font-size: 10px;">infra</a> <a href="/tags/microservice/" style="font-size: 20px;">microservice</a> <a href="/tags/mining/" style="font-size: 10px;">mining</a> <a href="/tags/pow/" style="font-size: 10px;">pow</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/streaming/" style="font-size: 10px;">streaming</a> <a href="/tags/svn/" style="font-size: 10px;">svn</a> <a href="/tags/%EC%A0%9C%EC%8B%9C%EC%B9%B4/" style="font-size: 10px;">제시카</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/09/24/dev-idc-infra/">고가용인프라</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/24/dev-streaminig/">streaming 기술 이해</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/27/dev-ms-docker/">docker</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/14/dev-ms-consul/">consul</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/06/dev-ms-gokit/">go-kit</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 nahyuni21(Park.S.H)<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

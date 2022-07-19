@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>go-kit | </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="reference http:&#x2F;&#x2F;gokit.io&#x2F;examples&#x2F;  https:&#x2F;&#x2F;medium.com&#x2F;@shijuvar&#x2F;go-microservices-with-go-kit-introduction-43a757398183 https:&#x2F;&#x2F;github.com&#x2F;go-kit&#x2F;kit">
+<meta property="og:type" content="article">
+<meta property="og:title" content="go-kit">
+<meta property="og:url" content="http://yoursite.com/2020/04/06/dev-ms-gokit/index.html">
+<meta property="og:site_name" content="">
+<meta property="og:description" content="reference http:&#x2F;&#x2F;gokit.io&#x2F;examples&#x2F;  https:&#x2F;&#x2F;medium.com&#x2F;@shijuvar&#x2F;go-microservices-with-go-kit-introduction-43a757398183 https:&#x2F;&#x2F;github.com&#x2F;go-kit&#x2F;kit">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-04-06T05:30:19.000Z">
+<meta property="article:modified_time" content="2021-09-02T14:37:32.989Z">
+<meta property="article:author" content="nahyuni21(Park.S.H)">
+<meta property="article:tag" content="microservice">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="" type="application/atom+xml">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo"></a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">나 혀니의 블로그 입니다.~~</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-dev-ms-gokit" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/06/dev-ms-gokit/" class="article-date">
+  <time datetime="2020-04-06T05:30:19.000Z" itemprop="datePublished">2020-04-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%EA%B0%9C%EB%B0%9C/">개발</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      go-kit
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h1><ul>
+<li><a href="http://gokit.io/examples/" target="_blank" rel="noopener">http://gokit.io/examples/</a> </li>
+<li><a href="https://medium.com/@shijuvar/go-microservices-with-go-kit-introduction-43a757398183" target="_blank" rel="noopener">https://medium.com/@shijuvar/go-microservices-with-go-kit-introduction-43a757398183</a></li>
+<li><a href="https://github.com/go-kit/kit" target="_blank" rel="noopener">https://github.com/go-kit/kit</a></li>
+</ul>
+<a id="more"></a>
+<h1 id="Go-kit-Architecture"><a href="#Go-kit-Architecture" class="headerlink" title="Go kit Architecture"></a>Go kit Architecture</h1><ul>
+<li><p>Transport layer</p>
+<ol>
+<li>HTTP or gRPC, or using a pub/sub systems like NATS</li>
+<li>you can provide multiple transports for a same service</li>
+</ol>
+</li>
+<li><p>Endpoint layer(추상화)</p>
+<ol>
+<li>Each service method in a Go kit service converts to an endpoint to make RPC style communication between servers and clients</li>
+<li>Each endpoint exposes the service method to outside world using Transport layer by using concrete transports like HTTP or gRPC</li>
+</ol>
+</li>
+<li><p>Service layer</p>
+<ol>
+<li>The business logic</li>
+<li>Go kit service can be exposed by using multiple transports.</li>
+</ol>
+</li>
+<li><p>Service layer</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">type StringService interface &#123;</span><br><span class="line">	Uppercase(string) (string, error)</span><br><span class="line">	Count(string) int</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type stringService struct&#123;&#125;</span><br><span class="line"></span><br><span class="line">func (stringService) Uppercase(s string) (string, error) &#123;</span><br><span class="line">	if s &#x3D;&#x3D; &quot;&quot; &#123;</span><br><span class="line">		return &quot;&quot;, ErrEmpty</span><br><span class="line">	&#125;</span><br><span class="line">	return strings.ToUpper(s), nil</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Endpoint layer<br>1.controller 역할(request, service 호출, response)<br>2.type Endpoint func(ctx context.Context, request interface{}) (response interface{}, err error)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">func makeUppercaseEndpoint(svc StringService) endpoint.Endpoint &#123;</span><br><span class="line">return func(ctx context.Context, request interface&#123;&#125;) (interface&#123;&#125;, error) &#123;</span><br><span class="line">  req :&#x3D; request.(uppercaseRequest)</span><br><span class="line">  v, err :&#x3D; svc.Uppercase(req.S)</span><br><span class="line">  if err !&#x3D; nil &#123;</span><br><span class="line">    return uppercaseResponse&#123;v, err.Error()&#125;, nil</span><br><span class="line">  &#125;</span><br><span class="line">  return uppercaseResponse&#123;v, &quot;&quot;&#125;, nil</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>Transport layer<br>1.어떻해 전달할 것인가.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> uppercaseHandler :&#x3D; httptransport.NewServer(</span><br><span class="line">	makeUppercaseEndpoint(svc),</span><br><span class="line">	decodeUppercaseRequest,</span><br><span class="line">	encodeResponse,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">http.Handle(&quot;&#x2F;uppercase&quot;, uppercaseHandler)</span><br></pre></td></tr></table></figure></li>
+<li><p>미들웨어</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">type logmw struct &#123;</span><br><span class="line">	logger log.Logger</span><br><span class="line">	StringService</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func (mw logmw) Uppercase(s string) (output string, err error) &#123;</span><br><span class="line">	defer func(begin time.Time) &#123;</span><br><span class="line">		_ &#x3D; mw.logger.Log(</span><br><span class="line">			&quot;method&quot;, &quot;uppercase&quot;,</span><br><span class="line">			&quot;input&quot;, s,</span><br><span class="line">			&quot;output&quot;, output,</span><br><span class="line">			&quot;err&quot;, err,</span><br><span class="line">			&quot;took&quot;, time.Since(begin),</span><br><span class="line">		)</span><br><span class="line">	&#125;(time.Now())</span><br><span class="line"></span><br><span class="line">	output, err &#x3D; mw.StringService.Uppercase(s)</span><br><span class="line">	return</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="2-apigateway"><a href="#2-apigateway" class="headerlink" title="2. apigateway"></a>2. apigateway</h2><h3 id="1-Starting-Addsvc"><a href="#1-Starting-Addsvc" class="headerlink" title="1. Starting Addsvc"></a>1. Starting Addsvc</h3><ul>
+<li>go run addsvc.go -debug.addr :7080 -http-addr :7081 -grpc-addr :7082 -thrift-addr :7083 -jsonrpc-addr :7084</li>
+<li>curl -XPOST -d’{“a”:”7”,”b”:”4”}’ <a href="http://localhost:7081/concat" target="_blank" rel="noopener">http://localhost:7081/concat</a> {“v”:”74”}</li>
+</ul>
+<h3 id="2-Starting-Stringsvc-stringsvc3-example"><a href="#2-Starting-Stringsvc-stringsvc3-example" class="headerlink" title="2. Starting Stringsvc(stringsvc3 example)"></a>2. Starting Stringsvc(stringsvc3 example)</h3><ul>
+<li>go run *.go -listen :8081</li>
+<li>curl -XPOST -d’{“s”:”mytest”}’ <a href="http://localhost:8081/count" target="_blank" rel="noopener">http://localhost:8081/count</a> {“v”:6}</li>
+</ul>
+<h3 id="3-Starting-Consul"><a href="#3-Starting-Consul" class="headerlink" title="3. Starting Consul"></a>3. Starting Consul</h3><ul>
+<li>First, you need to download Consul for your specific OS/architecture here.<br>(<a href="https://www.consul.io/downloads.html" target="_blank" rel="noopener">https://www.consul.io/downloads.html</a>)</li>
+<li>Next<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir .&#x2F;consul.d</span><br><span class="line">$ echo &#39;&#123;&quot;service&quot;: &#123;&quot;name&quot;: &quot;addsvc&quot;, &quot;tags&quot;: [], &quot;port&quot;: 7082&#125;&#125;&#39; &gt; .&#x2F;consul.d&#x2F;addsvc.json</span><br><span class="line">$ echo &#39;&#123;&quot;service&quot;: &#123;&quot;name&quot;: &quot;stringsvc&quot;, &quot;tags&quot;: [], &quot;port&quot;: 8081&#125;&#125;&#39; &gt; .&#x2F;consul.d&#x2F;stringsvc.json</span><br><span class="line">$ .&#x2F;consul agent -dev -config-dir&#x3D;.&#x2F;consul.d</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="4-Starting-Api-Gateway"><a href="#4-Starting-Api-Gateway" class="headerlink" title="4. Starting Api Gateway"></a>4. Starting Api Gateway</h3><p>$ go run main.go -consul.addr :8500</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ curl -XPOST -d&#39;&#123;&quot;a&quot;:&quot;7&quot;,&quot;b&quot;:&quot;4&quot;&#125;&#39; http:&#x2F;&#x2F;localhost:8000&#x2F;addsvc&#x2F;concat</span><br><span class="line">&#123;&quot;v&quot;:&quot;74&quot;&#125;</span><br><span class="line">$ curl -XPOST -d&#39;&#123;&quot;a&quot;:7,&quot;b&quot;:4&#125;&#39; http:&#x2F;&#x2F;localhost:8000&#x2F;addsvc&#x2F;sum</span><br><span class="line">&#123;&quot;v&quot;:11&#125;</span><br><span class="line">$ curl -XPOST -d&#39;&#123;&quot;s&quot;:&quot;mytest&quot;&#125;&#39; http:&#x2F;&#x2F;localhost:8000&#x2F;stringsvc&#x2F;count</span><br><span class="line">&#123;&quot;v&quot;:6&#125;</span><br><span class="line">$ curl -XPOST -d&#39;&#123;&quot;s&quot;:&quot;mytest&quot;&#125;&#39; http:&#x2F;&#x2F;localhost:8000&#x2F;stringsvc&#x2F;uppercase</span><br><span class="line">&#123;&quot;v&quot;:&quot;MYTEST&quot;&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>apigateway 는 consul 서버에 주기적으로 붙어서 서비스 이름으로 서비스 엔드 포인트 정보를 가지고 온다.</li>
+<li>클라이언트 호출시에는 직접 서비스 엔드 포인트에 접속해서 데이터를 가지고 온다.</li>
+<li>소스는 직접 확인.</li>
+</ul>
+<h2 id="참조"><a href="#참조" class="headerlink" title="참조"></a>참조</h2><p><a href="https://medium.com/@jwenz723/go-kit-api-gateway-4bee401e77a2" target="_blank" rel="noopener">https://medium.com/@jwenz723/go-kit-api-gateway-4bee401e77a2</a></p>
+<h2 id="3-addsvc"><a href="#3-addsvc" class="headerlink" title="3. addsvc"></a>3. addsvc</h2><ul>
+<li>아래와 같이 패키지 되어 있다.</li>
+</ul>
+<h3 id="1-pkg"><a href="#1-pkg" class="headerlink" title="1. pkg"></a>1. pkg</h3><ul>
+<li>addservice(service.go, middleware.go)</li>
+<li>addendpoint(set.go, middleware.go)</li>
+<li>addtransport(grpc.go, http.go, jsonrpc.go, thrift.go)</li>
+</ul>
+<h3 id="2-addsvc-cmd-addsvc-addsvc-go-사용방법"><a href="#2-addsvc-cmd-addsvc-addsvc-go-사용방법" class="headerlink" title="2. addsvc/cmd/addsvc/addsvc.go(사용방법)"></a>2. addsvc/cmd/addsvc/addsvc.go(사용방법)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var (</span><br><span class="line">        service        &#x3D; addservice.New(logger, ints, chars)</span><br><span class="line">        endpoints      &#x3D; addendpoint.New(service, logger, duration, tracer, zipkinTracer)</span><br><span class="line">        httpHandler    &#x3D; addtransport.NewHTTPHandler(endpoints, tracer, zipkinTracer, logger)</span><br><span class="line">        grpcServer     &#x3D; addtransport.NewGRPCServer(endpoints, tracer, zipkinTracer, logger)</span><br><span class="line">        thriftServer   &#x3D; addtransport.NewThriftServer(endpoints)</span><br><span class="line">        jsonrpcHandler &#x3D; addtransport.NewJSONRPCHandler(endpoints, logger)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h3 id="3-addsvc-cmd-addsvc-addcli-go-사용방법"><a href="#3-addsvc-cmd-addsvc-addcli-go-사용방법" class="headerlink" title="3. addsvc/cmd/addsvc/addcli.go(사용방법)"></a>3. addsvc/cmd/addsvc/addcli.go(사용방법)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">svc, err &#x3D; addtransport.NewHTTPClient(*httpAddr, otTracer, zipkinTracer, log.NewNopLogger())</span><br><span class="line">svc &#x3D; addtransport.NewGRPCClient(conn, otTracer, zipkinTracer, log.NewNopLogger())</span><br></pre></td></tr></table></figure>
+<h2 id="4-profilesvc"><a href="#4-profilesvc" class="headerlink" title="4. profilesvc"></a>4. profilesvc</h2><ul>
+<li>메모리에 저장, 삭제, 조회 함.<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"> type Service interface &#123;</span><br><span class="line">	PostProfile(ctx context.Context, p Profile) error</span><br><span class="line">	GetProfile(ctx context.Context, id string) (Profile, error)</span><br><span class="line">	PutProfile(ctx context.Context, id string, p Profile) error</span><br><span class="line">	PatchProfile(ctx context.Context, id string, p Profile) error</span><br><span class="line">	DeleteProfile(ctx context.Context, id string) error</span><br><span class="line">	GetAddresses(ctx context.Context, profileID string) ([]Address, error)</span><br><span class="line">	GetAddress(ctx context.Context, profileID string, addressID string) (Address, error)</span><br><span class="line">	PostAddress(ctx context.Context, profileID string, a Address) error</span><br><span class="line">	DeleteAddress(ctx context.Context, profileID string, addressID string) error</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$ go run .&#x2F;cmd&#x2F;profilesvc&#x2F;main.go -http.addr :8080</span><br><span class="line">$ curl -d &#39;&#123;&quot;id&quot;:&quot;1234&quot;,&quot;Name&quot;:&quot;Go Kit&quot;&#125;&#39; -H &quot;Content-Type: application&#x2F;json&quot; -X POST $ http:&#x2F;&#x2F;localhost:8080&#x2F;profiles&#x2F;</span><br><span class="line">$ curl localhost:8080&#x2F;profiles&#x2F;1234</span><br><span class="line">ts&#x3D;2020-04-06T02:30:46.441838639Z caller&#x3D;middlewares.go:36 method&#x3D;GetProfile id&#x3D;1234 took&#x3D;1.354µs err&#x3D;null</span><br><span class="line">&#123;&quot;profile&quot;:&#123;&quot;id&quot;:&quot;1234&quot;,&quot;name&quot;:&quot;Go Kit&quot;&#125;&#125;</span><br></pre></td></tr></table></figure>
+/cmd/profilesvc/main.go<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">  var (</span><br><span class="line">          httpAddr &#x3D; flag.String(&quot;http.addr&quot;, &quot;:8080&quot;, &quot;HTTP listen address&quot;)</span><br><span class="line">  )</span><br><span class="line">  flag.Parse()</span><br><span class="line"></span><br><span class="line">  var logger log.Logger</span><br><span class="line">  &#123;</span><br><span class="line">          logger &#x3D; log.NewLogfmtLogger(os.Stderr)</span><br><span class="line">          logger &#x3D; log.With(logger, &quot;ts&quot;, log.DefaultTimestampUTC)</span><br><span class="line">          logger &#x3D; log.With(logger, &quot;caller&quot;, log.DefaultCaller)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  var s profilesvc.Service</span><br><span class="line">  &#123;</span><br><span class="line">          s &#x3D; profilesvc.NewInmemService()</span><br><span class="line">          s &#x3D; profilesvc.LoggingMiddleware(logger)(s)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  var h http.Handler</span><br><span class="line">  &#123;</span><br><span class="line">          h &#x3D; profilesvc.MakeHTTPHandler(s, log.With(logger, &quot;component&quot;, &quot;HTTP&quot;))</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  errs :&#x3D; make(chan error)</span><br><span class="line">  go func() &#123;</span><br><span class="line">          c :&#x3D; make(chan os.Signal)</span><br><span class="line">          signal.Notify(c, syscall.SIGINT, syscall.SIGTERM)</span><br><span class="line">          errs &lt;- fmt.Errorf(&quot;%s&quot;, &lt;-c)</span><br><span class="line">  &#125;()</span><br><span class="line"></span><br><span class="line">  go func() &#123;</span><br><span class="line">          logger.Log(&quot;transport&quot;, &quot;HTTP&quot;, &quot;addr&quot;, *httpAddr)</span><br><span class="line">          errs &lt;- http.ListenAndServe(*httpAddr, h)</span><br><span class="line">  &#125;()</span><br><span class="line"></span><br><span class="line">  logger.Log(&quot;exit&quot;, &lt;-errs)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/04/06/dev-ms-gokit/" data-id="cl5s8jl5p000hhkv23re16ru0" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/microservice/" rel="tag">microservice</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/04/14/dev-ms-consul/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          consul
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/04/04/IMT/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">117회 기출문제</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%EA%B0%9C%EB%B0%9C/">개발</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%EC%98%81%EC%96%B4/">영어</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%EC%A0%95%EB%B3%B4-%EA%B4%80%EB%A6%AC-%EA%B8%B0%EC%88%A0%EC%82%AC/">정보 관리 기술사</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/">프로젝트</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/300-%EB%AC%B8%EC%9E%A5/" rel="tag">300 문장</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/aws/" rel="tag">aws</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blockchain/" rel="tag">blockchain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cron/" rel="tag">cron</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/game-svr/" rel="tag">game svr</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gamelift/" rel="tag">gamelift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/infra/" rel="tag">infra</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/microservice/" rel="tag">microservice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mining/" rel="tag">mining</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pow/" rel="tag">pow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/" rel="tag">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/streaming/" rel="tag">streaming</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/" rel="tag">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%EC%A0%9C%EC%8B%9C%EC%B9%B4/" rel="tag">제시카</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/300-%EB%AC%B8%EC%9E%A5/" style="font-size: 10px;">300 문장</a> <a href="/tags/aws/" style="font-size: 10px;">aws</a> <a href="/tags/blockchain/" style="font-size: 10px;">blockchain</a> <a href="/tags/cron/" style="font-size: 10px;">cron</a> <a href="/tags/game-svr/" style="font-size: 15px;">game svr</a> <a href="/tags/gamelift/" style="font-size: 10px;">gamelift</a> <a href="/tags/infra/" style="font-size: 10px;">infra</a> <a href="/tags/microservice/" style="font-size: 20px;">microservice</a> <a href="/tags/mining/" style="font-size: 10px;">mining</a> <a href="/tags/pow/" style="font-size: 10px;">pow</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/streaming/" style="font-size: 10px;">streaming</a> <a href="/tags/svn/" style="font-size: 10px;">svn</a> <a href="/tags/%EC%A0%9C%EC%8B%9C%EC%B9%B4/" style="font-size: 10px;">제시카</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/09/24/dev-idc-infra/">고가용인프라</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/24/dev-streaminig/">streaming 기술 이해</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/27/dev-ms-docker/">docker</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/14/dev-ms-consul/">consul</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/06/dev-ms-gokit/">go-kit</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 nahyuni21(Park.S.H)<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
