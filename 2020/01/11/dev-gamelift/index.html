@@ -7,15 +7,15 @@
   
   <title>aws gamelift | </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="install gamelift SDK for linux  1.  2.  3.  4  SDK 다운(https:&#x2F;&#x2F;ap-northeast-2.console.aws.amazon.com&#x2F;gamelift&#x2F;home?region&#x3D;ap-northeast-2#&#x2F;)  cmake 설치.(yum install cmake)  해당 폴더(&#x2F;home&#x2F;gamelift&#x2F;gamelift_">
+  <meta name="description" content="install gamelift SDK for linux SDK 다운(https:&#x2F;&#x2F;ap-northeast-2.console.aws.amazon.com&#x2F;gamelift&#x2F;home?region&#x3D;ap-northeast-2#&#x2F;) cmake 설치.(yum install cmake) 해당 폴더(&#x2F;home&#x2F;gamelift&#x2F;gamelift_sdk)에서 cmake CMake">
 <meta property="og:type" content="article">
 <meta property="og:title" content="aws gamelift">
 <meta property="og:url" content="http://yoursite.com/2020/01/11/dev-gamelift/index.html">
 <meta property="og:site_name" content="">
-<meta property="og:description" content="install gamelift SDK for linux  1.  2.  3.  4  SDK 다운(https:&#x2F;&#x2F;ap-northeast-2.console.aws.amazon.com&#x2F;gamelift&#x2F;home?region&#x3D;ap-northeast-2#&#x2F;)  cmake 설치.(yum install cmake)  해당 폴더(&#x2F;home&#x2F;gamelift&#x2F;gamelift_">
+<meta property="og:description" content="install gamelift SDK for linux SDK 다운(https:&#x2F;&#x2F;ap-northeast-2.console.aws.amazon.com&#x2F;gamelift&#x2F;home?region&#x3D;ap-northeast-2#&#x2F;) cmake 설치.(yum install cmake) 해당 폴더(&#x2F;home&#x2F;gamelift&#x2F;gamelift_sdk)에서 cmake CMake">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-01-11T05:30:19.000Z">
-<meta property="article:modified_time" content="2021-09-02T14:37:32.985Z">
+<meta property="article:modified_time" content="2022-09-18T12:11:01.113Z">
 <meta property="article:author" content="nahyuni21(Park.S.H)">
 <meta property="article:tag" content="aws">
 <meta property="article:tag" content="gamelift">
@@ -97,34 +97,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="install-gamelift-SDK-for-linux"><a href="#install-gamelift-SDK-for-linux" class="headerlink" title="install gamelift SDK for linux"></a>install gamelift SDK for linux</h1><ol start="0">
-<li></li>
-<li><p>1.</p>
-</li>
-<li><p>2.</p>
-</li>
-<li><p>3.</p>
-</li>
-<li><p>4</p>
-</li>
-<li><p>SDK 다운(<a href="https://ap-northeast-2.console.aws.amazon.com/gamelift/home?region=ap-northeast-2#/" target="_blank" rel="noopener">https://ap-northeast-2.console.aws.amazon.com/gamelift/home?region=ap-northeast-2#/</a>)</p>
-</li>
-<li><p>cmake 설치.(yum install cmake)</p>
-</li>
-<li><p>해당 폴더(/home/gamelift/gamelift_sdk)에서 cmake CMakeLists.txt(makefile 생성)</p>
-</li>
-<li><p>make</p>
-<a id="more"></a></li>
-<li><p>cd thirdparty</p>
-</li>
-<li><p>cmake CMakeLists.txt</p>
-</li>
-<li><p>make(makefile 생성)</p>
-</li>
-<li><p>cd /home/gamelift/gamelift_sdk/prefix/lib<br>8.1 libprotobuf.so, libboost_date_time.so, libboost_system.so, libboost_random.so, libprotoc.so (해당 동적 라이브러리가 생성되었는지 확인)</p>
-</li>
-<li><p>library PATH 넣어주기.<br>9.1 vi /etc/profile<br>9.2 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/gamelift/gamelift_sdk/prefix/lib 넣어준다.<br>9.3 source /etc/profile(바로 적용)<br>9.4 echo $LD_LIBRARY_PATH(위에 라이브러리가 추가 되었는지 확인)</p>
-</li>
+        <h1 id="install-gamelift-SDK-for-linux"><a href="#install-gamelift-SDK-for-linux" class="headerlink" title="install gamelift SDK for linux"></a>install gamelift SDK for linux</h1><ol>
+<li>SDK 다운(<a href="https://ap-northeast-2.console.aws.amazon.com/gamelift/home?region=ap-northeast-2#/" target="_blank" rel="noopener">https://ap-northeast-2.console.aws.amazon.com/gamelift/home?region=ap-northeast-2#/</a>)</li>
+<li>cmake 설치.(yum install cmake)</li>
+<li>해당 폴더(/home/gamelift/gamelift_sdk)에서 cmake CMakeLists.txt(makefile 생성)</li>
+<li>make<a id="more"></a></li>
+<li>cd thirdparty</li>
+<li>cmake CMakeLists.txt</li>
+<li>make(makefile 생성)</li>
+<li>cd /home/gamelift/gamelift_sdk/prefix/lib<br>8.1 libprotobuf.so, libboost_date_time.so, libboost_system.so, libboost_random.so, libprotoc.so (해당 동적 라이브러리가 생성되었는지 확인)</li>
+<li>library PATH 넣어주기.<br>9.1 vi /etc/profile<br>9.2 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/gamelift/gamelift_sdk/prefix/lib 넣어준다.<br>9.3 source /etc/profile(바로 적용)<br>9.4 echo $LD_LIBRARY_PATH(위에 라이브러리가 추가 되었는지 확인)</li>
 </ol>
 <h1 id="gamelift-사용하는-방법-예제"><a href="#gamelift-사용하는-방법-예제" class="headerlink" title="gamelift 사용하는 방법(예제)"></a>gamelift 사용하는 방법(예제)</h1><ol start="0">
 <li>문서(GameLift_dist.pdf) </li>
@@ -148,7 +130,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/01/11/dev-gamelift/" data-id="cl5s8jl550002hkv27xnkdvyq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/01/11/dev-gamelift/" data-id="cl87blqok000030v2ekge6kh5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/aws/" rel="tag">aws</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gamelift/" rel="tag">gamelift</a></li></ul>
@@ -159,11 +141,11 @@
     
 <nav id="article-nav">
   
-    <a href="/2020/01/21/project-monitoring/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/01/21/project-bridgewar/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          monitoring
+          BridgeWar
         
       </div>
     </a>
@@ -192,7 +174,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/300-%EB%AC%B8%EC%9E%A5/" rel="tag">300 문장</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/aws/" rel="tag">aws</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blockchain/" rel="tag">blockchain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cron/" rel="tag">cron</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/game-svr/" rel="tag">game svr</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gamelift/" rel="tag">gamelift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/infra/" rel="tag">infra</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/microservice/" rel="tag">microservice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mining/" rel="tag">mining</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pow/" rel="tag">pow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/" rel="tag">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/streaming/" rel="tag">streaming</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/" rel="tag">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%EC%A0%9C%EC%8B%9C%EC%B9%B4/" rel="tag">제시카</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/300-%EB%AC%B8%EC%9E%A5/" rel="tag">300 문장</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/aws/" rel="tag">aws</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blockchain/" rel="tag">blockchain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cron/" rel="tag">cron</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/game-svr/" rel="tag">game svr</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gamelift/" rel="tag">gamelift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/infra/" rel="tag">infra</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/microservice/" rel="tag">microservice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mining/" rel="tag">mining</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pow/" rel="tag">pow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/" rel="tag">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/streaming/" rel="tag">streaming</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/" rel="tag">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yolov5/" rel="tag">yolov5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%EC%A0%9C%EC%8B%9C%EC%B9%B4/" rel="tag">제시카</a></li></ul>
     </div>
   </div>
 
@@ -202,7 +184,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/300-%EB%AC%B8%EC%9E%A5/" style="font-size: 10px;">300 문장</a> <a href="/tags/aws/" style="font-size: 10px;">aws</a> <a href="/tags/blockchain/" style="font-size: 10px;">blockchain</a> <a href="/tags/cron/" style="font-size: 10px;">cron</a> <a href="/tags/game-svr/" style="font-size: 15px;">game svr</a> <a href="/tags/gamelift/" style="font-size: 10px;">gamelift</a> <a href="/tags/infra/" style="font-size: 10px;">infra</a> <a href="/tags/microservice/" style="font-size: 20px;">microservice</a> <a href="/tags/mining/" style="font-size: 10px;">mining</a> <a href="/tags/pow/" style="font-size: 10px;">pow</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/streaming/" style="font-size: 10px;">streaming</a> <a href="/tags/svn/" style="font-size: 10px;">svn</a> <a href="/tags/%EC%A0%9C%EC%8B%9C%EC%B9%B4/" style="font-size: 10px;">제시카</a>
+      <a href="/tags/300-%EB%AC%B8%EC%9E%A5/" style="font-size: 10px;">300 문장</a> <a href="/tags/aws/" style="font-size: 10px;">aws</a> <a href="/tags/blockchain/" style="font-size: 10px;">blockchain</a> <a href="/tags/cron/" style="font-size: 10px;">cron</a> <a href="/tags/game-svr/" style="font-size: 15px;">game svr</a> <a href="/tags/gamelift/" style="font-size: 10px;">gamelift</a> <a href="/tags/infra/" style="font-size: 10px;">infra</a> <a href="/tags/microservice/" style="font-size: 20px;">microservice</a> <a href="/tags/mining/" style="font-size: 10px;">mining</a> <a href="/tags/pow/" style="font-size: 10px;">pow</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/streaming/" style="font-size: 10px;">streaming</a> <a href="/tags/svn/" style="font-size: 10px;">svn</a> <a href="/tags/yolov5/" style="font-size: 10px;">yolov5</a> <a href="/tags/%EC%A0%9C%EC%8B%9C%EC%B9%B4/" style="font-size: 10px;">제시카</a>
     </div>
   </div>
 
@@ -211,7 +193,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li></ul>
     </div>
   </div>
 
@@ -222,6 +204,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2021/10/08/dev-smartBBox/">smart black box 2</a>
+          </li>
         
           <li>
             <a href="/2020/09/24/dev-idc-infra/">고가용인프라</a>
@@ -237,10 +223,6 @@
         
           <li>
             <a href="/2020/04/14/dev-ms-consul/">consul</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/06/dev-ms-gokit/">go-kit</a>
           </li>
         
       </ul>

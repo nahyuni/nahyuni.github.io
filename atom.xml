@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2021-09-02T14:37:32.986Z</updated>
+  <updated>2022-09-18T12:11:01.114Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>smart black box 2</title>
+    <link href="http://yoursite.com/2021/10/08/dev-smartBBox/"/>
+    <id>http://yoursite.com/2021/10/08/dev-smartBBox/</id>
+    <published>2021-10-08T07:07:19.000Z</published>
+    <updated>2022-09-18T12:11:01.114Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="개요"><a href="#개요" class="headerlink" title="개요"></a>개요</h1><p>공사 현장에서 </p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;개요&quot;&gt;&lt;a href=&quot;#개요&quot; class=&quot;headerlink&quot; title=&quot;개요&quot;&gt;&lt;/a&gt;개요&lt;/h1&gt;&lt;p&gt;공사 현장에서 &lt;/p&gt;
+
+    
+    </summary>
+    
+    
+      <category term="개발" scheme="http://yoursite.com/categories/%EA%B0%9C%EB%B0%9C/"/>
+    
+    
+      <category term="yolov5" scheme="http://yoursite.com/tags/yolov5/"/>
+    
+  </entry>
   
   <entry>
     <title>고가용인프라</title>
@@ -260,6 +284,31 @@
   </entry>
   
   <entry>
+    <title>Subversion pre-commit hook</title>
+    <link href="http://yoursite.com/2020/02/06/dev-pre%20commit%20hook/"/>
+    <id>http://yoursite.com/2020/02/06/dev-pre%20commit%20hook/</id>
+    <published>2020-02-06T05:30:19.000Z</published>
+    <updated>2021-09-02T14:37:32.991Z</updated>
+    
+    <content type="html"><![CDATA[<p>Subversion은 Repository Hook이라는 메커니즘을 가지고 있다.</p><p>pre-commit hook을 사용해, commit하는 내용이나 사용자에 따라, commit할지 말지 여부를 결정하거나, 내용을 수정할 수 있으며, post-commit hook을 사용하면, 모든 commit에 대해 메일을 보내거나 통계를 업데이트할 수 있다.</p><p>pre-commit hook을 등록 할 때는 다음 세 가지를 신경 쓰면 된다.</p><a id="more"></a><p>실행 가능: Subversion repository의 hooks/pre-commit 파일을 액세스하는 프로그램 (e.g. 웹 서버)이 실행 권한을 가질 수 있도록 해야 한다.<br>exit code: exit code에 따라 commit 여부가 결정된다. 0이라면 commit 성공, 1이라면 commit 실패.<br>stderr: 표준 에러로 출력한 메시지가 클라이언트의 에러 메시지로 출력된다.<br>예를 들어, 공백만 있는 commit log와, 특정 author에 의한 commit을 막으려면 다음과 같은 pre-commit hook 스크립트를 사용하면 된다</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line">REPOS=<span class="string">"<span class="variable">$1</span>"</span></span><br><span class="line">TXN=<span class="string">"<span class="variable">$2</span>"</span></span><br><span class="line">SVNLOOK=/usr/bin/svnlook</span><br><span class="line"><span class="variable">$SVNLOOK</span> <span class="built_in">log</span> -t <span class="string">"<span class="variable">$TXN</span>"</span> <span class="string">"<span class="variable">$REPOS</span>"</span> | grep <span class="string">"[^[:space:]]"</span> &gt; /dev/null</span><br><span class="line"><span class="keyword">if</span> [ $? -ne 0 ]; <span class="keyword">then</span></span><br><span class="line"><span class="built_in">echo</span> -n <span class="string">'EMPTY commit log is NOT ALLOWED'</span> 1&gt;&amp;2</span><br><span class="line"><span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="variable">$SVNLOOK</span> author -t <span class="string">"<span class="variable">$TXN</span>"</span> <span class="string">"<span class="variable">$REPOS</span>"</span> | grep -v -e <span class="string">"^public$"</span> &gt; /dev/null</span><br><span class="line"><span class="keyword">if</span> [ $? -ne 0 ]; <span class="keyword">then</span></span><br><span class="line"><span class="built_in">echo</span> -n <span class="string">'USER public is NOT ALLOWED'</span> 1&gt;&amp;2</span><br><span class="line"><span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="built_in">exit</span> 0</span><br></pre></td></tr></table></figure><p>이러한 hook들은 shell script로만 한정되는 것은 아니므로, python이나 외부 프로그램을 실행하는 스크립트 등의 방식을 활용할 수 있다.</p><p>Subversion repository에 강제하고 싶은 규칙이 있다면, Subversion의 pre-commit hook을 활용해 보자.</p><p>참조<br><a href="http://blog.lastmind.io/archives/592" target="_blank" rel="noopener">http://blog.lastmind.io/archives/592</a>**</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Subversion은 Repository Hook이라는 메커니즘을 가지고 있다.&lt;/p&gt;
+&lt;p&gt;pre-commit hook을 사용해, commit하는 내용이나 사용자에 따라, commit할지 말지 여부를 결정하거나, 내용을 수정할 수 있으며, post-commit hook을 사용하면, 모든 commit에 대해 메일을 보내거나 통계를 업데이트할 수 있다.&lt;/p&gt;
+&lt;p&gt;pre-commit hook을 등록 할 때는 다음 세 가지를 신경 쓰면 된다.&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="개발" scheme="http://yoursite.com/categories/%EA%B0%9C%EB%B0%9C/"/>
+    
+    
+      <category term="svn" scheme="http://yoursite.com/tags/svn/"/>
+    
+  </entry>
+  
+  <entry>
     <title>멀티 플레이어 서버 고찰</title>
     <link href="http://yoursite.com/2020/02/06/dev-mutisvr/"/>
     <id>http://yoursite.com/2020/02/06/dev-mutisvr/</id>
@@ -282,31 +331,6 @@
     
     
       <category term="game svr" scheme="http://yoursite.com/tags/game-svr/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Subversion pre-commit hook</title>
-    <link href="http://yoursite.com/2020/02/06/dev-pre%20commit%20hook/"/>
-    <id>http://yoursite.com/2020/02/06/dev-pre%20commit%20hook/</id>
-    <published>2020-02-06T05:30:19.000Z</published>
-    <updated>2021-09-02T14:37:32.991Z</updated>
-    
-    <content type="html"><![CDATA[<p>Subversion은 Repository Hook이라는 메커니즘을 가지고 있다.</p><p>pre-commit hook을 사용해, commit하는 내용이나 사용자에 따라, commit할지 말지 여부를 결정하거나, 내용을 수정할 수 있으며, post-commit hook을 사용하면, 모든 commit에 대해 메일을 보내거나 통계를 업데이트할 수 있다.</p><p>pre-commit hook을 등록 할 때는 다음 세 가지를 신경 쓰면 된다.</p><a id="more"></a><p>실행 가능: Subversion repository의 hooks/pre-commit 파일을 액세스하는 프로그램 (e.g. 웹 서버)이 실행 권한을 가질 수 있도록 해야 한다.<br>exit code: exit code에 따라 commit 여부가 결정된다. 0이라면 commit 성공, 1이라면 commit 실패.<br>stderr: 표준 에러로 출력한 메시지가 클라이언트의 에러 메시지로 출력된다.<br>예를 들어, 공백만 있는 commit log와, 특정 author에 의한 commit을 막으려면 다음과 같은 pre-commit hook 스크립트를 사용하면 된다</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line">REPOS=<span class="string">"<span class="variable">$1</span>"</span></span><br><span class="line">TXN=<span class="string">"<span class="variable">$2</span>"</span></span><br><span class="line">SVNLOOK=/usr/bin/svnlook</span><br><span class="line"><span class="variable">$SVNLOOK</span> <span class="built_in">log</span> -t <span class="string">"<span class="variable">$TXN</span>"</span> <span class="string">"<span class="variable">$REPOS</span>"</span> | grep <span class="string">"[^[:space:]]"</span> &gt; /dev/null</span><br><span class="line"><span class="keyword">if</span> [ $? -ne 0 ]; <span class="keyword">then</span></span><br><span class="line"><span class="built_in">echo</span> -n <span class="string">'EMPTY commit log is NOT ALLOWED'</span> 1&gt;&amp;2</span><br><span class="line"><span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="variable">$SVNLOOK</span> author -t <span class="string">"<span class="variable">$TXN</span>"</span> <span class="string">"<span class="variable">$REPOS</span>"</span> | grep -v -e <span class="string">"^public$"</span> &gt; /dev/null</span><br><span class="line"><span class="keyword">if</span> [ $? -ne 0 ]; <span class="keyword">then</span></span><br><span class="line"><span class="built_in">echo</span> -n <span class="string">'USER public is NOT ALLOWED'</span> 1&gt;&amp;2</span><br><span class="line"><span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="built_in">exit</span> 0</span><br></pre></td></tr></table></figure><p>이러한 hook들은 shell script로만 한정되는 것은 아니므로, python이나 외부 프로그램을 실행하는 스크립트 등의 방식을 활용할 수 있다.</p><p>Subversion repository에 강제하고 싶은 규칙이 있다면, Subversion의 pre-commit hook을 활용해 보자.</p><p>참조<br><a href="http://blog.lastmind.io/archives/592" target="_blank" rel="noopener">http://blog.lastmind.io/archives/592</a>**</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Subversion은 Repository Hook이라는 메커니즘을 가지고 있다.&lt;/p&gt;
-&lt;p&gt;pre-commit hook을 사용해, commit하는 내용이나 사용자에 따라, commit할지 말지 여부를 결정하거나, 내용을 수정할 수 있으며, post-commit hook을 사용하면, 모든 commit에 대해 메일을 보내거나 통계를 업데이트할 수 있다.&lt;/p&gt;
-&lt;p&gt;pre-commit hook을 등록 할 때는 다음 세 가지를 신경 쓰면 된다.&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="개발" scheme="http://yoursite.com/categories/%EA%B0%9C%EB%B0%9C/"/>
-    
-    
-      <category term="svn" scheme="http://yoursite.com/tags/svn/"/>
     
   </entry>
   
@@ -342,29 +366,6 @@
   </entry>
   
   <entry>
-    <title>BridgeWar</title>
-    <link href="http://yoursite.com/2020/01/21/project-bridgewar/"/>
-    <id>http://yoursite.com/2020/01/21/project-bridgewar/</id>
-    <published>2020-01-21T05:30:19.000Z</published>
-    <updated>2021-09-02T14:37:32.993Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="1-서버-구성도"><a href="#1-서버-구성도" class="headerlink" title="1. 서버 구성도"></a>1. 서버 구성도</h2><p><img src="/images/404d06966e444c82bfd0082847a86424.png" alt=""></p><a id="more"></a><p><img src="/images/e809b4238e6543858afdec7ce557e30c.png" alt=""></p><h2 id="2-개발-환경"><a href="#2-개발-환경" class="headerlink" title="2. 개발 환경"></a>2. 개발 환경</h2><ul><li>AWS(ec2, Elastic Load balancer, DBS) + Centos 7.0 + apache + CI(php) + mysql + memcached + mcrypt</li></ul><h2 id="3-프로세스"><a href="#3-프로세스" class="headerlink" title="3. 프로세스"></a>3. 프로세스</h2><ol><li>Rest API로 통신을 했으며 json으로 데이터 형식을 표현.</li><li>데이터는 레퍼런스, 유저, 로그, 통합 데이터로 구분.</li><li>분산 디비를 위해 몇십만 이상시에 로그와 유저 디비가 생성하도록 하였고 맴캐쉬에 레퍼런스 데이터를 저장하도록 함.(유저 키로 구분)</li><li>세션마다 키를 주어 암호화 함.(mcrypt)</li><li>클라이언트에서 서버 에러시에 서버에 로그를 남기도록 함.</li><li>매칭 및 랭킹은 통합 디비에서 실시간 매칭과 랭킹으로 구현.</li><li>채팅 서버를 채널별 로드 밸런싱을 하였고 여러개의 프로세스로 분산화 함</li><li>이벤트와 각종 서비스를 셀로 구현<br>8.1 프로세스 죽었을시에 sms 날리고 다시 살리는 셀.(DB, 아파치, 채팅)<br>8.2 매일 통계 데이터 넣는 부분 셀.<br>8.3 health check 셀.<br>8.4 오래된 맬 삭제 셀.<br>8.5 각종 이벤트 셀.<br></li></ol><h2 id="4-미들웨어"><a href="#4-미들웨어" class="headerlink" title="4. 미들웨어"></a>4. 미들웨어</h2><h2 id="5-아마존-서버-구성"><a href="#5-아마존-서버-구성" class="headerlink" title="5. 아마존 서버 구성"></a>5. 아마존 서버 구성</h2><p>DB(2대) db.m4.xlarge - cpu 4, memory 16 SSD 100G<br>WEB(3대) m4.xlarge - cpu 4, memory 16 SSD 80G<br>Elastic Load Balancer</p><h2 id="6-설치-및-설정"><a href="#6-설치-및-설정" class="headerlink" title="6. 설치 및 설정"></a>6. 설치 및 설정</h2><h3 id="memcache-설치"><a href="#memcache-설치" class="headerlink" title="memcache 설치"></a>memcache 설치</h3><ol start="0"><li>맴케쉬는 web01에서만 설치한다.</li><li><a href="http://www.liquidweb.com/kb/how-to-install-memcached-on-centos-7/" target="_blank" rel="noopener">memcache 설치</a><br>yum install zlib-devel<br>1.1 <a href="http://egloos.zum.com/jonnychoe/v/5561398" target="_blank" rel="noopener">PHP memcache 설치</a><pre><code>/home/bridgewar/util/memcache-2.2.6tar -xvf memcache-2.2.6.tgzphpize,  ./configure, make, make install</code></pre></li></ol><h3 id="mcrypt-설치"><a href="#mcrypt-설치" class="headerlink" title="mcrypt 설치"></a>mcrypt 설치</h3><ol><li>yum -y install php-mcrypt</li></ol><h3 id="snappy-설치"><a href="#snappy-설치" class="headerlink" title="snappy 설치"></a>snappy 설치</h3><p>yum install snappy<br>sudo 계정<br>cd php-ext-snappy-master(rpm -qa | grep snappy-1.1.0-3.el7.x86_64)</p><ol><li>cd php-snappy</li><li>phpize</li><li>./configure</li><li>make</li><li>make install</li></ol><h3 id="etc-php-ini-설정"><a href="#etc-php-ini-설정" class="headerlink" title="/etc/php.ini 설정"></a>/etc/php.ini 설정</h3><p>extension=mcrypt.so<br>extension=snappy.so<br>extension=memcache.so<br>timezone 확인.</p><h2 id="7-cron"><a href="#7-cron" class="headerlink" title="7. cron"></a>7. cron</h2><h2 id="8-back-up"><a href="#8-back-up" class="headerlink" title="8. back up"></a>8. back up</h2>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;1-서버-구성도&quot;&gt;&lt;a href=&quot;#1-서버-구성도&quot; class=&quot;headerlink&quot; title=&quot;1. 서버 구성도&quot;&gt;&lt;/a&gt;1. 서버 구성도&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;/images/404d06966e444c82bfd0082847a86424.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="프로젝트" scheme="http://yoursite.com/categories/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/"/>
-    
-    
-      <category term="game svr" scheme="http://yoursite.com/tags/game-svr/"/>
-    
-  </entry>
-  
-  <entry>
     <title>monitoring</title>
     <link href="http://yoursite.com/2020/01/21/project-monitoring/"/>
     <id>http://yoursite.com/2020/01/21/project-monitoring/</id>
@@ -395,33 +396,44 @@
   </entry>
   
   <entry>
+    <title>BridgeWar</title>
+    <link href="http://yoursite.com/2020/01/21/project-bridgewar/"/>
+    <id>http://yoursite.com/2020/01/21/project-bridgewar/</id>
+    <published>2020-01-21T05:30:19.000Z</published>
+    <updated>2021-09-02T14:37:32.993Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1-서버-구성도"><a href="#1-서버-구성도" class="headerlink" title="1. 서버 구성도"></a>1. 서버 구성도</h2><p><img src="/images/404d06966e444c82bfd0082847a86424.png" alt=""></p><a id="more"></a><p><img src="/images/e809b4238e6543858afdec7ce557e30c.png" alt=""></p><h2 id="2-개발-환경"><a href="#2-개발-환경" class="headerlink" title="2. 개발 환경"></a>2. 개발 환경</h2><ul><li>AWS(ec2, Elastic Load balancer, DBS) + Centos 7.0 + apache + CI(php) + mysql + memcached + mcrypt</li></ul><h2 id="3-프로세스"><a href="#3-프로세스" class="headerlink" title="3. 프로세스"></a>3. 프로세스</h2><ol><li>Rest API로 통신을 했으며 json으로 데이터 형식을 표현.</li><li>데이터는 레퍼런스, 유저, 로그, 통합 데이터로 구분.</li><li>분산 디비를 위해 몇십만 이상시에 로그와 유저 디비가 생성하도록 하였고 맴캐쉬에 레퍼런스 데이터를 저장하도록 함.(유저 키로 구분)</li><li>세션마다 키를 주어 암호화 함.(mcrypt)</li><li>클라이언트에서 서버 에러시에 서버에 로그를 남기도록 함.</li><li>매칭 및 랭킹은 통합 디비에서 실시간 매칭과 랭킹으로 구현.</li><li>채팅 서버를 채널별 로드 밸런싱을 하였고 여러개의 프로세스로 분산화 함</li><li>이벤트와 각종 서비스를 셀로 구현<br>8.1 프로세스 죽었을시에 sms 날리고 다시 살리는 셀.(DB, 아파치, 채팅)<br>8.2 매일 통계 데이터 넣는 부분 셀.<br>8.3 health check 셀.<br>8.4 오래된 맬 삭제 셀.<br>8.5 각종 이벤트 셀.<br></li></ol><h2 id="4-미들웨어"><a href="#4-미들웨어" class="headerlink" title="4. 미들웨어"></a>4. 미들웨어</h2><h2 id="5-아마존-서버-구성"><a href="#5-아마존-서버-구성" class="headerlink" title="5. 아마존 서버 구성"></a>5. 아마존 서버 구성</h2><p>DB(2대) db.m4.xlarge - cpu 4, memory 16 SSD 100G<br>WEB(3대) m4.xlarge - cpu 4, memory 16 SSD 80G<br>Elastic Load Balancer</p><h2 id="6-설치-및-설정"><a href="#6-설치-및-설정" class="headerlink" title="6. 설치 및 설정"></a>6. 설치 및 설정</h2><h3 id="memcache-설치"><a href="#memcache-설치" class="headerlink" title="memcache 설치"></a>memcache 설치</h3><ol start="0"><li>맴케쉬는 web01에서만 설치한다.</li><li><a href="http://www.liquidweb.com/kb/how-to-install-memcached-on-centos-7/" target="_blank" rel="noopener">memcache 설치</a><br>yum install zlib-devel<br>1.1 <a href="http://egloos.zum.com/jonnychoe/v/5561398" target="_blank" rel="noopener">PHP memcache 설치</a><pre><code>/home/bridgewar/util/memcache-2.2.6tar -xvf memcache-2.2.6.tgzphpize,  ./configure, make, make install</code></pre></li></ol><h3 id="mcrypt-설치"><a href="#mcrypt-설치" class="headerlink" title="mcrypt 설치"></a>mcrypt 설치</h3><ol><li>yum -y install php-mcrypt</li></ol><h3 id="snappy-설치"><a href="#snappy-설치" class="headerlink" title="snappy 설치"></a>snappy 설치</h3><p>yum install snappy<br>sudo 계정<br>cd php-ext-snappy-master(rpm -qa | grep snappy-1.1.0-3.el7.x86_64)</p><ol><li>cd php-snappy</li><li>phpize</li><li>./configure</li><li>make</li><li>make install</li></ol><h3 id="etc-php-ini-설정"><a href="#etc-php-ini-설정" class="headerlink" title="/etc/php.ini 설정"></a>/etc/php.ini 설정</h3><p>extension=mcrypt.so<br>extension=snappy.so<br>extension=memcache.so<br>timezone 확인.</p><h2 id="7-cron"><a href="#7-cron" class="headerlink" title="7. cron"></a>7. cron</h2><h2 id="8-back-up"><a href="#8-back-up" class="headerlink" title="8. back up"></a>8. back up</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;1-서버-구성도&quot;&gt;&lt;a href=&quot;#1-서버-구성도&quot; class=&quot;headerlink&quot; title=&quot;1. 서버 구성도&quot;&gt;&lt;/a&gt;1. 서버 구성도&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;/images/404d06966e444c82bfd0082847a86424.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="프로젝트" scheme="http://yoursite.com/categories/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/"/>
+    
+    
+      <category term="game svr" scheme="http://yoursite.com/tags/game-svr/"/>
+    
+  </entry>
+  
+  <entry>
     <title>aws gamelift</title>
     <link href="http://yoursite.com/2020/01/11/dev-gamelift/"/>
     <id>http://yoursite.com/2020/01/11/dev-gamelift/</id>
     <published>2020-01-11T05:30:19.000Z</published>
-    <updated>2021-09-02T14:37:32.985Z</updated>
+    <updated>2022-09-18T12:11:01.113Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="install-gamelift-SDK-for-linux"><a href="#install-gamelift-SDK-for-linux" class="headerlink" title="install gamelift SDK for linux"></a>install gamelift SDK for linux</h1><ol start="0"><li></li><li><p>1.</p></li><li><p>2.</p></li><li><p>3.</p></li><li><p>4</p></li><li><p>SDK 다운(<a href="https://ap-northeast-2.console.aws.amazon.com/gamelift/home?region=ap-northeast-2#/" target="_blank" rel="noopener">https://ap-northeast-2.console.aws.amazon.com/gamelift/home?region=ap-northeast-2#/</a>)</p></li><li><p>cmake 설치.(yum install cmake)</p></li><li><p>해당 폴더(/home/gamelift/gamelift_sdk)에서 cmake CMakeLists.txt(makefile 생성)</p></li><li><p>make</p><a id="more"></a></li><li><p>cd thirdparty</p></li><li><p>cmake CMakeLists.txt</p></li><li><p>make(makefile 생성)</p></li><li><p>cd /home/gamelift/gamelift_sdk/prefix/lib<br>8.1 libprotobuf.so, libboost_date_time.so, libboost_system.so, libboost_random.so, libprotoc.so (해당 동적 라이브러리가 생성되었는지 확인)</p></li><li><p>library PATH 넣어주기.<br>9.1 vi /etc/profile<br>9.2 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/gamelift/gamelift_sdk/prefix/lib 넣어준다.<br>9.3 source /etc/profile(바로 적용)<br>9.4 echo $LD_LIBRARY_PATH(위에 라이브러리가 추가 되었는지 확인)</p></li></ol><h1 id="gamelift-사용하는-방법-예제"><a href="#gamelift-사용하는-방법-예제" class="headerlink" title="gamelift 사용하는 방법(예제)"></a>gamelift 사용하는 방법(예제)</h1><ol start="0"><li>문서(GameLift_dist.pdf) </li></ol><p><a href="https://github.com/padhansell/GameLift/blob/master/GameLift_dist.pdf" target="_blank" rel="noopener">https://github.com/padhansell/GameLift/blob/master/GameLift_dist.pdf</a></p><ol><li>다운로드(<a href="https://github.com/zeliard/GameLift" target="_blank" rel="noopener">https://github.com/zeliard/GameLift</a>)</li><li>GameLiftLinuxServer 폴더에서 cmake CMakeLists.txt(makefile 생성)</li><li>make</li></ol><h1 id="자신의-서버-소스에-gamelift를-추가-하는-방법"><a href="#자신의-서버-소스에-gamelift를-추가-하는-방법" class="headerlink" title="자신의 서버 소스에 gamelift를 추가 하는 방법"></a>자신의 서버 소스에 gamelift를 추가 하는 방법</h1><ol><li>소스 컴파일(make, make install)<br>1.1 vi makefile<br>1.2 -L/home/gamelift/gamelift_sdk/prefix/lib  -lsioclient -lboost_date_time -lboost_random -lboost_system -lprotobuf -lpthread (lib 추가)<br>   -I/home/gamelift/gamelift_sdk/prefix/include(include 추가)<br>   GameLiftManager.cpp Log.cpp 추가(gamelift 예제 소스에서 가지고 옴)<br>1.3 make</li></ol><h1 id="아마존-게임리프트-콘솔에-올리는-방법"><a href="#아마존-게임리프트-콘솔에-올리는-방법" class="headerlink" title="아마존 게임리프트 콘솔에 올리는 방법"></a>아마존 게임리프트 콘솔에 올리는 방법</h1><ol><li><p>아마존 게임리프트 콘솔 도움말<br><a href="http://docs.aws.amazon.com/ko_kr/gamelift/latest/developerguide/fleets-creating.html" target="_blank" rel="noopener">http://docs.aws.amazon.com/ko_kr/gamelift/latest/developerguide/fleets-creating.html</a></p></li><li><p>gamelift console 설정(<a href="https://ap-northeast-2.console.aws.amazon.com/gamelift/home?region=ap-northeast-2#/r/fleets/create" target="_blank" rel="noopener">https://ap-northeast-2.console.aws.amazon.com/gamelift/home?region=ap-northeast-2#/r/fleets/create</a>) - 아마존 계정을 만들어야 한다.<br>2.1 aws 액세스 키 생성<br><a href="https://docs.aws.amazon.com/ko_kr/general/latest/gr/managing-aws-access-keys.html" target="_blank" rel="noopener">https://docs.aws.amazon.com/ko_kr/general/latest/gr/managing-aws-access-keys.html</a><br>2.2 게임서버에 session key, secret key 추가.<br>2.2.1 해당 게임서버에서 AWS cli 설치 및 키 추가(<a href="http://pyrasis.com/book/TheArtOfAmazonWebServices/Chapter30/02" target="_blank" rel="noopener">http://pyrasis.com/book/TheArtOfAmazonWebServices/Chapter30/02</a>)<br>2.2.2 해당 서버에 실행 폴더를 AWS cli 통해서 gamelift에 올림.<br>aws gamelift upload-build –name GameLiftLinuxServer5 –build-version 0.0.1 –build-root /home/gamelift/GameLift-master/GameLiftLinuxServer/build –operating-system AMAZON_LINUX –region ap-northeast-2<br>2.2.3 aws gamelift describe-build –build-id (올라 갔는지 확인)<br>2.3 gamelift cosole 접속(직접 들어가서 해야 한다.)</p></li></ol>]]></content>
+    <content type="html"><![CDATA[<h1 id="install-gamelift-SDK-for-linux"><a href="#install-gamelift-SDK-for-linux" class="headerlink" title="install gamelift SDK for linux"></a>install gamelift SDK for linux</h1><ol><li>SDK 다운(<a href="https://ap-northeast-2.console.aws.amazon.com/gamelift/home?region=ap-northeast-2#/" target="_blank" rel="noopener">https://ap-northeast-2.console.aws.amazon.com/gamelift/home?region=ap-northeast-2#/</a>)</li><li>cmake 설치.(yum install cmake)</li><li>해당 폴더(/home/gamelift/gamelift_sdk)에서 cmake CMakeLists.txt(makefile 생성)</li><li>make<a id="more"></a></li><li>cd thirdparty</li><li>cmake CMakeLists.txt</li><li>make(makefile 생성)</li><li>cd /home/gamelift/gamelift_sdk/prefix/lib<br>8.1 libprotobuf.so, libboost_date_time.so, libboost_system.so, libboost_random.so, libprotoc.so (해당 동적 라이브러리가 생성되었는지 확인)</li><li>library PATH 넣어주기.<br>9.1 vi /etc/profile<br>9.2 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/gamelift/gamelift_sdk/prefix/lib 넣어준다.<br>9.3 source /etc/profile(바로 적용)<br>9.4 echo $LD_LIBRARY_PATH(위에 라이브러리가 추가 되었는지 확인)</li></ol><h1 id="gamelift-사용하는-방법-예제"><a href="#gamelift-사용하는-방법-예제" class="headerlink" title="gamelift 사용하는 방법(예제)"></a>gamelift 사용하는 방법(예제)</h1><ol start="0"><li>문서(GameLift_dist.pdf) </li></ol><p><a href="https://github.com/padhansell/GameLift/blob/master/GameLift_dist.pdf" target="_blank" rel="noopener">https://github.com/padhansell/GameLift/blob/master/GameLift_dist.pdf</a></p><ol><li>다운로드(<a href="https://github.com/zeliard/GameLift" target="_blank" rel="noopener">https://github.com/zeliard/GameLift</a>)</li><li>GameLiftLinuxServer 폴더에서 cmake CMakeLists.txt(makefile 생성)</li><li>make</li></ol><h1 id="자신의-서버-소스에-gamelift를-추가-하는-방법"><a href="#자신의-서버-소스에-gamelift를-추가-하는-방법" class="headerlink" title="자신의 서버 소스에 gamelift를 추가 하는 방법"></a>자신의 서버 소스에 gamelift를 추가 하는 방법</h1><ol><li>소스 컴파일(make, make install)<br>1.1 vi makefile<br>1.2 -L/home/gamelift/gamelift_sdk/prefix/lib  -lsioclient -lboost_date_time -lboost_random -lboost_system -lprotobuf -lpthread (lib 추가)<br>   -I/home/gamelift/gamelift_sdk/prefix/include(include 추가)<br>   GameLiftManager.cpp Log.cpp 추가(gamelift 예제 소스에서 가지고 옴)<br>1.3 make</li></ol><h1 id="아마존-게임리프트-콘솔에-올리는-방법"><a href="#아마존-게임리프트-콘솔에-올리는-방법" class="headerlink" title="아마존 게임리프트 콘솔에 올리는 방법"></a>아마존 게임리프트 콘솔에 올리는 방법</h1><ol><li><p>아마존 게임리프트 콘솔 도움말<br><a href="http://docs.aws.amazon.com/ko_kr/gamelift/latest/developerguide/fleets-creating.html" target="_blank" rel="noopener">http://docs.aws.amazon.com/ko_kr/gamelift/latest/developerguide/fleets-creating.html</a></p></li><li><p>gamelift console 설정(<a href="https://ap-northeast-2.console.aws.amazon.com/gamelift/home?region=ap-northeast-2#/r/fleets/create" target="_blank" rel="noopener">https://ap-northeast-2.console.aws.amazon.com/gamelift/home?region=ap-northeast-2#/r/fleets/create</a>) - 아마존 계정을 만들어야 한다.<br>2.1 aws 액세스 키 생성<br><a href="https://docs.aws.amazon.com/ko_kr/general/latest/gr/managing-aws-access-keys.html" target="_blank" rel="noopener">https://docs.aws.amazon.com/ko_kr/general/latest/gr/managing-aws-access-keys.html</a><br>2.2 게임서버에 session key, secret key 추가.<br>2.2.1 해당 게임서버에서 AWS cli 설치 및 키 추가(<a href="http://pyrasis.com/book/TheArtOfAmazonWebServices/Chapter30/02" target="_blank" rel="noopener">http://pyrasis.com/book/TheArtOfAmazonWebServices/Chapter30/02</a>)<br>2.2.2 해당 서버에 실행 폴더를 AWS cli 통해서 gamelift에 올림.<br>aws gamelift upload-build –name GameLiftLinuxServer5 –build-version 0.0.1 –build-root /home/gamelift/GameLift-master/GameLiftLinuxServer/build –operating-system AMAZON_LINUX –region ap-northeast-2<br>2.2.3 aws gamelift describe-build –build-id (올라 갔는지 확인)<br>2.3 gamelift cosole 접속(직접 들어가서 해야 한다.)</p></li></ol>]]></content>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;install-gamelift-SDK-for-linux&quot;&gt;&lt;a href=&quot;#install-gamelift-SDK-for-linux&quot; class=&quot;headerlink&quot; title=&quot;install gamelift SDK for linux&quot;&gt;&lt;/a&gt;install gamelift SDK for linux&lt;/h1&gt;&lt;ol start=&quot;0&quot;&gt;
-&lt;li&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;1.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;2.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;3.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;4&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;SDK 다운(&lt;a href=&quot;https://ap-northeast-2.console.aws.amazon.com/gamelift/home?region=ap-northeast-2#/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://ap-northeast-2.console.aws.amazon.com/gamelift/home?region=ap-northeast-2#/&lt;/a&gt;)&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;cmake 설치.(yum install cmake)&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;해당 폴더(/home/gamelift/gamelift_sdk)에서 cmake CMakeLists.txt(makefile 생성)&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;make&lt;/p&gt;
+      &lt;h1 id=&quot;install-gamelift-SDK-for-linux&quot;&gt;&lt;a href=&quot;#install-gamelift-SDK-for-linux&quot; class=&quot;headerlink&quot; title=&quot;install gamelift SDK for linux&quot;&gt;&lt;/a&gt;install gamelift SDK for linux&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;SDK 다운(&lt;a href=&quot;https://ap-northeast-2.console.aws.amazon.com/gamelift/home?region=ap-northeast-2#/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://ap-northeast-2.console.aws.amazon.com/gamelift/home?region=ap-northeast-2#/&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;cmake 설치.(yum install cmake)&lt;/li&gt;
+&lt;li&gt;해당 폴더(/home/gamelift/gamelift_sdk)에서 cmake CMakeLists.txt(makefile 생성)&lt;/li&gt;
+&lt;li&gt;make
     
     </summary>
     
