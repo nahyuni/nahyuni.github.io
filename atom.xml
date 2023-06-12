@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2023-06-10T03:41:13.259Z</updated>
+  <updated>2023-06-12T12:32:20.798Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,51 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>RTP,RTCP,RTSP ����</title>
+    <link href="http://yoursite.com/2023/06/12/dev-rtp/"/>
+    <id>http://yoursite.com/2023/06/12/dev-rtp/</id>
+    <published>2023-06-12T12:31:00.000Z</published>
+    <updated>2023-06-12T12:32:20.798Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="RTP-Real-Time-Transport-Protocol"><a href="#RTP-Real-Time-Transport-Protocol" class="headerlink" title="- RTP(Real Time Transport Protocol)"></a>- RTP(Real Time Transport Protocol)</h3><ol><li>Viedio/Audio <strong>������</strong> ������ ���� ��������.</li><li>RTP�� �ұ�Ģ�ϰ� ���ŵǴ� �������� ������ �����ϱ� ���� Ÿ�ӽ����� ����� ���</li><li>�������� ���ο� ��ġ�ϴ� ������ ũ�⸦ �� ���� ���α׷����� ������ �����ϱⰡ ������.</li><li>RTP�� ���� ĳ���ûӸ� �ƴ϶� ��Ƽĳ���õ� �����Ѵ�.</li><li>�������� Ŭ���̾�Ʈ�� �ܹ��� ����.</li><li>�ش� ���� �ڵ��� ���Ƿ� ��Ʈ��ũ ��Ȳ�� ���� �ڵ��� �ٲܼ� ����.</li><li>UDP/IP ��Ŷ ����.</li><li>�ǽð� ȯ�濡���� ���� ���μ����� �����ϴ� ���� ������ �״�� ���� �Ǵ� ���� �߿��ϹǷ� ���۶�� ������ ���</li><li>�������� �������� �����ϴ� �����͸� ��� ���Ż翡 ������ �ʰ� ���� ���۸� ���� �ٽ� ������ �������� ������ �ϴ� ������ �����Ѵ�.</li></ol><p><img src=":/ed0ad510d9b14fff8bd168b8d9d0f260" alt="��ũ����_2018-07-15_����_9.36.52.png"></p><h4 id="RTP-������-���"><a href="#RTP-������-���" class="headerlink" title="RTP ������ ���"></a>RTP ������ ���</h4><ol><li>���� ��Ʈ��ũ�� ���� ��Ʈ��ũ ��θ� ������Ű�� ���� ������ �߰� ȣ��Ʈ�� ����</li></ol><h5 id="�ͼ�-������-�ռ���"><a href="#�ͼ�-������-�ռ���" class="headerlink" title="�ͼ�(������ �ռ���)"></a>�ͼ�(������ �ռ���)</h5><ol><li>��Ʈ��ũ �뿪�� ������� �ʴ� ��� ���������� �����͸� �۽��ϸ� ��Ʈ��ũ �뿪�� �����Ͽ� ���� ������ ���� ���ɼ��� ����.</li><li>���� �۽� ���μ����� �����ͱ׷��� ������ �����Ͽ� ���ο� �����ͱ׷��� �����Ѵ�.<br>ex) ����� ������ �ͽ��Ͽ� ���ο� �������� ����°�</li></ol><h5 id="T����������-�ӵ�-��o��"><a href="#T����������-�ӵ�-��o��" class="headerlink" title="Ʈ����������(�ӵ� ��ȯ��)"></a>Ʈ����������(�ӵ� ��ȯ��)</h5><ol><li>������ ȯ�濡 �°� �ٲپ� �ִ� ���� �ǹ��Ѵ�.</li></ol><h4 id="����-Session"><a href="#����-Session" class="headerlink" title="����(Session)"></a>����(Session)</h4><ol><li><p>RTP�� �̿��Ͽ� ����ϴ� ȣ��Ʈ �׷��� �����̶�� ������ �̿��Ͽ� �ĺ�</p><ul><li>���� ���  A�� B�� ���� RTP�� �̿��� ����� �Ѵٸ�, ���θ� �����ϴ�<br>�ϳ��� session�� �������. �̶��� C��  A�� B �� ��ſ� �����ص� session�� 1����.</li></ul></li><li><p>UDP�� IP�� �̿��� ��� ������ (����ó IP + UDP ��Ʈ) �������� �ĺ���.</p></li></ol><h3 id="��������"><a href="#��������" class="headerlink" title="��������"></a>��������</h3><ol><li><p>UDP �� �̿���.(RTP + UDP + IP) -&gt; ������ ��Ŷ�� ���� �ܸ��� ��� ������ �̹� ������ ���� ���İ� �� Ȯ���� ���� ��Ŷ�� ó����.</p></li><li><p>�����ص�(40Byte) - ethernet(18) + IP(20) + UDP(8) + RTP(12) + 10ms(160) - DSPĨ G.711 �ڵ� ���� =&gt; �ʴ�100�� ����<br>�Ϲ������� 20ms �ʴ� 50�� ��Ŷ ����.</p></li><li><p>RTP �ش�(12Byte)<br><img src=":/a37c79fa3b2e4d0ca31de4f8682b2039" alt="RTP_Header.png"></p><ul><li>��� ����</li></ul><p>3.1.1 ���̷ε� Ÿ��(Payload Type) - �ڵ��� ����(G.711, H264 ���ڵ�)<br>3.1.2 SSRC : ����ҽ� �ĺ��� �̵�Ʈ���� �ҽ� �ĺ���. 1564169535 - �� ������������ 2�� ������ ���.<br>3.1.3 Sequence Number : RTP ��Ŷ ������ ������ �Ҵ�Ǵ� ��ȣ.</p></li></ol><h3 id="RTCP-Real-Time-Transport-Control-Protocol"><a href="#RTCP-Real-Time-Transport-Control-Protocol" class="headerlink" title="- RTCP(Real Time Transport Control Protocol)"></a>- RTCP(Real Time Transport Control Protocol)</h3><h4 id="���"><a href="#���" class="headerlink" title="���"></a>���</h4><ol><li>RTP�� ������ ���۸� �ϴ� �������ݷν� ��� ��Ȳ�� ���ϴ� ü�谡 ����.</li><li>��Ʈ��ũ�� ȥ���� ��� ������ ���ۼӵ��� ���۷� ����.</li><li>���������� ���� �ӵ��� ���ۼӵ����� ���� ��� ���������� ������ ���� �ӵ� ������ �� �ʿ伺 �߻�.</li></ol><h4 id="����-��-U¡"><a href="#����-��-U¡" class="headerlink" title="���� �� Ư¡"></a>���� �� Ư¡</h4><ol><li>RTP ������ ���� ���� ����, RTP ���� ���� ��������.</li><li>����� ���.</li><li>�ֱ������� �ۼ����ڰ� ����Ʈ ��Ŷ�� �ְ� ����.</li><li>RTP  ¦�� ��Ʈ, RTCP RTP ��Ʈ + 1�� ���.</li><li>RTCP �޼��� ����</li></ol><p><img src=":/95b194cfefc64f6e910b14769c1a84e4" alt="1805_1.jpg"></p><p>�� SR �Ǵ� RS : Sender Report (�۽��� ����)<br>     - �۽��� ������ �ֱ����� ǰ������ ��� ������<br>        . �۽� ��Ŷ�� ��</p><p>  �� RR : Receiver Report (������ ����)<br>     - ������ ������ �ֱ����� ǰ������ ��� ������<br>        . ��Ŷ�ս���, �����ս���Ŷ�� ��</p><p>  �� SDES : Source Description message<br>     - �ҽ��� �ڽ��� ������ �ֱ������� �˸�<br>     - SSRC�� �ش�Ǵ� ����� �̸�, ���ڿ��� �ּ�, �α��� ID ������ �۽��� ����</p><p>  �� BYE : Bye message<br>     - ���� ���ǿ��� ��� �����ڿ��� ����� ���� �˸�</p><p>  �� APP : Application specfic RTCP<br>     - ���÷��̼� ��ȣ ���� ������ �����ϱ� ���� ���</p><h3 id="RTSP-Real-Time-Streaming-Protocol"><a href="#RTSP-Real-Time-Streaming-Protocol" class="headerlink" title="- RTSP(Real Time Streaming Protocol)"></a>- RTSP(Real Time Streaming Protocol)</h3><ol><li><p>RTSP(RealTime Streaming Protocol)��  On Demand �������� ����Ÿ�� �̵�� ������ ���ϴ� ���ø����̼� ������ ��������</p></li><li><p>RTSP�� ���ͳ� �󿡼� ��Ʈ���� �����͸� �����ϴ� ����� ���� ǥ�ؾ����� ��Ʈ���� ����� ����ϴ� ǥ�� ��������</p></li><li><p>�⺻��Ʈ 554</p></li></ol><p><img src=":/33962f927a0043bb88d2c069a134a748" alt="rtsp1.png"></p><ul><li><p>OPTIONS<br>OPTIONS ��û�� ������ accept Ÿ���� ��ȯ�մϴ�.</p></li><li><p>DESCRIBE<br>DESCRIBE ��û���� URL (rtsp://…)�� ���Ե˴ϴ�.�⺻ ��Ʈ 554���� UDP, TCP �� �ٿ� ���˴ϴ�. DESCRIBE�� ���� ���� �޽������� ��û�� �Ϳ� ���� ������ ���ԵǴµ�, �밳 Session Description Protocol (SDP) ���¸� ���߰� �ֽ��ϴ�.</p></li><li><p>SETUP<br>SETUP ��û�� ���� �̵�� ��Ʈ���� ���۵Ǿ�� �ϴ��� �����մϴ�. �� ��û�� PLAY ��û �ϱ� ���� ���ľ� �մϴ�. �׸��� ��û�� �� �̵�� ��Ʈ�� URL�� �������� �����ؾ� �մϴ�. ���������� RTP ������(�����/����), RTCP ������(��Ÿ ����)�� ���۹ޱ� ���� ��Ʈ ��ȣ�� ���Ե˴ϴ�.</p></li><li><p>PLAY<br>PLAY ��û�� �ϳ� �Ǵ� ��� �̵�� ��Ʈ���� �����ŵ�ϴ�. PLAY ������ ���� ��û�� �����մϴ�. ��� �̵�� ��Ʈ�� ����� ���ؼ��� URL ����ü�� ��û�� ���ԵǾ�� �մϴ�. ��� ������ ��ü������ ������ ���� �ֽ��ϴ�. ���� ��� ������ �������� ������, �̵�� ó������ ������ ����ϰԵ˴ϴ�. ��, �Ͻ� ���� ���¶�� �Ͻ� ������ ��ġ���� ����˴ϴ�.</p></li><li><p>PAUSE<br>PLAY ��û�� �ϳ� �Ǵ� ��� ��Ʈ���� �����ŵ�ϴ�. PLAY ������ ���� ��û�� �����մϴ�. ��� �̵�� ��Ʈ�� ����� ���ؼ��� URL ����ü�� ��û�� ���ԵǾ�� �մϴ�. �Ͻ� �����Ҷ� ������ ��ü������ ������ ���� �ֽ��ϴ�.</p></li><li><p>RECORD<br>RECORD ��û�� ��ȭ�� ���� ���ɾ��Դϴ�.</p></li><li><p>TEARDOWN<br>TEARDOWN ��û�� ������ �����ϱ� ���� ���ɾ��̰�, ��� �̵�� ��Ʈ���� ����� �ߴ��ϰ� ������ �ִ� ���� �����Ϳ� �ɸ� ��� ���ǵ� �����մϴ�.</p></li></ul><h3 id="����"><a href="#����" class="headerlink" title="����"></a>����</h3><p><a href="https://slidesplayer.org/slide/15231455/" target="_blank" rel="noopener">https://slidesplayer.org/slide/15231455/</a><br><a href="https://brunch.co.kr/@linecard/154" target="_blank" rel="noopener">https://brunch.co.kr/@linecard/154</a><br><a href="https://copycode.tistory.com/104" target="_blank" rel="noopener">https://copycode.tistory.com/104</a><br><a href="https://looksense.tistory.com/180" target="_blank" rel="noopener">https://looksense.tistory.com/180</a><br><a href="http://www.titorus.com/?p=54" target="_blank" rel="noopener">http://www.titorus.com/?p=54</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;RTP-Real-Time-Transport-Protocol&quot;&gt;&lt;a href=&quot;#RTP-Real-Time-Transport-Protocol&quot; class=&quot;headerlink&quot; title=&quot;- RTP(Real Time Transport Protocol)&quot;&gt;&lt;/a&gt;- RTP(Real Time Transport Protocol)&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;Viedio/Audio &lt;strong&gt;������&lt;/strong&gt; ������ ���� ��������.&lt;/li&gt;
+&lt;li&gt;RTP�� �ұ�Ģ�ϰ� ���ŵǴ� �������� ������ �����ϱ� ���� Ÿ�ӽ����� ����� ���&lt;/li&gt;
+&lt;li&gt;�������� ���ο� ��ġ�ϴ� ������ ũ�⸦ �� ���� ���α׷����� ������ �����ϱⰡ ������.&lt;/li&gt;
+&lt;li&gt;RTP�� ���� ĳ���ûӸ� �ƴ϶� ��Ƽĳ���õ� �����Ѵ�.&lt;/li&gt;
+&lt;li&gt;�������� Ŭ���̾�Ʈ�� �ܹ��� ����.&lt;/li&gt;
+&lt;li&gt;�ش� ���� �ڵ��� ���Ƿ� ��Ʈ��ũ ��Ȳ�� ���� �ڵ��� �ٲܼ� ����.&lt;/li&gt;
+&lt;li&gt;UDP/IP ��Ŷ ����.&lt;/li&gt;
+&lt;li&gt;�ǽð� ȯ�濡���� ���� ���μ����� �����ϴ� ���� ������ �״�� ���� �Ǵ� ���� �߿��ϹǷ� ���۶�� ������ ���&lt;/li&gt;
+&lt;li&gt;�������� �������� �����ϴ� �����͸� ��� ���Ż翡 ������ �ʰ� ���� ���۸� ���� �ٽ� ������ �������� ������ �ϴ� ������ �����Ѵ�.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;:/ed0ad510d9b14fff8bd168b8d9d0f260&quot; alt=&quot;��ũ����_2018-07-15_����_9.36.52.png&quot;&gt;&lt;/p&gt;
+&lt;h4 id=&quot;RTP-������-���&quot;&gt;&lt;a href=&quot;#RTP-������-���&quot; class=&quot;headerlink&quot; title=&quot;RTP ������ ���&quot;&gt;&lt;/a&gt;RTP ������ ���&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;���� ��Ʈ��ũ�� ���� ��Ʈ��ũ ��θ� ������Ű�� ���� ������ �߰� ȣ��Ʈ�� ����&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h5 id=&quot;�ͼ�-������-�ռ���&quot;&gt;&lt;a href=&quot;#�ͼ�-������-�ռ���&quot; class=&quot;headerlink&quot; title=&quot;�ͼ�(������ �ռ���)&quot;&gt;&lt;/a&gt;�ͼ�(������ �ռ���)&lt;/h5&gt;&lt;ol&gt;
+&lt;li&gt;��Ʈ��ũ �뿪�� ������� �ʴ� ��� ���������� �����͸� �۽��ϸ� ��Ʈ��ũ �뿪�� �����Ͽ� ���� ������ ���� ���ɼ��� ����.&lt;/li&gt;
+&lt;li&gt;���� �۽� ���μ����� �����ͱ׷��� ������ �����Ͽ� ���ο� �����ͱ׷��� �����Ѵ�.&lt;br&gt;ex) ����� ������ �ͽ��Ͽ� ���ο� �������� ����°�&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h5 id=&quot;T����������-�ӵ�-��o��&quot;&gt;&lt;a href=&quot;#T����������-�ӵ�-��o��&quot; class=&quot;headerlink&quot; title=&quot;Ʈ����������(�ӵ� ��ȯ��)&quot;&gt;&lt;/a&gt;Ʈ����������(�ӵ� ��ȯ��)&lt;/h5&gt;&lt;ol&gt;
+&lt;li&gt;������ ȯ�濡 �°� �ٲپ� �ִ� ���� �ǹ��Ѵ�.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&quot;����-Session&quot;&gt;&lt;a href=&quot;#����-Session&quot; class=&quot;headerlink&quot; title=&quot;����(Session)&quot;&gt;&lt;/a&gt;����(Session)&lt;/h4&gt;
+    
+    </summary>
+    
+    
+      <category term="����" scheme="http://yoursite.com/categories/%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD/"/>
+    
+    
+      <category term="�̵��" scheme="http://yoursite.com/tags/%EF%BF%BD%CC%B5%EF%BF%BD%EF%BF%BD/"/>
+    
+  </entry>
   
   <entry>
     <title>smart black box 2</title>

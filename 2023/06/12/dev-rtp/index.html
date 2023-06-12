@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>RTP,RTCP,RTSP ���� | </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="- RTP(Real Time Transport Protocol) Viedio&#x2F;Audio ������ ������ ���� ��������. RTP�� �ұ�Ģ�ϰ� ���ŵǴ� �������� ������ �����ϱ� ���� Ÿ�ӽ����� ����� ��� �������� ���ο� ��ġ�ϴ� ������ ũ�⸦ �� ���� ���α׷����� �">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RTP,RTCP,RTSP ����">
+<meta property="og:url" content="http://yoursite.com/2023/06/12/dev-rtp/index.html">
+<meta property="og:site_name" content="">
+<meta property="og:description" content="- RTP(Real Time Transport Protocol) Viedio&#x2F;Audio ������ ������ ���� ��������. RTP�� �ұ�Ģ�ϰ� ���ŵǴ� �������� ������ �����ϱ� ���� Ÿ�ӽ����� ����� ��� �������� ���ο� ��ġ�ϴ� ������ ũ�⸦ �� ���� ���α׷����� �">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/2023/06/12/dev-rtp/:/ed0ad510d9b14fff8bd168b8d9d0f260">
+<meta property="og:image" content="http://yoursite.com/2023/06/12/dev-rtp/:/a37c79fa3b2e4d0ca31de4f8682b2039">
+<meta property="og:image" content="http://yoursite.com/2023/06/12/dev-rtp/:/95b194cfefc64f6e910b14769c1a84e4">
+<meta property="og:image" content="http://yoursite.com/2023/06/12/dev-rtp/:/33962f927a0043bb88d2c069a134a748">
+<meta property="article:published_time" content="2023-06-12T12:31:00.000Z">
+<meta property="article:modified_time" content="2023-06-12T12:32:20.798Z">
+<meta property="article:author" content="nahyuni21(Park.S.H)">
+<meta property="article:tag" content="�̵��">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2023/06/12/dev-rtp/:/ed0ad510d9b14fff8bd168b8d9d0f260">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="" type="application/atom+xml">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo"></a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">나 혀니의 블로그 입니다.~~</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-dev-rtp" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/06/12/dev-rtp/" class="article-date">
+  <time datetime="2023-06-12T12:31:00.000Z" itemprop="datePublished">2023-06-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD/">����</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      RTP,RTCP,RTSP ����
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="RTP-Real-Time-Transport-Protocol"><a href="#RTP-Real-Time-Transport-Protocol" class="headerlink" title="- RTP(Real Time Transport Protocol)"></a>- RTP(Real Time Transport Protocol)</h3><ol>
+<li>Viedio/Audio <strong>������</strong> ������ ���� ��������.</li>
+<li>RTP�� �ұ�Ģ�ϰ� ���ŵǴ� �������� ������ �����ϱ� ���� Ÿ�ӽ����� ����� ���</li>
+<li>�������� ���ο� ��ġ�ϴ� ������ ũ�⸦ �� ���� ���α׷����� ������ �����ϱⰡ ������.</li>
+<li>RTP�� ���� ĳ���ûӸ� �ƴ϶� ��Ƽĳ���õ� �����Ѵ�.</li>
+<li>�������� Ŭ���̾�Ʈ�� �ܹ��� ����.</li>
+<li>�ش� ���� �ڵ��� ���Ƿ� ��Ʈ��ũ ��Ȳ�� ���� �ڵ��� �ٲܼ� ����.</li>
+<li>UDP/IP ��Ŷ ����.</li>
+<li>�ǽð� ȯ�濡���� ���� ���μ����� �����ϴ� ���� ������ �״�� ���� �Ǵ� ���� �߿��ϹǷ� ���۶�� ������ ���</li>
+<li>�������� �������� �����ϴ� �����͸� ��� ���Ż翡 ������ �ʰ� ���� ���۸� ���� �ٽ� ������ �������� ������ �ϴ� ������ �����Ѵ�.</li>
+</ol>
+<p><img src=":/ed0ad510d9b14fff8bd168b8d9d0f260" alt="��ũ����_2018-07-15_����_9.36.52.png"></p>
+<h4 id="RTP-������-���"><a href="#RTP-������-���" class="headerlink" title="RTP ������ ���"></a>RTP ������ ���</h4><ol>
+<li>���� ��Ʈ��ũ�� ���� ��Ʈ��ũ ��θ� ������Ű�� ���� ������ �߰� ȣ��Ʈ�� ����</li>
+</ol>
+<h5 id="�ͼ�-������-�ռ���"><a href="#�ͼ�-������-�ռ���" class="headerlink" title="�ͼ�(������ �ռ���)"></a>�ͼ�(������ �ռ���)</h5><ol>
+<li>��Ʈ��ũ �뿪�� ������� �ʴ� ��� ���������� �����͸� �۽��ϸ� ��Ʈ��ũ �뿪�� �����Ͽ� ���� ������ ���� ���ɼ��� ����.</li>
+<li>���� �۽� ���μ����� �����ͱ׷��� ������ �����Ͽ� ���ο� �����ͱ׷��� �����Ѵ�.<br>ex) ����� ������ �ͽ��Ͽ� ���ο� �������� ����°�</li>
+</ol>
+<h5 id="T����������-�ӵ�-��o��"><a href="#T����������-�ӵ�-��o��" class="headerlink" title="Ʈ����������(�ӵ� ��ȯ��)"></a>Ʈ����������(�ӵ� ��ȯ��)</h5><ol>
+<li>������ ȯ�濡 �°� �ٲپ� �ִ� ���� �ǹ��Ѵ�.</li>
+</ol>
+<h4 id="����-Session"><a href="#����-Session" class="headerlink" title="����(Session)"></a>����(Session)</h4><ol>
+<li><p>RTP�� �̿��Ͽ� ����ϴ� ȣ��Ʈ �׷��� �����̶�� ������ �̿��Ͽ� �ĺ�</p>
+<ul>
+<li>���� ���  A�� B�� ���� RTP�� �̿��� ����� �Ѵٸ�, ���θ� �����ϴ�<br>�ϳ��� session�� �������. �̶��� C��  A�� B �� ��ſ� �����ص� session�� 1����.</li>
+</ul>
+</li>
+<li><p>UDP�� IP�� �̿��� ��� ������ (����ó IP + UDP ��Ʈ) �������� �ĺ���.</p>
+</li>
+</ol>
+<h3 id="��������"><a href="#��������" class="headerlink" title="��������"></a>��������</h3><ol>
+<li><p>UDP �� �̿���.(RTP + UDP + IP) -&gt; ������ ��Ŷ�� ���� �ܸ��� ��� ������ �̹� ������ ���� ���İ� �� Ȯ���� ���� ��Ŷ�� ó����.</p>
+</li>
+<li><p>�����ص�(40Byte) - ethernet(18) + IP(20) + UDP(8) + RTP(12) + 10ms(160) - DSPĨ G.711 �ڵ� ���� =&gt; �ʴ�100�� ����<br>�Ϲ������� 20ms �ʴ� 50�� ��Ŷ ����.</p>
+</li>
+<li><p>RTP �ش�(12Byte)<br><img src=":/a37c79fa3b2e4d0ca31de4f8682b2039" alt="RTP_Header.png"></p>
+<ul>
+<li>��� ����</li>
+</ul>
+<p>3.1.1 ���̷ε� Ÿ��(Payload Type) - �ڵ��� ����(G.711, H264 ���ڵ�)<br>3.1.2 SSRC : ����ҽ� �ĺ��� �̵�Ʈ���� �ҽ� �ĺ���. 1564169535 - �� ������������ 2�� ������ ���.<br>3.1.3 Sequence Number : RTP ��Ŷ ������ ������ �Ҵ�Ǵ� ��ȣ.</p>
+</li>
+</ol>
+<h3 id="RTCP-Real-Time-Transport-Control-Protocol"><a href="#RTCP-Real-Time-Transport-Control-Protocol" class="headerlink" title="- RTCP(Real Time Transport Control Protocol)"></a>- RTCP(Real Time Transport Control Protocol)</h3><h4 id="���"><a href="#���" class="headerlink" title="���"></a>���</h4><ol>
+<li>RTP�� ������ ���۸� �ϴ� �������ݷν� ��� ��Ȳ�� ���ϴ� ü�谡 ����.</li>
+<li>��Ʈ��ũ�� ȥ���� ��� ������ ���ۼӵ��� ���۷� ����.</li>
+<li>���������� ���� �ӵ��� ���ۼӵ����� ���� ��� ���������� ������ ���� �ӵ� ������ �� �ʿ伺 �߻�.</li>
+</ol>
+<h4 id="����-��-U¡"><a href="#����-��-U¡" class="headerlink" title="���� �� Ư¡"></a>���� �� Ư¡</h4><ol>
+<li>RTP ������ ���� ���� ����, RTP ���� ���� ��������.</li>
+<li>����� ���.</li>
+<li>�ֱ������� �ۼ����ڰ� ����Ʈ ��Ŷ�� �ְ� ����.</li>
+<li>RTP  ¦�� ��Ʈ, RTCP RTP ��Ʈ + 1�� ���.</li>
+<li>RTCP �޼��� ����</li>
+</ol>
+<p><img src=":/95b194cfefc64f6e910b14769c1a84e4" alt="1805_1.jpg"></p>
+<p>�� SR �Ǵ� RS : Sender Report (�۽��� ����)<br>     - �۽��� ������ �ֱ����� ǰ������ ��� ������<br>        . �۽� ��Ŷ�� ��</p>
+<p>  �� RR : Receiver Report (������ ����)<br>     - ������ ������ �ֱ����� ǰ������ ��� ������<br>        . ��Ŷ�ս���, �����ս���Ŷ�� ��</p>
+<p>  �� SDES : Source Description message<br>     - �ҽ��� �ڽ��� ������ �ֱ������� �˸�<br>     - SSRC�� �ش�Ǵ� ����� �̸�, ���ڿ��� �ּ�, �α��� ID ������ �۽��� ����</p>
+<p>  �� BYE : Bye message<br>     - ���� ���ǿ��� ��� �����ڿ��� ����� ���� �˸�</p>
+<p>  �� APP : Application specfic RTCP<br>     - ���÷��̼� ��ȣ ���� ������ �����ϱ� ���� ���</p>
+<h3 id="RTSP-Real-Time-Streaming-Protocol"><a href="#RTSP-Real-Time-Streaming-Protocol" class="headerlink" title="- RTSP(Real Time Streaming Protocol)"></a>- RTSP(Real Time Streaming Protocol)</h3><ol>
+<li><p>RTSP(RealTime Streaming Protocol)��  On Demand �������� ����Ÿ�� �̵�� ������ ���ϴ� ���ø����̼� ������ ��������</p>
+</li>
+<li><p>RTSP�� ���ͳ� �󿡼� ��Ʈ���� �����͸� �����ϴ� ����� ���� ǥ�ؾ����� ��Ʈ���� ����� ����ϴ� ǥ�� ��������</p>
+</li>
+<li><p>�⺻��Ʈ 554</p>
+</li>
+</ol>
+<p><img src=":/33962f927a0043bb88d2c069a134a748" alt="rtsp1.png"></p>
+<ul>
+<li><p>OPTIONS<br>OPTIONS ��û�� ������ accept Ÿ���� ��ȯ�մϴ�.</p>
+</li>
+<li><p>DESCRIBE<br>DESCRIBE ��û���� URL (rtsp://…)�� ���Ե˴ϴ�.�⺻ ��Ʈ 554���� UDP, TCP �� �ٿ� ���˴ϴ�. DESCRIBE�� ���� ���� �޽������� ��û�� �Ϳ� ���� ������ ���ԵǴµ�, �밳 Session Description Protocol (SDP) ���¸� ���߰� �ֽ��ϴ�.</p>
+</li>
+<li><p>SETUP<br>SETUP ��û�� ���� �̵�� ��Ʈ���� ���۵Ǿ�� �ϴ��� �����մϴ�. �� ��û�� PLAY ��û �ϱ� ���� ���ľ� �մϴ�. �׸��� ��û�� �� �̵�� ��Ʈ�� URL�� �������� �����ؾ� �մϴ�. ���������� RTP ������(�����/����), RTCP ������(��Ÿ ����)�� ���۹ޱ� ���� ��Ʈ ��ȣ�� ���Ե˴ϴ�.</p>
+</li>
+<li><p>PLAY<br>PLAY ��û�� �ϳ� �Ǵ� ��� �̵�� ��Ʈ���� �����ŵ�ϴ�. PLAY ������ ���� ��û�� �����մϴ�. ��� �̵�� ��Ʈ�� ����� ���ؼ��� URL ����ü�� ��û�� ���ԵǾ�� �մϴ�. ��� ������ ��ü������ ������ ���� �ֽ��ϴ�. ���� ��� ������ �������� ������, �̵�� ó������ ������ ����ϰԵ˴ϴ�. ��, �Ͻ� ���� ���¶�� �Ͻ� ������ ��ġ���� ����˴ϴ�.</p>
+</li>
+<li><p>PAUSE<br>PLAY ��û�� �ϳ� �Ǵ� ��� ��Ʈ���� �����ŵ�ϴ�. PLAY ������ ���� ��û�� �����մϴ�. ��� �̵�� ��Ʈ�� ����� ���ؼ��� URL ����ü�� ��û�� ���ԵǾ�� �մϴ�. �Ͻ� �����Ҷ� ������ ��ü������ ������ ���� �ֽ��ϴ�.</p>
+</li>
+<li><p>RECORD<br>RECORD ��û�� ��ȭ�� ���� ���ɾ��Դϴ�.</p>
+</li>
+<li><p>TEARDOWN<br>TEARDOWN ��û�� ������ �����ϱ� ���� ���ɾ��̰�, ��� �̵�� ��Ʈ���� ����� �ߴ��ϰ� ������ �ִ� ���� �����Ϳ� �ɸ� ��� ���ǵ� �����մϴ�.</p>
+</li>
+</ul>
+<h3 id="����"><a href="#����" class="headerlink" title="����"></a>����</h3><p><a href="https://slidesplayer.org/slide/15231455/" target="_blank" rel="noopener">https://slidesplayer.org/slide/15231455/</a><br><a href="https://brunch.co.kr/@linecard/154" target="_blank" rel="noopener">https://brunch.co.kr/@linecard/154</a><br><a href="https://copycode.tistory.com/104" target="_blank" rel="noopener">https://copycode.tistory.com/104</a><br><a href="https://looksense.tistory.com/180" target="_blank" rel="noopener">https://looksense.tistory.com/180</a><br><a href="http://www.titorus.com/?p=54" target="_blank" rel="noopener">http://www.titorus.com/?p=54</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2023/06/12/dev-rtp/" data-id="clisu5qko0000esv25wexfwbh" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%EF%BF%BD%CC%B5%EF%BF%BD%EF%BF%BD/" rel="tag">�̵��</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2021/10/08/dev-smartBBox/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">smart black box 2</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%EA%B0%9C%EB%B0%9C/">개발</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%EC%98%81%EC%96%B4/">영어</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%EC%A0%95%EB%B3%B4-%EA%B4%80%EB%A6%AC-%EA%B8%B0%EC%88%A0%EC%82%AC/">정보 관리 기술사</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/">프로젝트</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD/">����</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/300-%EB%AC%B8%EC%9E%A5/" rel="tag">300 문장</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/aws/" rel="tag">aws</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blockchain/" rel="tag">blockchain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cron/" rel="tag">cron</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/game-svr/" rel="tag">game svr</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gamelift/" rel="tag">gamelift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/infra/" rel="tag">infra</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/microservice/" rel="tag">microservice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mining/" rel="tag">mining</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pow/" rel="tag">pow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/" rel="tag">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/streaming/" rel="tag">streaming</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/" rel="tag">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yolov5/" rel="tag">yolov5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%EC%A0%9C%EC%8B%9C%EC%B9%B4/" rel="tag">제시카</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%EF%BF%BD%CC%B5%EF%BF%BD%EF%BF%BD/" rel="tag">�̵��</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/300-%EB%AC%B8%EC%9E%A5/" style="font-size: 10px;">300 문장</a> <a href="/tags/aws/" style="font-size: 10px;">aws</a> <a href="/tags/blockchain/" style="font-size: 10px;">blockchain</a> <a href="/tags/cron/" style="font-size: 10px;">cron</a> <a href="/tags/game-svr/" style="font-size: 15px;">game svr</a> <a href="/tags/gamelift/" style="font-size: 10px;">gamelift</a> <a href="/tags/infra/" style="font-size: 10px;">infra</a> <a href="/tags/microservice/" style="font-size: 20px;">microservice</a> <a href="/tags/mining/" style="font-size: 10px;">mining</a> <a href="/tags/pow/" style="font-size: 10px;">pow</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/streaming/" style="font-size: 10px;">streaming</a> <a href="/tags/svn/" style="font-size: 10px;">svn</a> <a href="/tags/yolov5/" style="font-size: 10px;">yolov5</a> <a href="/tags/%EC%A0%9C%EC%8B%9C%EC%B9%B4/" style="font-size: 10px;">제시카</a> <a href="/tags/%EF%BF%BD%CC%B5%EF%BF%BD%EF%BF%BD/" style="font-size: 10px;">�̵��</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/06/12/dev-rtp/">RTP,RTCP,RTSP ����</a>
+          </li>
+        
+          <li>
+            <a href="/2021/10/08/dev-smartBBox/">smart black box 2</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/24/dev-idc-infra/">고가용인프라</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/24/dev-streaminig/">streaming 기술 이해</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/27/dev-ms-docker/">docker</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 nahyuni21(Park.S.H)<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
