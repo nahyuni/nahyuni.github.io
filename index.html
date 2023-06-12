@@ -74,7 +74,7 @@
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD/">����</a>
+    <a class="article-category-link" href="/categories/%EA%B0%9C%EB%B0%9C/">개발</a>
   </div>
 
   </div>
@@ -85,7 +85,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2023/06/12/dev-rtp/">RTP,RTCP,RTSP ����</a>
+      <a class="article-title" href="/2023/06/12/dev-rtp/">RTP,RTCP,RTSP 개요</a>
     </h1>
   
 
@@ -94,28 +94,28 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="RTP-Real-Time-Transport-Protocol"><a href="#RTP-Real-Time-Transport-Protocol" class="headerlink" title="- RTP(Real Time Transport Protocol)"></a>- RTP(Real Time Transport Protocol)</h3><ol>
-<li>Viedio/Audio <strong>������</strong> ������ ���� ��������.</li>
-<li>RTP�� �ұ�Ģ�ϰ� ���ŵǴ� �������� ������ �����ϱ� ���� Ÿ�ӽ����� ����� ���</li>
-<li>�������� ���ο� ��ġ�ϴ� ������ ũ�⸦ �� ���� ���α׷����� ������ �����ϱⰡ ������.</li>
-<li>RTP�� ���� ĳ���ûӸ� �ƴ϶� ��Ƽĳ���õ� �����Ѵ�.</li>
-<li>�������� Ŭ���̾�Ʈ�� �ܹ��� ����.</li>
-<li>�ش� ���� �ڵ��� ���Ƿ� ��Ʈ��ũ ��Ȳ�� ���� �ڵ��� �ٲܼ� ����.</li>
-<li>UDP/IP ��Ŷ ����.</li>
-<li>�ǽð� ȯ�濡���� ���� ���μ����� �����ϴ� ���� ������ �״�� ���� �Ǵ� ���� �߿��ϹǷ� ���۶�� ������ ���</li>
-<li>�������� �������� �����ϴ� �����͸� ��� ���Ż翡 ������ �ʰ� ���� ���۸� ���� �ٽ� ������ �������� ������ �ϴ� ������ �����Ѵ�.</li>
+<li>Viedio/Audio <strong>데이터</strong> 전송을 위한 프로토콜.</li>
+<li>RTP는 불규칙하게 수신되는 데이터의 순서를 정렬하기 위해 타임스탬프 방식을 사용</li>
+<li>프로토콜 내부에 위치하는 버퍼의 크기를 각 응용 프로그램마다 별도로 관리하기가 용이함.</li>
+<li>RTP는 유니 캐스팅뿐만 아니라 멀티캐스팅도 지원한다.</li>
+<li>서버에서 클라이언트로 단방향 전송.</li>
+<li>해더 마다 코덱이 들어가므로 네트워크 상황에 따라 코덱을 바꿀수 있음.</li>
+<li>UDP/IP 패킷 전송.</li>
+<li>실시간 환경에서는 수신 프로세스에 도착하는 전송 간격이 그대로 유지 되는 것이 중요하므로 버퍼라는 도구를 사용</li>
+<li>가변적인 간격으로 도착하는 데이터를 즉시 수신사에 보내지 않고 지연 버퍼를 통해 다시 일정한 간격으로 보정을 하는 역할을 수행한다.</li>
 </ol>
-<p><img src=":/ed0ad510d9b14fff8bd168b8d9d0f260" alt="��ũ����_2018-07-15_����_9.36.52.png"></p>
-<h4 id="RTP-������-���"><a href="#RTP-������-���" class="headerlink" title="RTP ������ ���"></a>RTP ������ ���</h4><ol>
-<li>���� ��Ʈ��ũ�� ���� ��Ʈ��ũ ��θ� ������Ű�� ���� ������ �߰� ȣ��Ʈ�� ����</li>
+<p><img src=":/ed0ad510d9b14fff8bd168b8d9d0f260" alt="스크린샷_2018-07-15_오후_9.36.52.png"></p>
+<h4 id="RTP-릴레이-기능"><a href="#RTP-릴레이-기능" class="headerlink" title="RTP 릴레이 기능"></a>RTP 릴레이 기능</h4><ol>
+<li>고속 네트워크와 저속 네트워크 모두를 만족시키기 위해 데이터 중계 호스트를 규정</li>
 </ol>
-<h5 id="�ͼ�-������-�ռ���"><a href="#�ͼ�-������-�ռ���" class="headerlink" title="�ͼ�(������ �ռ���)"></a>�ͼ�(������ �ռ���)</h5><ol>
-<li>��Ʈ��ũ �뿪�� ������� �ʴ� ��� ���������� �����͸� �۽��ϸ� ��Ʈ��ũ �뿪�� �����Ͽ� ���� ������ ���� ���ɼ��� ����.</li>
-<li>���� �۽� ���μ����� �����ͱ׷��� ������ �����Ͽ� ���ο� �����ͱ׷��� �����Ѵ�.<br>ex) ����� ������ �ͽ��Ͽ� ���ο� �������� ����°�</li>
+<h5 id="믹서-데이터-합성기"><a href="#믹서-데이터-합성기" class="headerlink" title="믹서(데이터 합성기)"></a>믹서(데이터 합성기)</h5><ol>
+<li>네트워크 대역이 충분하지 않는 경우 개별적으로 데이터를 송신하면 네트워크 대역이 범람하여 부족 현상이 생길 가능성이 있음.</li>
+<li>여러 송신 프로세스의 데이터그램을 적절히 조합하여 새로운 데이터그램을 생성한다.<br>ex) 영상과 음성을 믹싱하여 새로운 동영상을 만드는것</li>
 </ol>
-<h5 id="T����������-�ӵ�-��o��"><a href="#T����������-�ӵ�-��o��" class="headerlink" title="Ʈ����������(�ӵ� ��ȯ��)"></a>Ʈ����������(�ӵ� ��ȯ��)</h5><ol>
-<li>������ ȯ�濡 �°� �ٲپ� �ִ� ���� �ǹ��Ѵ�.</li>
+<h5 id="트랜슬레이터-속도-변환기"><a href="#트랜슬레이터-속도-변환기" class="headerlink" title="트랜슬레이터(속도 변환기)"></a>트랜슬레이터(속도 변환기)</h5><ol>
+<li>수신자 환경에 맞게 바꾸어 주는 것을 의미한다.</li>
 </ol>
-<h4 id="����-Session"><a href="#����-Session" class="headerlink" title="����(Session)"></a>����(Session)</h4>
+<h4 id="세션-Session"><a href="#세션-Session" class="headerlink" title="세션(Session)"></a>세션(Session)</h4>
         
           <p class="article-more-link">
             <a href="/2023/06/12/dev-rtp/#more">Read More</a>
@@ -127,7 +127,7 @@
       <a data-url="http://yoursite.com/2023/06/12/dev-rtp/" data-id="clisu5qko0000esv25wexfwbh" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%EF%BF%BD%CC%B5%EF%BF%BD%EF%BF%BD/" rel="tag">�̵��</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%EB%AF%B8%EB%94%94%EC%96%B4/" rel="tag">미디어</a></li></ul>
 
     </footer>
   </div>
@@ -599,7 +599,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%EA%B0%9C%EB%B0%9C/">개발</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%EC%98%81%EC%96%B4/">영어</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%EC%A0%95%EB%B3%B4-%EA%B4%80%EB%A6%AC-%EA%B8%B0%EC%88%A0%EC%82%AC/">정보 관리 기술사</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/">프로젝트</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD/">����</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%EA%B0%9C%EB%B0%9C/">개발</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%EC%98%81%EC%96%B4/">영어</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%EC%A0%95%EB%B3%B4-%EA%B4%80%EB%A6%AC-%EA%B8%B0%EC%88%A0%EC%82%AC/">정보 관리 기술사</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/">프로젝트</a></li></ul>
     </div>
   </div>
 
@@ -609,7 +609,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/300-%EB%AC%B8%EC%9E%A5/" rel="tag">300 문장</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/aws/" rel="tag">aws</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blockchain/" rel="tag">blockchain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cron/" rel="tag">cron</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/game-svr/" rel="tag">game svr</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gamelift/" rel="tag">gamelift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/infra/" rel="tag">infra</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/microservice/" rel="tag">microservice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mining/" rel="tag">mining</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pow/" rel="tag">pow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/" rel="tag">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/streaming/" rel="tag">streaming</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/" rel="tag">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yolov5/" rel="tag">yolov5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%EC%A0%9C%EC%8B%9C%EC%B9%B4/" rel="tag">제시카</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%EF%BF%BD%CC%B5%EF%BF%BD%EF%BF%BD/" rel="tag">�̵��</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/300-%EB%AC%B8%EC%9E%A5/" rel="tag">300 문장</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/aws/" rel="tag">aws</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blockchain/" rel="tag">blockchain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cron/" rel="tag">cron</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/game-svr/" rel="tag">game svr</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gamelift/" rel="tag">gamelift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/infra/" rel="tag">infra</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/microservice/" rel="tag">microservice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mining/" rel="tag">mining</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pow/" rel="tag">pow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/" rel="tag">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/streaming/" rel="tag">streaming</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/" rel="tag">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yolov5/" rel="tag">yolov5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%EB%AF%B8%EB%94%94%EC%96%B4/" rel="tag">미디어</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%EC%A0%9C%EC%8B%9C%EC%B9%B4/" rel="tag">제시카</a></li></ul>
     </div>
   </div>
 
@@ -619,7 +619,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/300-%EB%AC%B8%EC%9E%A5/" style="font-size: 10px;">300 문장</a> <a href="/tags/aws/" style="font-size: 10px;">aws</a> <a href="/tags/blockchain/" style="font-size: 10px;">blockchain</a> <a href="/tags/cron/" style="font-size: 10px;">cron</a> <a href="/tags/game-svr/" style="font-size: 15px;">game svr</a> <a href="/tags/gamelift/" style="font-size: 10px;">gamelift</a> <a href="/tags/infra/" style="font-size: 10px;">infra</a> <a href="/tags/microservice/" style="font-size: 20px;">microservice</a> <a href="/tags/mining/" style="font-size: 10px;">mining</a> <a href="/tags/pow/" style="font-size: 10px;">pow</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/streaming/" style="font-size: 10px;">streaming</a> <a href="/tags/svn/" style="font-size: 10px;">svn</a> <a href="/tags/yolov5/" style="font-size: 10px;">yolov5</a> <a href="/tags/%EC%A0%9C%EC%8B%9C%EC%B9%B4/" style="font-size: 10px;">제시카</a> <a href="/tags/%EF%BF%BD%CC%B5%EF%BF%BD%EF%BF%BD/" style="font-size: 10px;">�̵��</a>
+      <a href="/tags/300-%EB%AC%B8%EC%9E%A5/" style="font-size: 10px;">300 문장</a> <a href="/tags/aws/" style="font-size: 10px;">aws</a> <a href="/tags/blockchain/" style="font-size: 10px;">blockchain</a> <a href="/tags/cron/" style="font-size: 10px;">cron</a> <a href="/tags/game-svr/" style="font-size: 15px;">game svr</a> <a href="/tags/gamelift/" style="font-size: 10px;">gamelift</a> <a href="/tags/infra/" style="font-size: 10px;">infra</a> <a href="/tags/microservice/" style="font-size: 20px;">microservice</a> <a href="/tags/mining/" style="font-size: 10px;">mining</a> <a href="/tags/pow/" style="font-size: 10px;">pow</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/streaming/" style="font-size: 10px;">streaming</a> <a href="/tags/svn/" style="font-size: 10px;">svn</a> <a href="/tags/yolov5/" style="font-size: 10px;">yolov5</a> <a href="/tags/%EB%AF%B8%EB%94%94%EC%96%B4/" style="font-size: 10px;">미디어</a> <a href="/tags/%EC%A0%9C%EC%8B%9C%EC%B9%B4/" style="font-size: 10px;">제시카</a>
     </div>
   </div>
 
@@ -641,7 +641,7 @@
       <ul>
         
           <li>
-            <a href="/2023/06/12/dev-rtp/">RTP,RTCP,RTSP ����</a>
+            <a href="/2023/06/12/dev-rtp/">RTP,RTCP,RTSP 개요</a>
           </li>
         
           <li>
