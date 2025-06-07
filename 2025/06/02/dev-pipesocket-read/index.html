@@ -5,14 +5,19 @@
   
 
   
-  <title></title>
+  <title>Pipe 기반 소켓 처리 | </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="개요 대용량 스트리밍 처리, 빠른 응답성 요구, 메시지 기반 통신 에 적합하다. 구조1234[Socket.ReceiveAsync()]  ---&gt;  [Pipe.Writer]                                 |                                 v                          [Pipe.Re">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pipe 기반 소켓 처리">
+<meta property="og:url" content="http://yoursite.com/2025/06/02/dev-pipesocket-read/index.html">
 <meta property="og:site_name" content="">
+<meta property="og:description" content="개요 대용량 스트리밍 처리, 빠른 응답성 요구, 메시지 기반 통신 에 적합하다. 구조1234[Socket.ReceiveAsync()]  ---&gt;  [Pipe.Writer]                                 |                                 v                          [Pipe.Re">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-06-02T03:24:19.000Z">
+<meta property="article:modified_time" content="2025-06-07T09:10:29.289Z">
 <meta property="article:author" content="nahyuni21(Park.S.H)">
+<meta property="article:tag" content="Kestrel">
 <meta name="twitter:card" content="summary">
   
   
@@ -65,119 +70,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-dev-smartBBox" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2025/06/07/dev-smartBBox/" class="article-date">
-  <time datetime="2025-06-07T03:24:19.000Z" itemprop="datePublished">2025-06-07</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%EA%B0%9C%EB%B0%9C/">개발</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2025/06/07/dev-smartBBox/">smart black box</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="개요"><a href="#개요" class="headerlink" title="개요"></a>개요</h1><p> 영상분석을 통해 안전 감시 시스템을 구축한다.</p>
-<h2 id="구축"><a href="#구축" class="headerlink" title="구축"></a>구축</h2><p>centos7, java1.8, netty 프레임워크, nvr(rtsp, rtp, event, iot, record 등), vms, mysql<br>엣지보드(tx2) : ubuntu, python3, yolov5<br>sar 보드 : 방송 보드(android)**</p>
-<h3 id="영상분석"><a href="#영상분석" class="headerlink" title="영상분석"></a>영상분석</h3><ol>
-<li>yolov5에서 학습을 통한 모델 구축.<br>1.1 자체 자동 라벨링 툴을 통해 안전모, 화재, 개구부, 사람 객체 데이터를 저장.</li>
-<li>실시간 영상처리를 위한 엣지 보드(tx2)에서 인퍼런스.<br>2.1 다중 채널(카메라)을 쓰레드 또는 포크 방식으로 처리.<br>2.2 객체 마다 weigth 조절 가능 처리.<br>2.3 오탐을 방지하기 위해 객체마다 퍼센트 값을 기준으로 대략 70~80% 이상시에 이벤트 전송</li>
-<li>안전 감시를 위한 후처리.<br>3.1 해더 및 화재 객체 탐지시 현장 방송 및 서버에 이벤트 패킷을 보내고 서버에서는 뷰어(클라이언트)에게 이벤트를 보내 뷰어는 메세지, 로그, 위험단계(경고, 주의, 위험) 보여줌.<br>3.2 접근감지 이벤트를 위해 감지 라인을 뷰어에서 그리면 해당 좌표와 사람 다리 라인와 거리 측정 및 위험 이벤트 및 현장방송을 전송.</li>
-<li>트래킹 및 튜어링을 통한 객체 탐지.<br>4.1 감시 객체(사람, 화재)를 설정 후 프리셋으로 튜어링을 하며, 트래킹 설정 및 객체 탐지에 따라 객체 좌표에 따라 줌인, 줌아웃 및 PTZ를 통해 객체를 카메라 중앙으로 배치 시키고 또한 다중 객체시에는 중앙에 있는 객체를 따라 트래킹 작동.</li>
-</ol>
-
-        
-          <p class="article-more-link">
-            <a href="/2025/06/07/dev-smartBBox/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2025/06/07/dev-smartBBox/" data-id="cmbko3w9a000sm4v27limeaot" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/yolov5/" rel="tag">yolov5</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-dev-holdem-svr" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2025/06/07/dev-holdem-svr/" class="article-date">
-  <time datetime="2025-06-07T03:24:19.000Z" itemprop="datePublished">2025-06-07</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%EA%B0%9C%EB%B0%9C/">개발</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2025/06/07/dev-holdem-svr/">smart black box</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="개요"><a href="#개요" class="headerlink" title="개요"></a>개요</h1><p> 영상분석을 통해 안전 감시 시스템을 구축한다.</p>
-<h2 id="구축"><a href="#구축" class="headerlink" title="구축"></a>구축</h2><p>centos7, java1.8, netty 프레임워크, nvr(rtsp, rtp, event, iot, record 등), vms, mysql<br>엣지보드(tx2) : ubuntu, python3, yolov5<br>sar 보드 : 방송 보드(android)**</p>
-<h3 id="영상분석"><a href="#영상분석" class="headerlink" title="영상분석"></a>영상분석</h3><ol>
-<li>yolov5에서 학습을 통한 모델 구축.<br>1.1 자체 자동 라벨링 툴을 통해 안전모, 화재, 개구부, 사람 객체 데이터를 저장.</li>
-<li>실시간 영상처리를 위한 엣지 보드(tx2)에서 인퍼런스.<br>2.1 다중 채널(카메라)을 쓰레드 또는 포크 방식으로 처리.<br>2.2 객체 마다 weigth 조절 가능 처리.<br>2.3 오탐을 방지하기 위해 객체마다 퍼센트 값을 기준으로 대략 70~80% 이상시에 이벤트 전송</li>
-<li>안전 감시를 위한 후처리.<br>3.1 해더 및 화재 객체 탐지시 현장 방송 및 서버에 이벤트 패킷을 보내고 서버에서는 뷰어(클라이언트)에게 이벤트를 보내 뷰어는 메세지, 로그, 위험단계(경고, 주의, 위험) 보여줌.<br>3.2 접근감지 이벤트를 위해 감지 라인을 뷰어에서 그리면 해당 좌표와 사람 다리 라인와 거리 측정 및 위험 이벤트 및 현장방송을 전송.</li>
-<li>트래킹 및 튜어링을 통한 객체 탐지.<br>4.1 감시 객체(사람, 화재)를 설정 후 프리셋으로 튜어링을 하며, 트래킹 설정 및 객체 탐지에 따라 객체 좌표에 따라 줌인, 줌아웃 및 PTZ를 통해 객체를 카메라 중앙으로 배치 시키고 또한 다중 객체시에는 중앙에 있는 객체를 따라 트래킹 작동.</li>
-</ol>
-
-        
-          <p class="article-more-link">
-            <a href="/2025/06/07/dev-holdem-svr/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2025/06/07/dev-holdem-svr/" data-id="cmbm0l0fd0000m8v2ayc7bfsd" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/yolov5/" rel="tag">yolov5</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-dev-pipesocket-read" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-dev-pipesocket-read" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2025/06/02/dev-pipesocket-read/" class="article-date">
   <time datetime="2025-06-02T03:24:19.000Z" itemprop="datePublished">2025-06-02</time>
@@ -194,8 +87,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2025/06/02/dev-pipesocket-read/">Pipe 기반 소켓 처리</a>
+    <h1 class="article-title" itemprop="name">
+      Pipe 기반 소켓 처리
     </h1>
   
 
@@ -212,11 +105,6 @@
 
 
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><span class="line">using System.Buffers;</span><br><span class="line">using System.IO.Pipelines;</span><br><span class="line">using System.Net.WebSockets;</span><br><span class="line">using System.Text;</span><br><span class="line"></span><br><span class="line">public class WebSocketPipeHandler</span><br><span class="line">&#123;</span><br><span class="line">    private readonly WebSocket _webSocket;</span><br><span class="line">    private readonly Pipe _pipe;</span><br><span class="line"></span><br><span class="line">    public WebSocketPipeHandler(WebSocket webSocket)</span><br><span class="line">    &#123;</span><br><span class="line">        _webSocket &#x3D; webSocket;</span><br><span class="line">        _pipe &#x3D; new Pipe();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public async Task StartAsync()</span><br><span class="line">    &#123;</span><br><span class="line">        var receiveTask &#x3D; ReceiveLoopAsync();</span><br><span class="line">        var processTask &#x3D; ProcessLoopAsync();</span><br><span class="line"></span><br><span class="line">        await Task.WhenAll(receiveTask, processTask);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private async Task ReceiveLoopAsync()</span><br><span class="line">    &#123;</span><br><span class="line">        const int bufferSize &#x3D; 1024;</span><br><span class="line"></span><br><span class="line">        try</span><br><span class="line">        &#123;</span><br><span class="line">            while (_webSocket.State &#x3D;&#x3D; WebSocketState.Open)</span><br><span class="line">            &#123;</span><br><span class="line">                Memory&lt;byte&gt; memory &#x3D; _pipe.Writer.GetMemory(bufferSize);</span><br><span class="line">                var result &#x3D; await _webSocket.ReceiveAsync(memory, CancellationToken.None);</span><br><span class="line"></span><br><span class="line">                if (result.MessageType &#x3D;&#x3D; WebSocketMessageType.Close)</span><br><span class="line">                    break;</span><br><span class="line"></span><br><span class="line">                _pipe.Writer.Advance(result.Count);</span><br><span class="line">                var flushResult &#x3D; await _pipe.Writer.FlushAsync();</span><br><span class="line"></span><br><span class="line">                if (flushResult.IsCompleted || flushResult.IsCanceled)</span><br><span class="line">                    break;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        catch (Exception ex)</span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine($&quot;[ReceiveLoop] Exception: &#123;ex&#125;&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        finally</span><br><span class="line">        &#123;</span><br><span class="line">            await _webSocket.CloseAsync(WebSocketCloseStatus.NormalClosure, &quot;Closed&quot;, CancellationToken.None);</span><br><span class="line">            await _pipe.Writer.CompleteAsync();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private async Task ProcessLoopAsync()</span><br><span class="line">    &#123;</span><br><span class="line">        try</span><br><span class="line">        &#123;</span><br><span class="line">            while (true)</span><br><span class="line">            &#123;</span><br><span class="line">                var result &#x3D; await _pipe.Reader.ReadAsync();</span><br><span class="line">                var buffer &#x3D; result.Buffer;</span><br><span class="line"></span><br><span class="line">                while (TryReadLine(ref buffer, out var line))</span><br><span class="line">                &#123;</span><br><span class="line">                    var text &#x3D; Encoding.UTF8.GetString(line);</span><br><span class="line">                    Console.WriteLine($&quot;[RECEIVED] &#123;text&#125;&quot;);</span><br><span class="line"></span><br><span class="line">			                    var echo &#x3D; Encoding.UTF8.GetBytes($&quot;Echo: &#123;text&#125;&quot;);</span><br><span class="line">                    await _webSocket.SendAsync(echo, WebSocketMessageType.Text, true, CancellationToken.None);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                _pipe.Reader.AdvanceTo(buffer.Start, buffer.End);</span><br><span class="line"></span><br><span class="line">                if (result.IsCompleted) break;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        catch (Exception ex)</span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine($&quot;[ProcessLoop] Exception: &#123;ex&#125;&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        finally</span><br><span class="line">        &#123;</span><br><span class="line">            await _pipe.Reader.CompleteAsync();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    private static bool TryReadLine(ref ReadOnlySequence&lt;byte&gt; buffer, out ReadOnlySpan&lt;byte&gt; line)</span><br><span class="line">    &#123;</span><br><span class="line">        var position &#x3D; buffer.PositionOf((byte)&#39;\n&#39;);</span><br><span class="line">        if (position &#x3D;&#x3D; null)</span><br><span class="line">        &#123;</span><br><span class="line">            line &#x3D; default;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        var slice &#x3D; buffer.Slice(0, position.Value);</span><br><span class="line">        line &#x3D; slice.ToArray().AsSpan();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        buffer &#x3D; buffer.Slice(buffer.GetPosition(1, position.Value));</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-        
-          <p class="article-more-link">
-            <a href="/2025/06/02/dev-pipesocket-read/#more">Read More</a>
-          </p>
-        
       
     </div>
     <footer class="article-footer">
@@ -228,385 +116,28 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-dev-ms-consul" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2025/04/14/dev-ms-consul/" class="article-date">
-  <time datetime="2025-04-14T05:30:19.000Z" itemprop="datePublished">2025-04-14</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%EA%B0%9C%EB%B0%9C/">개발</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+    <a href="/2025/06/07/dev-holdem-svr/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
         
+          smart black box
+        
+      </div>
+    </a>
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2025/04/14/dev-ms-consul/">consul</a>
-    </h1>
   
+    <a href="/2025/04/14/dev-ms-consul/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">consul</div>
+    </a>
+  
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="사이드카-프록시-로드-밸런서는-Envoy-NGINX-HAProxy-Linkerd입니다"><a href="#사이드카-프록시-로드-밸런서는-Envoy-NGINX-HAProxy-Linkerd입니다" class="headerlink" title="- 사이드카 프록시 로드 밸런서는 Envoy, NGINX, HAProxy, Linkerd입니다."></a>- 사이드카 프록시 로드 밸런서는 Envoy, NGINX, HAProxy, Linkerd입니다.</h3><ul>
-<li>nginx<br><a href="https://learn.hashicorp.com/nomad/load-balancing/nginx" target="_blank" rel="noopener">https://learn.hashicorp.com/nomad/load-balancing/nginx</a></li>
-<li>Envoy<br><a href="https://bcho.tistory.com/1297?category=731548" target="_blank" rel="noopener">https://bcho.tistory.com/1297?category=731548</a></li>
-</ul>
-        
-          <p class="article-more-link">
-            <a href="/2025/04/14/dev-ms-consul/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2025/04/14/dev-ms-consul/" data-id="cmbko3w8s000am4v29j6afltx" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/microservice/" rel="tag">microservice</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
-
-
-  
-    <article id="post-dev-ms-gokit" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2025/04/06/dev-ms-gokit/" class="article-date">
-  <time datetime="2025-04-06T05:30:19.000Z" itemprop="datePublished">2025-04-06</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%EA%B0%9C%EB%B0%9C/">개발</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2025/04/06/dev-ms-gokit/">go-kit</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h1><ul>
-<li><a href="http://gokit.io/examples/" target="_blank" rel="noopener">http://gokit.io/examples/</a> </li>
-<li><a href="https://medium.com/@shijuvar/go-microservices-with-go-kit-introduction-43a757398183" target="_blank" rel="noopener">https://medium.com/@shijuvar/go-microservices-with-go-kit-introduction-43a757398183</a></li>
-<li><a href="https://github.com/go-kit/kit" target="_blank" rel="noopener">https://github.com/go-kit/kit</a></li>
-</ul>
-        
-          <p class="article-more-link">
-            <a href="/2025/04/06/dev-ms-gokit/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2025/04/06/dev-ms-gokit/" data-id="cmbko3w91000gm4v25tdf3o3b" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/microservice/" rel="tag">microservice</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-dev-rtp" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2023/06/12/dev-rtp/" class="article-date">
-  <time datetime="2023-06-12T12:31:00.000Z" itemprop="datePublished">2023-06-12</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%EA%B0%9C%EB%B0%9C/">개발</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/06/12/dev-rtp/">RTP,RTCP,RTSP 개요</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="RTP-Real-Time-Transport-Protocol"><a href="#RTP-Real-Time-Transport-Protocol" class="headerlink" title="- RTP(Real Time Transport Protocol)"></a>- RTP(Real Time Transport Protocol)</h3><ol>
-<li>Viedio/Audio <strong>데이터</strong> 전송을 위한 프로토콜.</li>
-<li>RTP는 불규칙하게 수신되는 데이터의 순서를 정렬하기 위해 타임스탬프 방식을 사용</li>
-<li>프로토콜 내부에 위치하는 버퍼의 크기를 각 응용 프로그램마다 별도로 관리하기가 용이함.</li>
-<li>RTP는 유니 캐스팅뿐만 아니라 멀티캐스팅도 지원한다.</li>
-<li>서버에서 클라이언트로 단방향 전송.</li>
-<li>해더 마다 코덱이 들어가므로 네트워크 상황에 따라 코덱을 바꿀수 있음.</li>
-<li>UDP/IP 패킷 전송.</li>
-<li>실시간 환경에서는 수신 프로세스에 도착하는 전송 간격이 그대로 유지 되는 것이 중요하므로 버퍼라는 도구를 사용</li>
-<li>가변적인 간격으로 도착하는 데이터를 즉시 수신사에 보내지 않고 지연 버퍼를 통해 다시 일정한 간격으로 보정을 하는 역할을 수행한다.</li>
-</ol>
-<p><img src=":/ed0ad510d9b14fff8bd168b8d9d0f260" alt="스크린샷_2018-07-15_오후_9.36.52.png"></p>
-<h4 id="RTP-릴레이-기능"><a href="#RTP-릴레이-기능" class="headerlink" title="RTP 릴레이 기능"></a>RTP 릴레이 기능</h4><ol>
-<li>고속 네트워크와 저속 네트워크 모두를 만족시키기 위해 데이터 중계 호스트를 규정</li>
-</ol>
-<h5 id="믹서-데이터-합성기"><a href="#믹서-데이터-합성기" class="headerlink" title="믹서(데이터 합성기)"></a>믹서(데이터 합성기)</h5><ol>
-<li>네트워크 대역이 충분하지 않는 경우 개별적으로 데이터를 송신하면 네트워크 대역이 범람하여 부족 현상이 생길 가능성이 있음.</li>
-<li>여러 송신 프로세스의 데이터그램을 적절히 조합하여 새로운 데이터그램을 생성한다.<br>ex) 영상과 음성을 믹싱하여 새로운 동영상을 만드는것</li>
-</ol>
-<h5 id="트랜슬레이터-속도-변환기"><a href="#트랜슬레이터-속도-변환기" class="headerlink" title="트랜슬레이터(속도 변환기)"></a>트랜슬레이터(속도 변환기)</h5><ol>
-<li>수신자 환경에 맞게 바꾸어 주는 것을 의미한다.</li>
-</ol>
-<h4 id="세션-Session"><a href="#세션-Session" class="headerlink" title="세션(Session)"></a>세션(Session)</h4>
-        
-          <p class="article-more-link">
-            <a href="/2023/06/12/dev-rtp/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2023/06/12/dev-rtp/" data-id="cmbko3w9c000um4v297kpf4fm" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%EB%AF%B8%EB%94%94%EC%96%B4/" rel="tag">미디어</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-dev-idc-infra" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/09/24/dev-idc-infra/" class="article-date">
-  <time datetime="2020-09-24T05:30:19.000Z" itemprop="datePublished">2020-09-24</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%EA%B0%9C%EB%B0%9C/">개발</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/24/dev-idc-infra/">고가용인프라</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="서버-환경"><a href="#서버-환경" class="headerlink" title="서버 환경"></a>서버 환경</h2><p>1.Web(2EA), DB(4EA), HAProxy(1EA), Backup(1EA)<br>2.CentOS 6.10, Apache : 2.4, PHP : 7.3 MariaDB : 10.3</p>
-<h2 id="서버-구성도"><a href="#서버-구성도" class="headerlink" title="서버 구성도"></a>서버 구성도</h2><p><img src="/images/infra.png" alt=""></p>
-        
-          <p class="article-more-link">
-            <a href="/2020/09/24/dev-idc-infra/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/24/dev-idc-infra/" data-id="cmbko3w8q0008m4v2b087dvdx" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/infra/" rel="tag">infra</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-dev-streaminig" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/06/24/dev-streaminig/" class="article-date">
-  <time datetime="2020-06-24T05:30:19.000Z" itemprop="datePublished">2020-06-24</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%EA%B0%9C%EB%B0%9C/">개발</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/24/dev-streaminig/">streaming 기술 이해</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-Streaming-Service-개요"><a href="#1-Streaming-Service-개요" class="headerlink" title="1. Streaming Service 개요"></a>1. Streaming Service 개요</h3><p>영상 전송 방식은 크게 다운로드 방식 프로그레시브 다운로드 (Prog ressive Download)방식, 스트리밍(Streaming ) 방식으로 구분한다.</p>
-<h4 id="1-1-Streaming-이란"><a href="#1-1-Streaming-이란" class="headerlink" title="1.1 Streaming 이란?"></a>1.1 Streaming 이란?</h4><ul>
-<li>인터넷에서 데이터를 실시간 전송, 구현할 수 있게 하는 기술.</li>
-<li>스트리밍은 ‘흐르다’, ‘흘러내리다’, ‘연속되어 끊이지 않고 흐르다’ 등의 의미로,<br>데이터가 조금씩 연속적으로 흘러나온다는 개념과 연관.<br>즉, 어떤 사운드나 비디오 파일을 하나의 형태가 아닌 여러 개의 파일로 나누어<br>물 흐르듯이(Streaming) 연이어 보내는 것.
-        
-          <p class="article-more-link">
-            <a href="/2020/06/24/dev-streaminig/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/06/24/dev-streaminig/" data-id="cmbko3w9h001am4v2au211a04" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/streaming/" rel="tag">streaming</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-dev-ms-docker" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/04/27/dev-ms-docker/" class="article-date">
-  <time datetime="2020-04-27T05:30:19.000Z" itemprop="datePublished">2020-04-27</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%EA%B0%9C%EB%B0%9C/">개발</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/27/dev-ms-docker/">docker</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="0-도커-배경"><a href="#0-도커-배경" class="headerlink" title="0. 도커 배경."></a>0. 도커 배경.</h2><ul>
-<li>수많은 서버 관리(설치, 설정, 프로세스 실행)를 용이하게 합니다.</li>
-<li>DevOps의 등장으로 개발주기가 짧아지면서 배포는 더 자주 이루어지고 마이크로서비스 아키텍쳐가 유행하면서 프로그램은 더 잘게 쪼개어져 관리는 더 복잡해집니다. 새로운 툴은 계속해서 나오고 클라우드의 발전으로 설치해야 할 서버가 수백, 수천대에 이르는 상황에서 도커(Docker) 가 등장하고 서버관리 방식이 완전히 바뀌게 됩니다.
-        
-          <p class="article-more-link">
-            <a href="/2020/04/27/dev-ms-docker/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/04/27/dev-ms-docker/" data-id="cmbko3w8z000em4v2blbe2fgp" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/microservice/" rel="tag">microservice</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-IMT" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/04/04/IMT/" class="article-date">
-  <time datetime="2020-04-04T05:30:19.000Z" itemprop="datePublished">2020-04-04</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%EC%A0%95%EB%B3%B4-%EA%B4%80%EB%A6%AC-%EA%B8%B0%EC%88%A0%EC%82%AC/">정보 관리 기술사</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/04/IMT/">117회 기출문제</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="전체-문제"><a href="#전체-문제" class="headerlink" title="전체 문제"></a>전체 문제</h2><ul>
-<li><a href="https://drive.google.com/file/d/1EDwMIPl66b2EfhRbGi0Aj9F5TNljsgp7/view" target="_blank" rel="noopener">https://drive.google.com/file/d/1EDwMIPl66b2EfhRbGi0Aj9F5TNljsgp7/view</a></li>
-</ul>
-<h2 id="1-HMAC-Hash-based-Message-Authentication-Code"><a href="#1-HMAC-Hash-based-Message-Authentication-Code" class="headerlink" title="1. HMAC(Hash-based Message Authentication Code)"></a>1. HMAC(Hash-based Message Authentication Code)</h2><ul>
-<li>날짜 : 0404</li>
-<li>레퍼런스 : <a href="https://www.joinc.co.kr/w/man/12/hmac" target="_blank" rel="noopener">https://www.joinc.co.kr/w/man/12/hmac</a></li>
-<li>키워드 : Hash,Shared Key,MAC Algorithm</li>
-<li>답안전략 : 정확한 메커니즘 설명 및 3 단락에서의 차별화 접근
-        
-          <p class="article-more-link">
-            <a href="/2020/04/04/IMT/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/04/04/IMT/" data-id="cmbko3w9e0010m4v2gkodfz4l" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
-
-  <nav id="page-nav">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
-  </nav>
 
 </section>
         
