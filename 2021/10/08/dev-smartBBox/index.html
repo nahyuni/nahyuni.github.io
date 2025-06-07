@@ -5,17 +5,17 @@
   
 
   
-  <title>smart black box 2 | </title>
+  <title>smart black box | </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="개요">
+  <meta name="description" content="개요 영상분석을 통해 안전 감시 시스템을 구축한다. 구축centos7, java1.8, netty 프레임워크, nvr(rtsp, rtp, event, iot, record 등), vms, mysql엣지보드(tx2) : ubuntu, python3, yolov5sar 보드 : 방송 보드(android)** 영상분석 yolov5에서 학습을 통한 모델 구축.1.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="smart black box 2">
+<meta property="og:title" content="smart black box">
 <meta property="og:url" content="http://yoursite.com/2021/10/08/dev-smartBBox/index.html">
 <meta property="og:site_name" content="">
-<meta property="og:description" content="개요">
+<meta property="og:description" content="개요 영상분석을 통해 안전 감시 시스템을 구축한다. 구축centos7, java1.8, netty 프레임워크, nvr(rtsp, rtp, event, iot, record 등), vms, mysql엣지보드(tx2) : ubuntu, python3, yolov5sar 보드 : 방송 보드(android)** 영상분석 yolov5에서 학습을 통한 모델 구축.1.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-10-08T07:07:19.000Z">
-<meta property="article:modified_time" content="2023-06-10T03:41:13.259Z">
+<meta property="article:modified_time" content="2025-06-07T04:22:59.252Z">
 <meta property="article:author" content="nahyuni21(Park.S.H)">
 <meta property="article:tag" content="yolov5">
 <meta name="twitter:card" content="summary">
@@ -88,7 +88,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      smart black box 2
+      smart black box
     </h1>
   
 
@@ -96,7 +96,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="개요"><a href="#개요" class="headerlink" title="개요"></a>개요</h1>
+        <h1 id="개요"><a href="#개요" class="headerlink" title="개요"></a>개요</h1><p> 영상분석을 통해 안전 감시 시스템을 구축한다.</p>
+<h2 id="구축"><a href="#구축" class="headerlink" title="구축"></a>구축</h2><p>centos7, java1.8, netty 프레임워크, nvr(rtsp, rtp, event, iot, record 등), vms, mysql<br>엣지보드(tx2) : ubuntu, python3, yolov5<br>sar 보드 : 방송 보드(android)**</p>
+<h3 id="영상분석"><a href="#영상분석" class="headerlink" title="영상분석"></a>영상분석</h3><ol>
+<li>yolov5에서 학습을 통한 모델 구축.<br>1.1 자체 회사 자동 라벨링 툴을 통해 안전모, 화재, 개구부, 사람 객체 데이터를 저장.</li>
+<li>실시간 영상처리를 위한 엣지 보드(tx2)에서 인퍼런스.<br>2.1 다중 채널(카메라)을 쓰레드 또는 포크 방식으로 처리.<br>2.2 객체 마다 weigth 조절 가능 처리.<br>2.3 오탐을 방지하기 위해 객체마다 퍼센트 값을 기준으로 대략 70~80% 이상시에 이벤트 전송</li>
+<li>안전 감시를 위한 후처리.<br>3.1 해더 및 화재 객체 탐지시 현장 방송 및 서버에 이벤트 패킷을 보내고 서버에서는 뷰어(클라이언트)에게 이벤트를 보내 뷰어는 메세지, 로그, 위험단계(경고, 주의, 위험) 보여줌.<br>3.2 접근감지 이벤트를 위해 감지 라인을 뷰어에서 그리면 해당 좌표와 사람 다리 라인와 거리 측정 및 위험 이벤트 및 현장방송을 전송.</li>
+<li>트래킹 및 튜어링을 통한 객체 탐지.<br>4.1 감시 객체(사람, 화재)를 설정 후 프리셋으로 튜어링을 하며, 트래킹 설정 및 객체 탐지에 따라 객체 좌표에 따라 줌인, 줌아웃 및 PTZ를 통해 객체를 카메라 중앙으로 배치 시키고 또한 다중 객체시에는 중앙에 있는 객체를 따라 트래킹 작동.</li>
+</ol>
+
       
     </div>
     <footer class="article-footer">
@@ -193,7 +201,7 @@
           </li>
         
           <li>
-            <a href="/2021/10/08/dev-smartBBox/">smart black box 2</a>
+            <a href="/2021/10/08/dev-smartBBox/">smart black box</a>
           </li>
         
           <li>
