@@ -122,61 +122,6 @@
 
 
   
-    <article id="post-dev-holdem-svr" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2025/06/07/dev-holdem-svr/" class="article-date">
-  <time datetime="2025-06-07T03:24:19.000Z" itemprop="datePublished">2025-06-07</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%EA%B0%9C%EB%B0%9C/">개발</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2025/06/07/dev-holdem-svr/">smart black box</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="개요"><a href="#개요" class="headerlink" title="개요"></a>개요</h1><p> 영상분석을 통해 안전 감시 시스템을 구축한다.</p>
-<h2 id="구축"><a href="#구축" class="headerlink" title="구축"></a>구축</h2><p>centos7, java1.8, netty 프레임워크, nvr(rtsp, rtp, event, iot, record 등), vms, mysql<br>엣지보드(tx2) : ubuntu, python3, yolov5<br>sar 보드 : 방송 보드(android)**</p>
-<h3 id="영상분석"><a href="#영상분석" class="headerlink" title="영상분석"></a>영상분석</h3><ol>
-<li>yolov5에서 학습을 통한 모델 구축.<br>1.1 자체 자동 라벨링 툴을 통해 안전모, 화재, 개구부, 사람 객체 데이터를 저장.</li>
-<li>실시간 영상처리를 위한 엣지 보드(tx2)에서 인퍼런스.<br>2.1 다중 채널(카메라)을 쓰레드 또는 포크 방식으로 처리.<br>2.2 객체 마다 weigth 조절 가능 처리.<br>2.3 오탐을 방지하기 위해 객체마다 퍼센트 값을 기준으로 대략 70~80% 이상시에 이벤트 전송</li>
-<li>안전 감시를 위한 후처리.<br>3.1 해더 및 화재 객체 탐지시 현장 방송 및 서버에 이벤트 패킷을 보내고 서버에서는 뷰어(클라이언트)에게 이벤트를 보내 뷰어는 메세지, 로그, 위험단계(경고, 주의, 위험) 보여줌.<br>3.2 접근감지 이벤트를 위해 감지 라인을 뷰어에서 그리면 해당 좌표와 사람 다리 라인와 거리 측정 및 위험 이벤트 및 현장방송을 전송.</li>
-<li>트래킹 및 튜어링을 통한 객체 탐지.<br>4.1 감시 객체(사람, 화재)를 설정 후 프리셋으로 튜어링을 하며, 트래킹 설정 및 객체 탐지에 따라 객체 좌표에 따라 줌인, 줌아웃 및 PTZ를 통해 객체를 카메라 중앙으로 배치 시키고 또한 다중 객체시에는 중앙에 있는 객체를 따라 트래킹 작동.</li>
-</ol>
-
-        
-          <p class="article-more-link">
-            <a href="/2025/06/07/dev-holdem-svr/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2025/06/07/dev-holdem-svr/" data-id="cmbm0l0fd0000m8v2ayc7bfsd" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/yolov5/" rel="tag">yolov5</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
     <article id="post-dev-pipesocket-read" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2025/06/02/dev-pipesocket-read/" class="article-date">
@@ -601,6 +546,55 @@
 
 
   
+    <article id="post-dev-microservice" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/31/dev-microservice/" class="article-date">
+  <time datetime="2020-03-31T05:30:19.000Z" itemprop="datePublished">2020-03-31</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%EA%B0%9C%EB%B0%9C/">개발</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/31/dev-microservice/">마이크로 서비스 활용</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="넷플릭스의-마이크로-서비스-프레임웍-오픈소스-예"><a href="#넷플릭스의-마이크로-서비스-프레임웍-오픈소스-예" class="headerlink" title="넷플릭스의 마이크로 서비스 프레임웍 오픈소스 예"></a>넷플릭스의 마이크로 서비스 프레임웍 오픈소스 예</h2><p><img src="/images/99C3BD4B5BF3A99708.png" alt=""><br> 사용법이 복잡하다는 것이다. Hystrix 하나만을 적용하는데도 많은 노력이 필요한데, 여러개의 프레임웍을 적용하는 것은 여간 어려운 일이 아니다.</p>
+<p>그런데 여기서 스프링 프레임웍이 이런 문제를 풀어내는 기여를 한다. 스프링 프레임웍에 넷플릭스의 마이크로 서비스 오픈 소스 프레임웍을 통합 시켜 버린것이다. (<a href="http://spring.io/projects/spring-cloud-netflix" target="_blank" rel="noopener">http://spring.io/projects/spring-cloud-netflix</a>) </p>
+<p>복잡한 부분을 추상화해서 스프링 프레임웍을 적용하면 손쉽게 넷플릭스의 마이크로 서비스 프레임웍을 사용할 수 있게 해줬는데, 마지막 문제가 남게 된다. 스프링은 자바 개발 프레임웍이다. 즉 자바에만 적용이 가능하다.</p>
+        
+          <p class="article-more-link">
+            <a href="/2020/03/31/dev-microservice/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/31/dev-microservice/" data-id="cmbko3w8f0002m4v2ezpk87ef" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/microservice/" rel="tag">microservice</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
 
 
   <nav id="page-nav">
@@ -636,7 +630,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/300-%EB%AC%B8%EC%9E%A5/" style="font-size: 10px;">300 문장</a> <a href="/tags/Kestrel/" style="font-size: 10px;">Kestrel</a> <a href="/tags/aws/" style="font-size: 10px;">aws</a> <a href="/tags/blockchain/" style="font-size: 10px;">blockchain</a> <a href="/tags/cron/" style="font-size: 10px;">cron</a> <a href="/tags/game-svr/" style="font-size: 15px;">game svr</a> <a href="/tags/gamelift/" style="font-size: 10px;">gamelift</a> <a href="/tags/infra/" style="font-size: 10px;">infra</a> <a href="/tags/microservice/" style="font-size: 20px;">microservice</a> <a href="/tags/mining/" style="font-size: 10px;">mining</a> <a href="/tags/pow/" style="font-size: 10px;">pow</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/streaming/" style="font-size: 10px;">streaming</a> <a href="/tags/svn/" style="font-size: 10px;">svn</a> <a href="/tags/yolov5/" style="font-size: 15px;">yolov5</a> <a href="/tags/%EB%AF%B8%EB%94%94%EC%96%B4/" style="font-size: 10px;">미디어</a> <a href="/tags/%EC%A0%9C%EC%8B%9C%EC%B9%B4/" style="font-size: 10px;">제시카</a>
+      <a href="/tags/300-%EB%AC%B8%EC%9E%A5/" style="font-size: 10px;">300 문장</a> <a href="/tags/Kestrel/" style="font-size: 10px;">Kestrel</a> <a href="/tags/aws/" style="font-size: 10px;">aws</a> <a href="/tags/blockchain/" style="font-size: 10px;">blockchain</a> <a href="/tags/cron/" style="font-size: 10px;">cron</a> <a href="/tags/game-svr/" style="font-size: 15px;">game svr</a> <a href="/tags/gamelift/" style="font-size: 10px;">gamelift</a> <a href="/tags/infra/" style="font-size: 10px;">infra</a> <a href="/tags/microservice/" style="font-size: 20px;">microservice</a> <a href="/tags/mining/" style="font-size: 10px;">mining</a> <a href="/tags/pow/" style="font-size: 10px;">pow</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/streaming/" style="font-size: 10px;">streaming</a> <a href="/tags/svn/" style="font-size: 10px;">svn</a> <a href="/tags/yolov5/" style="font-size: 10px;">yolov5</a> <a href="/tags/%EB%AF%B8%EB%94%94%EC%96%B4/" style="font-size: 10px;">미디어</a> <a href="/tags/%EC%A0%9C%EC%8B%9C%EC%B9%B4/" style="font-size: 10px;">제시카</a>
     </div>
   </div>
 
@@ -662,10 +656,6 @@
           </li>
         
           <li>
-            <a href="/2025/06/07/dev-holdem-svr/">smart black box</a>
-          </li>
-        
-          <li>
             <a href="/2025/06/02/dev-pipesocket-read/">Pipe 기반 소켓 처리</a>
           </li>
         
@@ -675,6 +665,10 @@
         
           <li>
             <a href="/2025/04/06/dev-ms-gokit/">go-kit</a>
+          </li>
+        
+          <li>
+            <a href="/2023/06/12/dev-rtp/">RTP,RTCP,RTSP 개요</a>
           </li>
         
       </ul>
